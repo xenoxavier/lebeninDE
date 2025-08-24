@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leben in Deutschland - Exam Preparation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-animation">
+            <div class="cube-container">
+                <div class="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+            <p>Leben in Deutschland wird geladen...</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">🇩🇪</div>
+                <div class="brand-text">
+                    <h1>LebenDE</h1>
+                    <span>Citizenship Test</span>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#quiz" class="nav-link">Practice</a></li>
+                <li class="nav-item"><a href="#statistics" class="nav-link">Progress</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
+                <button class="cta-nav-btn">Start Learning</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                    <div class="shape shape-5"></div>
+                    <div class="shape shape-6"></div>
+                </div>
+                <div class="particle-system" id="particle-system"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span>🎯</span>
+                        <span>96.4% Success Rate</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Master the <span class="highlight">German Citizenship Test</span> with Confidence
+                    </h1>
+                    <p class="hero-subtitle">
+                        Interactive practice tests, personalized learning paths, and comprehensive preparation for your Leben in Deutschland exam
+                    </p>
+                    <div class="hero-actions">
+                        <button class="cta-primary">
+                            <span>Start Free Practice</span>
+                        </button>
+                        <button class="cta-secondary">
+                            <span>Take Full Test</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">310</div>
+                            <div class="stat-label">Questions</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">96.4%</div>
+                            <div class="stat-label">Pass Rate</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="card-header">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 73%"></div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Was ist ein Rechtsstaat?</h3>
+                            <div class="options-preview">
+                                <div class="option-preview">Ein Staat, in dem es nur rechte politische Parteien gibt</div>
+                                <div class="option-preview active">Ein Staat, in dem alle Bürger und Institutionen vor dem Gesetz gleich sind</div>
+                                <div class="option-preview">Ein Staat, in dem nur das Parlament Gesetze beschließen darf</div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="score">Score: 23/24 ✓</div>
+                            <button class="next-btn">Weiter →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Why Choose LebenDE?</h2>
+                    <p class="section-subtitle">Everything you need to pass your German citizenship test</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Complete Question Bank</h3>
+                        <p>All 310 official questions with detailed explanations and topic categorization</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Smart Practice Mode</h3>
+                        <p>AI-powered recommendations focus on your weak areas for efficient learning</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Progress Tracking</h3>
+                        <p>Detailed analytics show your improvement and readiness for the real test</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Mock Exams</h3>
+                        <p>Take realistic practice tests under real exam conditions</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Study Anywhere</h3>
+                        <p>Mobile-optimized platform works perfectly on all devices</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Multi-Language Support</h3>
+                        <p>Interface available in multiple languages for better understanding</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Quiz</h2>
+                <div class="quiz-container">
+                    <div class="question-card">
+                        <div class="question-number">
+                            <span class="current">1</span> / <span class="total">33</span>
+                        </div>
+                        <div class="question-content">
+                            <h3 id="question-text">Frage wird geladen...</h3>
+                            <div class="options" id="options-container">
+                                <!-- Options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="quiz-controls">
+                            <button id="prev-btn" class="quiz-btn" disabled>Zurück</button>
+                            <button id="next-btn" class="quiz-btn">Weiter</button>
+                        </div>
+                    </div>
+                    <div class="quiz-sidebar">
+                        <div class="progress-circle">
+                            <svg class="progress-ring" width="120" height="120">
+                                <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                                <circle class="progress-ring__circle progress" stroke="#4CAF50" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                            </svg>
+                            <div class="progress-text">0%</div>
+                        </div>
+                        <div class="quiz-stats">
+                            <div class="stat">
+                                <span class="stat-label">Richtig:</span>
+                                <span class="stat-value" id="correct-count">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Falsch:</span>
+                                <span class="stat-value" id="wrong-count">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="statistics" class="stats-section">
+            <div class="container">
+                <h2 class="section-title">Ihre Statistiken</h2>
+                
+                <!-- Achievement Badges -->
+                <div class="achievements-container">
+                    <div class="achievement-badge" data-achievement="first-question">
+                        <div class="badge-icon">🎯</div>
+                        <div class="badge-label">Erste Frage</div>
+                    </div>
+                    <div class="achievement-badge" data-achievement="streak-5">
+                        <div class="badge-icon">🔥</div>
+                        <div class="badge-label">5 Richtig</div>
+                    </div>
+                    <div class="achievement-badge" data-achievement="half-way">
+                        <div class="badge-icon">⚡</div>
+                        <div class="badge-label">Halbzeit</div>
+                    </div>
+                    <div class="achievement-badge" data-achievement="perfect-score">
+                        <div class="badge-icon">🏆</div>
+                        <div class="badge-label">Perfekt</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <h3>Gesamtergebnis</h3>
+                        <div class="stat-number" id="overall-score">0%</div>
+                        <div class="stat-progress-bar">
+                            <div class="stat-progress-fill" data-target="0"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <h3>Richtige Antworten</h3>
+                        <div class="stat-number" id="total-correct">0</div>
+                        <div class="celebration-burst" id="correct-celebration"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <h3>Falsche Antworten</h3>
+                        <div class="stat-number" id="total-wrong">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <h3>Durchschnitt</h3>
+                        <div class="stat-number" id="average-score">0%</div>
+                        <div class="achievement-glow" id="average-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="section-header">
+                            <h2 class="section-title">About the Leben in Deutschland Test</h2>
+                            <p class="section-subtitle">Everything you need to know about the German citizenship exam</p>
+                        </div>
+                        
+                        <div class="about-grid">
+                            <div class="about-card">
+                                <div class="card-icon">📋</div>
+                                <h3>Test Format</h3>
+                                <ul>
+                                    <li>33 multiple-choice questions</li>
+                                    <li>60 minutes duration</li>
+                                    <li>17 correct answers needed to pass</li>
+                                    <li>Available in German only</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="about-card">
+                                <div class="card-icon">📚</div>
+                                <h3>Topics Covered</h3>
+                                <ul>
+                                    <li>Politics in Democracy</li>
+                                    <li>History and Responsibility</li>
+                                    <li>People and Society</li>
+                                    <li>State-specific questions</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="about-card">
+                                <div class="card-icon">💰</div>
+                                <h3>Cost & Registration</h3>
+                                <ul>
+                                    <li>Test fee: €25</li>
+                                    <li>Register at VHS or test centers</li>
+                                    <li>Valid ID required</li>
+                                    <li>Results within 6 weeks</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="brand-icon">🇩🇪</div>
+                        <div class="brand-text">
+                            <h3>LebenDE</h3>
+                            <p>Your path to German citizenship</p>
+                        </div>
+                    </div>
+                    <p>Prepare for the Leben in Deutschland test with our comprehensive platform trusted by thousands of students.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#quiz">Practice Test</a></li>
+                        <li><a href="#statistics">Progress</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Study Guide</a></li>
+                        <li><a href="#">Official Questions</a></li>
+                        <li><a href="#">Test Centers</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@lebende.de">info@lebende.de</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LebenDE. All rights reserved. | Made with ❤️ for aspiring German citizens</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple loading screen hide with fallback
+        setTimeout(() => {
+            const loader = document.querySelector('.loading-screen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
