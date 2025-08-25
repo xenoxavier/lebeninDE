@@ -116,10 +116,33 @@ class LebenInDeutschlandQuiz {
         };
         this.currentStreak = 0;
         
+        // Dashboard data
+        this.userProfile = {
+            name: 'Student',
+            avatar: '🇩🇪',
+            totalSessions: 0,
+            studyTimeMinutes: 0,
+            successRate: 0,
+            totalQuestionsAnswered: 0,
+            averageAnswerTime: 0,
+            bestStreak: 0,
+            daysStudied: 0,
+            lastStudyDate: null
+        };
+        
+        this.quizHistory = [];
+        this.studyStreak = 0;
+        this.weakAreas = {
+            'Politik in der Demokratie': { correct: 0, total: 0 },
+            'Geschichte und Verantwortung': { correct: 0, total: 0 },
+            'Mensch und Gesellschaft': { correct: 0, total: 0 }
+        };
+        
         this.init();
     }
     
     init() {
+        this.loadUserData();
         this.setupEventListeners();
         this.setupMobileMenu();
         this.setupThemeToggle();
@@ -128,11 +151,12 @@ class LebenInDeutschlandQuiz {
         this.setupScrollIndicator();
         this.setupSoundEffects();
         this.setupMagneticEffects();
+        this.setupDashboard();
     }
     
     setupEventListeners() {
-        // CTA Buttons
-        const ctaButtons = document.querySelectorAll('.cta-primary, .cta-button, .cta-nav-btn, .cta-secondary');
+        // CTA Buttons (only buttons, not links)
+        const ctaButtons = document.querySelectorAll('button.cta-primary, button.cta-button, button.cta-nav-btn, button.cta-secondary');
         ctaButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -140,13 +164,15 @@ class LebenInDeutschlandQuiz {
             });
         });
         
-        // Navigation links
+        // Navigation links (only internal anchor links)
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = e.target.getAttribute('href');
-                this.scrollToSection(target);
-            });
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.scrollToSection(href);
+                });
+            }
         });
         
         // Quiz controls
@@ -264,12 +290,21 @@ class LebenInDeutschlandQuiz {
     }
     
     startQuiz() {
+        // Check if we're on the dashboard page with quiz section
+        const quizSection = document.getElementById('quiz');
+        if (!quizSection) {
+            // If no quiz section, redirect to dashboard
+            window.location.href = 'dashboard.html';
+            return;
+        }
+        
         this.scrollToSection('#quiz');
         this.isQuizActive = true;
         this.currentQuestion = 0;
         this.userAnswers = [];
         this.correctAnswers = 0;
         this.wrongAnswers = 0;
+        this.quizStartTime = Date.now(); // Track quiz start time for dashboard
         this.loadQuestion();
         this.updateProgress();
     }
@@ -409,6 +444,10 @@ class LebenInDeutschlandQuiz {
         this.calculateFinalResults();
         this.showResults();
         this.scrollToSection('#statistics');
+        
+        // Record quiz session for dashboard
+        const timeSpent = Date.now() - (this.quizStartTime || Date.now());
+        this.recordQuizSession(this.correctAnswers, this.questions.length, timeSpent);
     }
     
     calculateFinalResults() {
@@ -731,11 +770,401 @@ class LebenInDeutschlandQuiz {
             document.body.removeChild(celebration);
         };
     }
+    
+    // Dashboard Methods
+    loadUserData() {
+        const savedData = localStorage.getItem('lebenDE_userData');
+        if (savedData) {
+            const userData = JSON.parse(savedData);
+            this.userProfile = { ...this.userProfile, ...userData.profile };
+            this.quizHistory = userData.history || [];
+            this.studyStreak = userData.studyStreak || 0;
+            this.weakAreas = userData.weakAreas || this.weakAreas;
+            this.achievements = userData.achievements || this.achievements;
+        }
+        this.updateStudyStreak();
+    }
+    
+    saveUserData() {
+        const userData = {
+            profile: this.userProfile,
+            history: this.quizHistory,
+            studyStreak: this.studyStreak,
+            weakAreas: this.weakAreas,
+            achievements: this.achievements,
+            lastSaved: new Date().toISOString()
+        };
+        localStorage.setItem('lebenDE_userData', JSON.stringify(userData));
+    }
+    
+    setupDashboard() {
+        this.updateDashboardDisplay();
+        this.setupDashboardEventListeners();
+        this.generateStreakCalendar();
+    }
+    
+    setupDashboardEventListeners() {
+        // Edit profile button
+        const editProfileBtn = document.getElementById('edit-profile');
+        if (editProfileBtn) {
+            editProfileBtn.addEventListener('click', () => this.showEditProfileModal());
+        }
+        
+        // Avatar edit button
+        const avatarEditBtn = document.getElementById('avatar-edit');
+        if (avatarEditBtn) {
+            avatarEditBtn.addEventListener('click', () => this.showAvatarSelector());
+        }
+        
+        // Focus study button
+        const focusStudyBtn = document.querySelector('.focus-study-btn');
+        if (focusStudyBtn) {
+            focusStudyBtn.addEventListener('click', () => this.startFocusedPractice());
+        }
+    }
+    
+    updateDashboardDisplay() {
+        // Update profile information
+        const profileName = document.getElementById('profile-name');
+        const userAvatar = document.getElementById('user-avatar');
+        const profileTotalSessions = document.getElementById('profile-total-sessions');
+        const profileStudyTime = document.getElementById('profile-study-time');
+        const profileSuccessRate = document.getElementById('profile-success-rate');
+        
+        if (profileName) profileName.textContent = this.userProfile.name;
+        if (userAvatar) userAvatar.textContent = this.userProfile.avatar;
+        if (profileTotalSessions) profileTotalSessions.textContent = this.userProfile.totalSessions;
+        if (profileStudyTime) profileStudyTime.textContent = `${Math.floor(this.userProfile.studyTimeMinutes / 60)}h`;
+        if (profileSuccessRate) profileSuccessRate.textContent = `${Math.round(this.userProfile.successRate)}%`;
+        
+        // Update dashboard progress
+        this.updateDashboardProgress();
+        
+        // Update quick stats
+        this.updateQuickStats();
+        
+        // Update recent activity
+        this.updateRecentActivity();
+        
+        // Update streak display
+        this.updateStreakDisplay();
+        
+        // Update achievements
+        this.updateDashboardAchievements();
+    }
+    
+    updateDashboardProgress() {
+        const progressText = document.getElementById('dashboard-progress-text');
+        const progressCircle = document.getElementById('dashboard-progress-circle');
+        const dashboardCorrect = document.getElementById('dashboard-correct');
+        const dashboardIncorrect = document.getElementById('dashboard-incorrect');
+        const dashboardRemaining = document.getElementById('dashboard-remaining');
+        
+        const totalAnswered = this.userProfile.totalQuestionsAnswered;
+        const correctAnswers = Math.round(totalAnswered * (this.userProfile.successRate / 100));
+        const incorrectAnswers = totalAnswered - correctAnswers;
+        const totalQuestions = this.questions.length;
+        const progress = Math.min(100, (totalAnswered / totalQuestions) * 100);
+        
+        if (progressText) progressText.textContent = `${Math.round(progress)}%`;
+        if (dashboardCorrect) dashboardCorrect.textContent = correctAnswers;
+        if (dashboardIncorrect) dashboardIncorrect.textContent = incorrectAnswers;
+        if (dashboardRemaining) dashboardRemaining.textContent = Math.max(0, totalQuestions - totalAnswered);
+        
+        if (progressCircle) {
+            const circumference = 2 * Math.PI * 50;
+            const offset = circumference - (progress / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+    }
+    
+    updateQuickStats() {
+        const totalQuestionsAnswered = document.getElementById('total-questions-answered');
+        const averageTime = document.getElementById('average-time');
+        const bestStreak = document.getElementById('best-streak');
+        const daysStudied = document.getElementById('days-studied');
+        
+        if (totalQuestionsAnswered) totalQuestionsAnswered.textContent = this.userProfile.totalQuestionsAnswered;
+        if (averageTime) averageTime.textContent = `${Math.round(this.userProfile.averageAnswerTime)}s`;
+        if (bestStreak) bestStreak.textContent = this.userProfile.bestStreak;
+        if (daysStudied) daysStudied.textContent = this.userProfile.daysStudied;
+    }
+    
+    updateRecentActivity() {
+        const recentActivity = document.getElementById('recent-activity');
+        if (!recentActivity) return;
+        
+        if (this.quizHistory.length === 0) {
+            recentActivity.innerHTML = `
+                <div class="activity-item empty">
+                    <div class="activity-icon">🎯</div>
+                    <div class="activity-content">
+                        <p>Start your first quiz to see activity here!</p>
+                        <span class="activity-time">No activity yet</span>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const recentEntries = this.quizHistory.slice(-3).reverse();
+        recentActivity.innerHTML = recentEntries.map(entry => {
+            const timeAgo = this.formatTimeAgo(new Date(entry.date));
+            const icon = entry.score >= 70 ? '✅' : entry.score >= 50 ? '⚠️' : '❌';
+            return `
+                <div class="activity-item">
+                    <div class="activity-icon">${icon}</div>
+                    <div class="activity-content">
+                        <p>Quiz completed: ${entry.score}% (${entry.correct}/${entry.total})</p>
+                        <span class="activity-time">${timeAgo}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    updateStreakDisplay() {
+        const currentStreak = document.getElementById('current-streak');
+        const streakMessage = document.getElementById('streak-message');
+        
+        if (currentStreak) currentStreak.textContent = this.studyStreak;
+        
+        if (streakMessage) {
+            if (this.studyStreak === 0) {
+                streakMessage.textContent = 'Start studying to build your streak!';
+            } else if (this.studyStreak === 1) {
+                streakMessage.textContent = 'Great start! Keep it up tomorrow!';
+            } else if (this.studyStreak < 5) {
+                streakMessage.textContent = `You're building momentum! ${5 - this.studyStreak} more days to reach 5!`;
+            } else {
+                streakMessage.textContent = `Amazing streak! You're on fire! 🔥`;
+            }
+        }
+    }
+    
+    updateDashboardAchievements() {
+        const dashboardAchievements = document.getElementById('dashboard-achievements');
+        if (!dashboardAchievements) return;
+        
+        const earnedAchievements = Object.entries(this.achievements)
+            .filter(([key, earned]) => earned)
+            .slice(-3);
+        
+        if (earnedAchievements.length === 0) {
+            dashboardAchievements.innerHTML = `
+                <div class="achievement-slot empty">
+                    <div class="achievement-icon">❓</div>
+                    <span class="achievement-name">Complete your first quiz!</span>
+                </div>
+                <div class="achievement-slot empty">
+                    <div class="achievement-icon">❓</div>
+                    <span class="achievement-name">Keep practicing!</span>
+                </div>
+                <div class="achievement-slot empty">
+                    <div class="achievement-icon">❓</div>
+                    <span class="achievement-name">More achievements await!</span>
+                </div>
+            `;
+            return;
+        }
+        
+        const achievementIcons = {
+            'first-question': '🎯',
+            'streak-5': '🔥',
+            'half-way': '⚡',
+            'perfect-score': '🏆'
+        };
+        
+        const achievementNames = {
+            'first-question': 'First Question',
+            'streak-5': '5 Streak',
+            'half-way': 'Half Way',
+            'perfect-score': 'Perfect Score'
+        };
+        
+        let html = '';
+        for (let i = 0; i < 3; i++) {
+            if (i < earnedAchievements.length) {
+                const [key] = earnedAchievements[i];
+                html += `
+                    <div class="achievement-slot earned">
+                        <div class="achievement-icon">${achievementIcons[key]}</div>
+                        <span class="achievement-name">${achievementNames[key]}</span>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="achievement-slot empty">
+                        <div class="achievement-icon">❓</div>
+                        <span class="achievement-name">Keep going!</span>
+                    </div>
+                `;
+            }
+        }
+        
+        dashboardAchievements.innerHTML = html;
+    }
+    
+    generateStreakCalendar() {
+        const streakCalendar = document.getElementById('streak-calendar');
+        if (!streakCalendar) return;
+        
+        const today = new Date();
+        const days = [];
+        
+        for (let i = 6; i >= 0; i--) {
+            const date = new Date(today);
+            date.setDate(today.getDate() - i);
+            days.push(date);
+        }
+        
+        streakCalendar.innerHTML = days.map(date => {
+            const daysDiff = Math.floor((today - date) / (1000 * 60 * 60 * 24));
+            const isActive = daysDiff < this.studyStreak;
+            return `<div class="calendar-day${isActive ? ' active' : ''}"></div>`;
+        }).join('');
+    }
+    
+    updateStudyStreak() {
+        const today = new Date().toDateString();
+        const lastStudyDate = this.userProfile.lastStudyDate;
+        
+        if (!lastStudyDate) {
+            this.studyStreak = 0;
+            return;
+        }
+        
+        const lastDate = new Date(lastStudyDate);
+        const daysDiff = Math.floor((new Date() - lastDate) / (1000 * 60 * 60 * 24));
+        
+        if (daysDiff > 1) {
+            this.studyStreak = 0;
+        } else if (daysDiff === 1 && lastDate.toDateString() !== today) {
+            // This will be incremented when they complete a quiz today
+        }
+    }
+    
+    recordQuizSession(correct, total, timeSpent) {
+        const score = Math.round((correct / total) * 100);
+        const session = {
+            date: new Date().toISOString(),
+            correct: correct,
+            total: total,
+            score: score,
+            timeSpent: timeSpent
+        };
+        
+        this.quizHistory.push(session);
+        
+        // Update user profile stats
+        this.userProfile.totalSessions++;
+        this.userProfile.totalQuestionsAnswered += total;
+        this.userProfile.studyTimeMinutes += Math.round(timeSpent / 60);
+        
+        // Update success rate (weighted average)
+        const totalQuestions = this.userProfile.totalQuestionsAnswered;
+        const totalCorrect = this.quizHistory.reduce((sum, session) => sum + session.correct, 0);
+        this.userProfile.successRate = (totalCorrect / totalQuestions) * 100;
+        
+        // Update average answer time
+        const totalTime = this.quizHistory.reduce((sum, session) => sum + session.timeSpent, 0);
+        this.userProfile.averageAnswerTime = (totalTime / totalQuestions) / 1000;
+        
+        // Update best streak
+        if (this.currentStreak > this.userProfile.bestStreak) {
+            this.userProfile.bestStreak = this.currentStreak;
+        }
+        
+        // Update study streak
+        const today = new Date().toDateString();
+        if (this.userProfile.lastStudyDate !== today) {
+            this.studyStreak++;
+            this.userProfile.lastStudyDate = today;
+            
+            // Count unique study days
+            const uniqueDays = new Set(this.quizHistory.map(session => 
+                new Date(session.date).toDateString()
+            )).size;
+            this.userProfile.daysStudied = uniqueDays;
+        }
+        
+        this.saveUserData();
+        this.updateDashboardDisplay();
+    }
+    
+    startFocusedPractice() {
+        // Find the weakest area
+        let weakestArea = null;
+        let lowestPercentage = 100;
+        
+        for (const [area, stats] of Object.entries(this.weakAreas)) {
+            if (stats.total > 0) {
+                const percentage = (stats.correct / stats.total) * 100;
+                if (percentage < lowestPercentage) {
+                    lowestPercentage = percentage;
+                    weakestArea = area;
+                }
+            }
+        }
+        
+        if (weakestArea) {
+            this.showCustomAlert('Focus Practice', `Starting focused practice on: ${weakestArea}`, 'success');
+        }
+        
+        // Start regular quiz for now (could be enhanced with topic-specific questions)
+        this.startQuiz();
+    }
+    
+    showEditProfileModal() {
+        const currentName = this.userProfile.name;
+        const newName = prompt('Enter your name:', currentName);
+        
+        if (newName && newName.trim() !== '') {
+            this.userProfile.name = newName.trim();
+            this.saveUserData();
+            this.updateDashboardDisplay();
+            this.showCustomAlert('Profile Updated', 'Your profile has been updated successfully!', 'success');
+        }
+    }
+    
+    showAvatarSelector() {
+        const avatars = ['🇩🇪', '👨‍🎓', '👩‍🎓', '🎯', '📚', '🌟', '🚀', '💪', '🎉', '🏆'];
+        const currentAvatar = this.userProfile.avatar;
+        
+        let message = 'Choose your avatar:\n\n';
+        avatars.forEach((avatar, index) => {
+            message += `${index + 1}. ${avatar}${avatar === currentAvatar ? ' (current)' : ''}\n`;
+        });
+        
+        const choice = prompt(message + '\nEnter number (1-10):');
+        const index = parseInt(choice) - 1;
+        
+        if (index >= 0 && index < avatars.length) {
+            this.userProfile.avatar = avatars[index];
+            this.saveUserData();
+            this.updateDashboardDisplay();
+            this.showCustomAlert('Avatar Updated', 'Your avatar has been updated!', 'success');
+        }
+    }
+    
+    formatTimeAgo(date) {
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        
+        if (diffMins < 1) return 'Just now';
+        if (diffMins < 60) return `${diffMins}m ago`;
+        if (diffHours < 24) return `${diffHours}h ago`;
+        if (diffDays < 7) return `${diffDays}d ago`;
+        return date.toLocaleDateString();
+    }
 }
 
 // Initialize the quiz when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new LebenInDeutschlandQuiz();
+    window.quiz = new LebenInDeutschlandQuiz();
     
     // Add scroll indicator to the page
     const indicator = document.createElement('div');

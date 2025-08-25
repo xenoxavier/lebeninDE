@@ -40,12 +40,12 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#quiz" class="nav-link">Practice</a></li>
-                <li class="nav-item"><a href="#statistics" class="nav-link">Progress</a></li>
+                <li class="nav-item"><a href="#dashboard-preview" class="nav-link">Dashboard</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="theme-toggle" id="theme-toggle">🌙</button>
-                <button class="cta-nav-btn">Start Learning</button>
+                <a href="dashboard.html" class="cta-nav-btn">Start Learning</a>
             </div>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -81,12 +81,12 @@
                         Interactive practice tests, personalized learning paths, and comprehensive preparation for your Leben in Deutschland exam
                     </p>
                     <div class="hero-actions">
-                        <button class="cta-primary">
+                        <a href="dashboard.html" class="cta-primary">
                             <span>Start Free Practice</span>
-                        </button>
-                        <button class="cta-secondary">
+                        </a>
+                        <a href="dashboard.html" class="cta-secondary">
                             <span>Take Full Test</span>
-                        </button>
+                        </a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat">
@@ -168,101 +168,191 @@
             </div>
         </section>
 
-        <section id="quiz" class="quiz-section">
+        <section id="dashboard-preview" class="dashboard-preview-section">
             <div class="container">
-                <h2 class="section-title">Quiz</h2>
-                <div class="quiz-container">
-                    <div class="question-card">
-                        <div class="question-number">
-                            <span class="current">1</span> / <span class="total">33</span>
-                        </div>
-                        <div class="question-content">
-                            <h3 id="question-text">Frage wird geladen...</h3>
-                            <div class="options" id="options-container">
-                                <!-- Options will be populated by JavaScript -->
-                            </div>
-                        </div>
-                        <div class="quiz-controls">
-                            <button id="prev-btn" class="quiz-btn" disabled>Zurück</button>
-                            <button id="next-btn" class="quiz-btn">Weiter</button>
-                        </div>
-                    </div>
-                    <div class="quiz-sidebar">
-                        <div class="progress-circle">
-                            <svg class="progress-ring" width="120" height="120">
-                                <circle class="progress-ring__circle" stroke="#e0e0e0" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                                <circle class="progress-ring__circle progress" stroke="#4CAF50" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                            </svg>
-                            <div class="progress-text">0%</div>
-                        </div>
-                        <div class="quiz-stats">
-                            <div class="stat">
-                                <span class="stat-label">Richtig:</span>
-                                <span class="stat-value" id="correct-count">0</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-label">Falsch:</span>
-                                <span class="stat-value" id="wrong-count">0</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Your Personal Dashboard</h2>
+                    <p class="section-subtitle">Track your progress, manage your learning, and achieve your goals</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="statistics" class="stats-section">
-            <div class="container">
-                <h2 class="section-title">Ihre Statistiken</h2>
                 
-                <!-- Achievement Badges -->
-                <div class="achievements-container">
-                    <div class="achievement-badge" data-achievement="first-question">
-                        <div class="badge-icon">🎯</div>
-                        <div class="badge-label">Erste Frage</div>
-                    </div>
-                    <div class="achievement-badge" data-achievement="streak-5">
-                        <div class="badge-icon">🔥</div>
-                        <div class="badge-label">5 Richtig</div>
-                    </div>
-                    <div class="achievement-badge" data-achievement="half-way">
-                        <div class="badge-icon">⚡</div>
-                        <div class="badge-label">Halbzeit</div>
-                    </div>
-                    <div class="achievement-badge" data-achievement="perfect-score">
-                        <div class="badge-icon">🏆</div>
-                        <div class="badge-label">Perfekt</div>
-                    </div>
+                <!-- Dashboard Preview with Sidebar Layout -->
+                <div class="dashboard-preview">
+                    <div class="preview-dashboard-layout">
+                        <!-- Left Sidebar - Profile Preview -->
+                        <div class="preview-dashboard-sidebar">
+                            <div class="preview-profile-card">
+                                <div class="preview-avatar">
+                                    <div class="avatar-image">🇩🇪</div>
+                                </div>
+                                <div class="preview-profile-info">
+                                    <h3 class="preview-name">John Doe</h3>
+                                    <p class="preview-subtitle">German Citizenship Candidate</p>
+                                    <div class="preview-stats">
+                                        <div class="preview-stat">
+                                            <span class="stat-number">12</span>
+                                            <span class="stat-label">Sessions</span>
+                                        </div>
+                                        <div class="preview-stat">
+                                            <span class="stat-number">8h</span>
+                                            <span class="stat-label">Study Time</span>
+                                        </div>
+                                        <div class="preview-stat">
+                                            <span class="stat-number">87%</span>
+                                            <span class="stat-label">Success Rate</span>
+                                        </div>
+                                    </div>
+                                    <button class="preview-edit-profile-btn">Edit Profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Content - Dashboard Cards Preview -->
+                        <div class="preview-dashboard-content">
+                            <div class="preview-dashboard-grid">
+                        <!-- Progress Card -->
+                        <div class="preview-card">
+                            <div class="preview-card-header">
+                                <div class="card-icon">📊</div>
+                                <h3>Learning Progress</h3>
+                            </div>
+                            <div class="preview-progress">
+                                <div class="preview-circular-progress">
+                                    <svg class="preview-progress-circle" viewBox="0 0 120 120">
+                                        <circle cx="60" cy="60" r="50" stroke="#e0e0e0" stroke-width="8" fill="none"/>
+                                        <circle cx="60" cy="60" r="50" stroke="#4CAF50" stroke-width="8" fill="none" 
+                                                stroke-dasharray="314.16" stroke-dashoffset="78.54" class="preview-progress-stroke"/>
+                                    </svg>
+                                    <div class="preview-progress-center">
+                                        <span class="preview-progress-percentage">75%</span>
+                                        <span class="preview-progress-label">Complete</span>
+                                    </div>
+                                </div>
+                                <div class="preview-progress-details">
+                                    <div class="preview-progress-item">
+                                        <span class="progress-dot correct"></span>
+                                        <span>Correct: <strong>7</strong></span>
+                                    </div>
+                                    <div class="preview-progress-item">
+                                        <span class="progress-dot incorrect"></span>
+                                        <span>Incorrect: <strong>2</strong></span>
+                                    </div>
+                                    <div class="preview-progress-item">
+                                        <span class="progress-dot remaining"></span>
+                                        <span>Remaining: <strong>1</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Card -->
+                        <div class="preview-card">
+                            <div class="preview-card-header">
+                                <div class="card-icon">📈</div>
+                                <h3>Recent Activity</h3>
+                            </div>
+                            <div class="preview-activity-list">
+                                <div class="preview-activity-item">
+                                    <div class="activity-icon">✅</div>
+                                    <div class="activity-content">
+                                        <p>Quiz completed: 90% (9/10)</p>
+                                        <span class="activity-time">2h ago</span>
+                                    </div>
+                                </div>
+                                <div class="preview-activity-item">
+                                    <div class="activity-icon">⚠️</div>
+                                    <div class="activity-content">
+                                        <p>Quiz completed: 60% (6/10)</p>
+                                        <span class="activity-time">1d ago</span>
+                                    </div>
+                                </div>
+                                <div class="preview-activity-item">
+                                    <div class="activity-icon">✅</div>
+                                    <div class="activity-content">
+                                        <p>Quiz completed: 80% (8/10)</p>
+                                        <span class="activity-time">2d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Streak Card -->
+                        <div class="preview-card">
+                            <div class="preview-card-header">
+                                <div class="card-icon">🔥</div>
+                                <h3>Study Streak</h3>
+                            </div>
+                            <div class="preview-streak-content">
+                                <div class="preview-streak-number">7</div>
+                                <div class="preview-streak-label">Days in a row</div>
+                                <div class="preview-streak-calendar">
+                                    <div class="preview-calendar-week">
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                        <div class="calendar-day active"></div>
+                                    </div>
+                                </div>
+                                <p class="preview-streak-motivation">Amazing streak! You're on fire! 🔥</p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats Card -->
+                        <div class="preview-card">
+                            <div class="preview-card-header">
+                                <div class="card-icon">⚡</div>
+                                <h3>Quick Stats</h3>
+                            </div>
+                            <div class="preview-quick-stats">
+                                <div class="preview-quick-stat">
+                                    <div class="stat-icon">🎯</div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">89</span>
+                                        <span class="stat-label">Questions Answered</span>
+                                    </div>
+                                </div>
+                                <div class="preview-quick-stat">
+                                    <div class="stat-icon">⏱️</div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">12s</span>
+                                        <span class="stat-label">Avg. Answer Time</span>
+                                    </div>
+                                </div>
+                                <div class="preview-quick-stat">
+                                    <div class="stat-icon">🏆</div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">7</span>
+                                        <span class="stat-label">Best Streak</span>
+                                    </div>
+                                </div>
+                                <div class="preview-quick-stat">
+                                    <div class="stat-icon">📅</div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">12</span>
+                                        <span class="stat-label">Days Studied</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Close preview-dashboard-grid -->
+                        </div> <!-- Close preview-dashboard-content -->
+                    </div> <!-- Close preview-dashboard-layout -->
                 </div>
 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">📊</div>
-                        <h3>Gesamtergebnis</h3>
-                        <div class="stat-number" id="overall-score">0%</div>
-                        <div class="stat-progress-bar">
-                            <div class="stat-progress-fill" data-target="0"></div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">✅</div>
-                        <h3>Richtige Antworten</h3>
-                        <div class="stat-number" id="total-correct">0</div>
-                        <div class="celebration-burst" id="correct-celebration"></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">❌</div>
-                        <h3>Falsche Antworten</h3>
-                        <div class="stat-number" id="total-wrong">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🎯</div>
-                        <h3>Durchschnitt</h3>
-                        <div class="stat-number" id="average-score">0%</div>
-                        <div class="achievement-glow" id="average-glow"></div>
-                    </div>
+                <!-- CTA for dashboard -->
+                <div class="dashboard-preview-cta">
+                    <h3>Ready to start your learning journey?</h3>
+                    <p>Get personalized insights, track your progress, and master the German citizenship test</p>
+                    <a href="dashboard.html" class="cta-primary dashboard-cta-btn">
+                        <span>Access Your Dashboard</span>
+                        <span class="cta-arrow">→</span>
+                    </a>
                 </div>
             </div>
         </section>
+
 
         <section id="about" class="about-section">
             <div class="container">
@@ -332,8 +422,9 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#features">Features</a></li>
-                        <li><a href="#quiz">Practice Test</a></li>
-                        <li><a href="#statistics">Progress</a></li>
+                        <li><a href="dashboard.html">Practice Test</a></li>
+                        <li><a href="#dashboard-preview">Dashboard</a></li>
+                        <li><a href="#about">About</a></li>
                     </ul>
                 </div>
                 

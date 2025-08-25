@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Leben in Deutschland</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-animation">
+            <div class="cube-container">
+                <div class="cube">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                </div>
+            </div>
+            <p>Leben in Deutschland wird geladen...</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-icon">🇩🇪</div>
+                <div class="brand-text">
+                    <h1>LebenDE</h1>
+                    <span>Citizenship Test</span>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#dashboard" class="nav-link">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle">🌙</button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="dashboard" class="dashboard-section">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h2 class="section-title">Personal Dashboard</h2>
+                    <p class="section-subtitle">Track your learning progress and achievements</p>
+                </div>
+                
+                <!-- Dashboard Layout with Sidebar -->
+                <div class="dashboard-layout">
+                    <!-- Left Sidebar - User Profile -->
+                    <div class="dashboard-sidebar">
+                        <div class="user-profile-card">
+                            <div class="profile-avatar">
+                                <div class="avatar-container">
+                                    <div class="avatar-image" id="user-avatar">🇩🇪</div>
+                                    <button class="avatar-edit-btn" id="avatar-edit">✏️</button>
+                                </div>
+                            </div>
+                            <div class="profile-info">
+                                <h3 class="profile-name" id="profile-name">Willkommen zurück!</h3>
+                                <p class="profile-subtitle">German Citizenship Candidate</p>
+                                <div class="profile-stats">
+                                    <div class="profile-stat">
+                                        <span class="stat-number" id="profile-total-sessions">0</span>
+                                        <span class="stat-label">Sessions</span>
+                                    </div>
+                                    <div class="profile-stat">
+                                        <span class="stat-number" id="profile-study-time">0h</span>
+                                        <span class="stat-label">Study Time</span>
+                                    </div>
+                                    <div class="profile-stat">
+                                        <span class="stat-number" id="profile-success-rate">0%</span>
+                                        <span class="stat-label">Success Rate</span>
+                                    </div>
+                                </div>
+                                <button class="edit-profile-btn" id="edit-profile">Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Content - Dashboard Grid -->
+                    <div class="dashboard-content">
+                        <div class="dashboard-grid">
+                    <!-- Learning Progress Card -->
+                    <div class="dashboard-card progress-card">
+                        <div class="card-header">
+                            <div class="card-icon">📊</div>
+                            <h3>Learning Progress</h3>
+                        </div>
+                        <div class="progress-overview">
+                            <div class="circular-progress">
+                                <svg class="progress-circle" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50" stroke="#e0e0e0" stroke-width="8" fill="none"/>
+                                    <circle cx="60" cy="60" r="50" stroke="#4CAF50" stroke-width="8" fill="none" 
+                                            stroke-dasharray="314.16" stroke-dashoffset="314.16" 
+                                            id="dashboard-progress-circle" class="progress-stroke"/>
+                                </svg>
+                                <div class="progress-center">
+                                    <span class="progress-percentage" id="dashboard-progress-text">0%</span>
+                                    <span class="progress-label">Complete</span>
+                                </div>
+                            </div>
+                            <div class="progress-details">
+                                <div class="progress-item">
+                                    <span class="progress-dot correct"></span>
+                                    <span>Correct: <strong id="dashboard-correct">0</strong></span>
+                                </div>
+                                <div class="progress-item">
+                                    <span class="progress-dot incorrect"></span>
+                                    <span>Incorrect: <strong id="dashboard-incorrect">0</strong></span>
+                                </div>
+                                <div class="progress-item">
+                                    <span class="progress-dot remaining"></span>
+                                    <span>Remaining: <strong id="dashboard-remaining">10</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Card -->
+                    <div class="dashboard-card activity-card">
+                        <div class="card-header">
+                            <div class="card-icon">📈</div>
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="activity-list" id="recent-activity">
+                            <div class="activity-item empty">
+                                <div class="activity-icon">🎯</div>
+                                <div class="activity-content">
+                                    <p>Start your first quiz to see activity here!</p>
+                                    <span class="activity-time">No activity yet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Study Streak Card -->
+                    <div class="dashboard-card streak-card">
+                        <div class="card-header">
+                            <div class="card-icon">🔥</div>
+                            <h3>Study Streak</h3>
+                        </div>
+                        <div class="streak-content">
+                            <div class="streak-number" id="current-streak">0</div>
+                            <div class="streak-label">Days in a row</div>
+                            <div class="streak-calendar">
+                                <div class="calendar-week" id="streak-calendar">
+                                    <!-- Calendar dots will be generated by JS -->
+                                </div>
+                            </div>
+                            <p class="streak-motivation" id="streak-message">Start studying to build your streak!</p>
+                        </div>
+                    </div>
+
+                    <!-- Weak Areas Card -->
+                    <div class="dashboard-card weak-areas-card">
+                        <div class="card-header">
+                            <div class="card-icon">📚</div>
+                            <h3>Focus Areas</h3>
+                        </div>
+                        <div class="weak-areas-content">
+                            <div class="areas-list" id="weak-areas-list">
+                                <div class="area-item">
+                                    <div class="area-info">
+                                        <span class="area-name">Politik in der Demokratie</span>
+                                        <div class="area-progress">
+                                            <div class="area-bar">
+                                                <div class="area-fill" style="width: 60%"></div>
+                                            </div>
+                                            <span class="area-percentage">60%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="area-item">
+                                    <div class="area-info">
+                                        <span class="area-name">Geschichte und Verantwortung</span>
+                                        <div class="area-progress">
+                                            <div class="area-bar">
+                                                <div class="area-fill" style="width: 45%"></div>
+                                            </div>
+                                            <span class="area-percentage">45%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="area-item">
+                                    <div class="area-info">
+                                        <span class="area-name">Mensch und Gesellschaft</span>
+                                        <div class="area-progress">
+                                            <div class="area-bar">
+                                                <div class="area-fill" style="width: 80%"></div>
+                                            </div>
+                                            <span class="area-percentage">80%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="focus-study-btn">Practice Weak Areas</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats Card -->
+                    <div class="dashboard-card stats-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <h3>Quick Stats</h3>
+                        </div>
+                        <div class="quick-stats">
+                            <div class="quick-stat">
+                                <div class="stat-icon">🎯</div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="total-questions-answered">0</span>
+                                    <span class="stat-label">Questions Answered</span>
+                                </div>
+                            </div>
+                            <div class="quick-stat">
+                                <div class="stat-icon">⏱️</div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="average-time">0s</span>
+                                    <span class="stat-label">Avg. Answer Time</span>
+                                </div>
+                            </div>
+                            <div class="quick-stat">
+                                <div class="stat-icon">🏆</div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="best-streak">0</span>
+                                    <span class="stat-label">Best Streak</span>
+                                </div>
+                            </div>
+                            <div class="quick-stat">
+                                <div class="stat-icon">📅</div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="days-studied">0</span>
+                                    <span class="stat-label">Days Studied</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Showcase -->
+                    <div class="dashboard-card achievements-showcase">
+                        <div class="card-header">
+                            <div class="card-icon">🏅</div>
+                            <h3>Recent Achievements</h3>
+                        </div>
+                        <div class="achievement-grid" id="dashboard-achievements">
+                            <div class="achievement-slot empty">
+                                <div class="achievement-icon">❓</div>
+                                <span class="achievement-name">Complete your first quiz!</span>
+                            </div>
+                            <div class="achievement-slot empty">
+                                <div class="achievement-icon">❓</div>
+                                <span class="achievement-name">Keep practicing!</span>
+                            </div>
+                            <div class="achievement-slot empty">
+                                <div class="achievement-icon">❓</div>
+                                <span class="achievement-name">More achievements await!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div> <!-- Close dashboard-content -->
+                </div> <!-- Close dashboard-layout -->
+
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="brand-icon">🇩🇪</div>
+                        <div class="brand-text">
+                            <h3>LebenDE</h3>
+                            <p>Your path to German citizenship</p>
+                        </div>
+                    </div>
+                    <p>Prepare for the Leben in Deutschland test with our comprehensive platform trusted by thousands of students.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Study Guide</a></li>
+                        <li><a href="#">Official Questions</a></li>
+                        <li><a href="#">Test Centers</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:info@lebende.de">info@lebende.de</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LebenDE. All rights reserved. | Made with ❤️ for aspiring German citizens</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple loading screen hide with fallback
+        setTimeout(() => {
+            const loader = document.querySelector('.loading-screen');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+        
+        // Scroll to quiz function
+        function scrollToQuiz() {
+            const quizSection = document.getElementById('quiz');
+            if (quizSection) {
+                quizSection.scrollIntoView({ behavior: 'smooth' });
+                // Start the quiz if the global quiz object exists
+                if (window.quiz) {
+                    window.quiz.startQuiz();
+                }
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
