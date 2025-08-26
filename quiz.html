@@ -14,28 +14,182 @@
             box-sizing: border-box;
         }
         
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+        }
+
+        .exam-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
         }
         
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        /* Sidebar Styles */
+        .sidebar {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 16px 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .quiz-info {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .practice-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .practice-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quiz-subtitle-sidebar {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .circular-progress {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .progress-bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar-circle {
+            stroke: #667eea;
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 251.2;
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .progress-stats {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            gap: 1rem;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            flex: 1;
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: white;
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: auto;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
         
         .nav-brand {
@@ -335,7 +489,7 @@
         }
         
         .jump-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -343,22 +497,22 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
             font-size: 0.9rem;
         }
         
         .jump-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
         
         .jump-btn.special {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
         
         .jump-btn.special:hover {
-            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
         
         .answer-feedback {
@@ -438,9 +592,53 @@
             }
         }
         
+        @media (max-width: 768px) {
+            .exam-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+
+            .sidebar {
+                padding: 1rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .quiz-info {
+                text-align: left;
+            }
+
+            .practice-name {
+                font-size: 1.2rem;
+            }
+
+            .progress-section {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem;
+            }
+
+            .circular-progress {
+                width: 60px;
+                height: 60px;
+                margin: 0;
+            }
+
+            .quiz-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .quiz-title {
+                font-size: 2rem;
+            }
+        }
+        
         @media (max-width: 480px) {
-            .quiz-container {
-                padding: 24px;
+            .quiz-header {
+                padding: 1.5rem 1rem;
             }
             
             .option {
@@ -480,29 +678,24 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation Bar -->
-        <nav class="navbar">
-            <div class="nav-brand">
-                <div class="brand-icon">🇩🇪</div>
-                <div class="brand-text">
-                    <h1>LebenDE</h1>
-                    <span>Citizenship Quiz</span>
-                </div>
+    <div class="exam-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="quiz-info">
+                <div class="practice-icon">🎯</div>
+                <div class="practice-name">Practice Quiz</div>
+                <div class="quiz-subtitle-sidebar">All 300 Questions</div>
             </div>
-            <button class="exit-btn" onclick="window.location.href='dashboard.html'">
-                ← Exit Quiz
-            </button>
-        </nav>
-        
-        <!-- Quiz Header -->
-        <div class="quiz-header">
-            <h1 class="quiz-title">German Citizenship Quiz</h1>
-            <p class="quiz-subtitle">Master all 300 official test questions</p>
-            <div class="debug-info" id="debug-info">
-                🚀 Starting quiz...
-            </div>
+
+
+            <a href="dashboard.html" class="btn-back">← Back to Dashboard</a>
         </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Debug Info (Hidden) -->
+            <div class="debug-info" id="debug-info" style="display: none;">
+            </div>
         
         <!-- Progress Section -->
         <div class="progress-section">
@@ -533,17 +726,6 @@
             </div>
         </div>
         
-        <!-- Navigation Controls -->
-        <div class="controls">
-            <div class="nav-buttons">
-                <button class="nav-btn" id="prev-btn" onclick="prevQuestion()">← Previous</button>
-                <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
-            </div>
-            <div class="keyboard-hint">
-                Use <kbd>←</kbd> <kbd>→</kbd> to navigate, <kbd>1-4</kbd> to select answers
-            </div>
-        </div>
-        
         <!-- Jump Controls -->
         <div class="jump-controls">
             <div class="jump-title">🎯 Quick Navigation</div>
@@ -555,6 +737,18 @@
                     Custom Jump...
                 </button>
             </div>
+        </div>
+        
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prev-btn" onclick="prevQuestion()">← Previous</button>
+                <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+            </div>
+            <div class="keyboard-hint">
+                Use <kbd>←</kbd> <kbd>→</kbd> to navigate, <kbd>1-4</kbd> to select answers
+            </div>
+        </div>
         </div>
     </div>
     
@@ -579,6 +773,7 @@
             if (progressFill) {
                 progressFill.style.width = progress + '%';
             }
+            
         }
         
         // Load questions
