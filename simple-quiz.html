@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Quiz Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .question { margin: 20px 0; }
+        .option { 
+            display: block; 
+            margin: 10px 0; 
+            padding: 10px; 
+            background: #f0f0f0; 
+            cursor: pointer; 
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .option:hover { background: #e0e0e0; }
+        .option.selected { background: #007cba; color: white; }
+        .controls { margin: 20px 0; }
+        .controls button { margin: 10px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>German Citizenship Quiz</h1>
+    
+    <div id="question-display">
+        <div id="question-text">Loading...</div>
+        <div id="options-container"></div>
+    </div>
+    
+    <div class="controls">
+        <button id="prev-btn" onclick="prevQuestion()">Previous</button>
+        <span id="question-counter">Question 1 of 0</span>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+        <button onclick="jumpToQuestion(300)">Go to Q300</button>
+    </div>
+    
+    <script>
+        let questions = [];
+        let currentQuestion = 0;
+        let userAnswers = [];
+        
+        // Load questions
+        async function loadQuestions() {
+            try {
+                console.log('Loading questions...');
+                const response = await fetch('fragen/questions-working.json');
+                const data = await response.json();
+                
+                if (data.questions) {
+                    questions = data.questions;
+                } else if (Array.isArray(data)) {
+                    questions = data;
+                }
+                
+                console.log('Loaded', questions.length, 'questions');
+                displayQuestion();
+                
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                document.getElementById('question-text').textContent = 'Error loading questions: ' + error.message;
+            }
+        }
+        
+        function displayQuestion() {
+            if (questions.length === 0) return;
+            
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').textContent = `${q.number}. ${q.question}`;
+            document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = option;
+                btn.onclick = () => selectAnswer(index);
+                if (userAnswers[currentQuestion] === index) {
+                    btn.classList.add('selected');
+                }
+                container.appendChild(btn);
+            });
+            
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').disabled = currentQuestion === questions.length - 1;
+        }
+        
+        function selectAnswer(index) {
+            userAnswers[currentQuestion] = index;
+            displayQuestion();
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+        
+        function jumpToQuestion(num) {
+            const index = questions.findIndex(q => q.number === num);
+            if (index !== -1) {
+                currentQuestion = index;
+                displayQuestion();
+            } else {
+                alert('Question ' + num + ' not found!');
+            }
+        }
+        
+        // Start the quiz
+        loadQuestions();
+    </script>
+</body>
+</html>

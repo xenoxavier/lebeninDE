@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Leben in Deutschland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .brand-icon {
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .brand-text span {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .exit-btn {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+        }
+        
+        .exit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
+        }
+        
+        .quiz-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .quiz-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        
+        .quiz-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+        
+        .debug-info {
+            background: linear-gradient(135deg, #e0f2fe, #b3e5fc);
+            border: 1px solid #4fc3f7;
+            color: #0277bd;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(79, 195, 247, 0.2);
+        }
+        
+        .progress-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-counter {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 0;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-container:hover {
+            box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.25), 0 0 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .question-card {
+            background: transparent;
+            padding: 2.5rem;
+            position: relative;
+        }
+        
+        .question-number-badge {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 12px 24px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .question { 
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #1e293b;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            filter: blur(0px);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .options-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .option { 
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px 24px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #334155;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            text-align: left;
+            width: 100%;
+        }
+        
+        .option:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .option:hover {
+            background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            color: #1e293b;
+        }
+        
+        .option:hover:before {
+            left: 100%;
+        }
+        
+        .option.selected { 
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: #5a67d8;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .option.correct {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-color: #047857;
+            color: white;
+        }
+        
+        .option.wrong {
+            background: linear-gradient(135deg, #f43f5e, #e11d48);
+            border-color: #be185d;
+            color: white;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .jump-controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .jump-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .jump-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .jump-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            font-size: 0.9rem;
+        }
+        
+        .jump-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .jump-btn.special {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+        
+        .jump-btn.special:hover {
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .answer-feedback {
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .answer-feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .answer-feedback.correct {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border: 1px solid #22c55e;
+        }
+        
+        .answer-feedback.wrong {
+            background: linear-gradient(135deg, #fef2f2, #fecaca);
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        
+        .keyboard-hint {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 16px;
+        }
+        
+        .keyboard-hint kbd {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+            
+            .quiz-title {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-buttons {
+                order: 2;
+            }
+            
+            .jump-buttons {
+                gap: 8px;
+            }
+            
+            .jump-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quiz-container {
+                padding: 24px;
+            }
+            
+            .option {
+                padding: 16px 18px;
+                font-size: 0.95rem;
+            }
+            
+            .jump-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .quiz-container, .controls, .jump-controls {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .option.selected {
+            animation: pulse 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <div class="brand-icon">🇩🇪</div>
+                <div class="brand-text">
+                    <h1>LebenDE</h1>
+                    <span>Citizenship Quiz</span>
+                </div>
+            </div>
+            <button class="exit-btn" onclick="window.location.href='dashboard.html'">
+                ← Exit Quiz
+            </button>
+        </nav>
+        
+        <!-- Quiz Header -->
+        <div class="quiz-header">
+            <h1 class="quiz-title">German Citizenship Quiz</h1>
+            <p class="quiz-subtitle">Master all 300 official test questions</p>
+            <div class="debug-info" id="debug-info">
+                🚀 Starting quiz...
+            </div>
+        </div>
+        
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <div class="question-counter" id="question-counter">Question 1 of 300</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div style="font-weight: 600;">Practice Mode</div>
+        </div>
+        
+        <!-- Quiz Container -->
+        <div class="quiz-container">
+            <div class="question-card">
+                <div class="question-number-badge" id="question-number-badge">
+                    Question 1
+                </div>
+                <div class="question-content">
+                    <h3 class="question" id="question-text">
+                        Loading questions...
+                    </h3>
+                </div>
+                <div class="options-grid" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+                <div class="answer-feedback" id="answer-feedback">
+                    <!-- Feedback will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prev-btn" onclick="prevQuestion()">← Previous</button>
+                <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+            </div>
+            <div class="keyboard-hint">
+                Use <kbd>←</kbd> <kbd>→</kbd> to navigate, <kbd>1-4</kbd> to select answers
+            </div>
+        </div>
+        
+        <!-- Jump Controls -->
+        <div class="jump-controls">
+            <div class="jump-title">🎯 Quick Navigation</div>
+            <div class="jump-buttons">
+                <button class="jump-btn" onclick="jumpToQuestion(1)">First Question</button>
+                <button class="jump-btn" onclick="jumpToQuestion(150)">Midpoint (150)</button>
+                <button class="jump-btn" onclick="jumpToQuestion(300)">Last Question (300)</button>
+                <button class="jump-btn special" onclick="customJump()">
+                    Custom Jump...
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let questions = [];
+        let currentQuestion = 0;
+        let userAnswers = [];
+        
+        // Debug function
+        function updateDebugInfo(message) {
+            const debugEl = document.getElementById('debug-info');
+            if (debugEl) {
+                debugEl.innerHTML = message;
+            }
+            console.log('DEBUG:', message);
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            const progressFill = document.getElementById('progress-fill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+            }
+        }
+        
+        // Load questions
+        async function loadQuestions() {
+            try {
+                updateDebugInfo('🔄 Loading questions from fragen/questions-working.json...');
+                
+                const response = await fetch(`fragen/questions-working.json?t=${Date.now()}`);
+                updateDebugInfo(`📡 Response status: ${response.status} ${response.statusText}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                updateDebugInfo('📄 JSON parsed successfully');
+                
+                if (data.questions && Array.isArray(data.questions)) {
+                    questions = data.questions;
+                    updateDebugInfo(`✅ Loaded ${questions.length} questions from questions array`);
+                } else if (Array.isArray(data)) {
+                    questions = data;
+                    updateDebugInfo(`✅ Loaded ${questions.length} questions from direct array`);
+                } else {
+                    throw new Error('Invalid data format');
+                }
+                
+                // Verify question 300
+                const q300 = questions.find(q => q.number === 300);
+                if (q300) {
+                    updateDebugInfo(`🎉 Perfect! All ${questions.length} questions loaded including Q300`);
+                } else {
+                    updateDebugInfo(`⚠️ Warning: Question 300 not found!`);
+                }
+                
+                displayQuestion();
+                updateProgress();
+                
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                updateDebugInfo(`❌ Error: ${error.message}`);
+                document.getElementById('question-text').innerHTML = '❌ Error loading questions: ' + error.message;
+            }
+        }
+        
+        function displayQuestion() {
+            if (questions.length === 0) return;
+            
+            const q = questions[currentQuestion];
+            const questionNumberBadge = document.getElementById('question-number-badge');
+            const questionText = document.getElementById('question-text');
+            const questionCounter = document.getElementById('question-counter');
+            
+            questionNumberBadge.textContent = `Question ${q.number}`;
+            questionText.textContent = q.question;
+            questionCounter.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            
+            if (!q.options || q.options.length === 0) {
+                container.innerHTML = '<div style="color: red;">Error: No options for this question</div>';
+                return;
+            }
+            
+            q.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = option;
+                btn.onclick = () => selectAnswer(index);
+                
+                if (userAnswers[currentQuestion] === index) {
+                    btn.classList.add('selected');
+                }
+                
+                container.appendChild(btn);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').disabled = currentQuestion === questions.length - 1;
+            
+            // Hide previous feedback
+            const feedback = document.getElementById('answer-feedback');
+            feedback.classList.remove('show');
+            
+            updateProgress();
+        }
+        
+        function selectAnswer(index) {
+            userAnswers[currentQuestion] = index;
+            
+            // Update UI to show selection
+            const options = document.querySelectorAll('.option');
+            options.forEach((opt, i) => {
+                opt.classList.remove('selected', 'correct', 'wrong');
+                if (i === index) opt.classList.add('selected');
+            });
+            
+            // Show feedback
+            const q = questions[currentQuestion];
+            const correctIndex = q.options.findIndex(opt => opt === q.answer);
+            const feedback = document.getElementById('answer-feedback');
+            
+            if (index === correctIndex) {
+                feedback.className = 'answer-feedback correct show';
+                feedback.innerHTML = `✅ <strong>Correct!</strong> ${q.answer}`;
+                options[index].classList.add('correct');
+                updateDebugInfo(`✅ Correct! Answer: "${q.answer}"`);
+            } else {
+                feedback.className = 'answer-feedback wrong show';
+                feedback.innerHTML = `❌ <strong>Wrong.</strong> Correct answer: ${q.answer}`;
+                options[index].classList.add('wrong');
+                options[correctIndex].classList.add('correct');
+                updateDebugInfo(`❌ Wrong. Correct answer: "${q.answer}"`);
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+        
+        function jumpToQuestion(num) {
+            if (!num || num < 1 || num > questions.length) {
+                alert(`Invalid question number. Please enter 1-${questions.length}`);
+                return;
+            }
+            
+            const index = questions.findIndex(q => q.number === num);
+            if (index !== -1) {
+                currentQuestion = index;
+                displayQuestion();
+                updateDebugInfo(`🎯 Jumped to question ${num}`);
+                
+                // Smooth scroll to top
+                document.querySelector('.quiz-container').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            } else {
+                alert('Question ' + num + ' not found!');
+                updateDebugInfo(`❌ Question ${num} not found in data`);
+            }
+        }
+        
+        function customJump() {
+            const input = prompt('Enter question number (1-300):');
+            if (input === null) return; // User cancelled
+            
+            const num = parseInt(input);
+            if (isNaN(num)) {
+                alert('Please enter a valid number');
+                return;
+            }
+            
+            jumpToQuestion(num);
+        }
+        
+        // Initialize quiz
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDebugInfo('🚀 Starting quiz...');
+            loadQuestions();
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevQuestion();
+            }
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextQuestion();
+            }
+            if (e.key >= '1' && e.key <= '4') {
+                e.preventDefault();
+                const index = parseInt(e.key) - 1;
+                if (questions[currentQuestion] && questions[currentQuestion].options[index]) {
+                    selectAnswer(index);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

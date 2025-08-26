@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Leben in Deutschland</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quiz-enhancements.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -89,6 +90,44 @@
                                     </div>
                                 </div>
                                 <button class="edit-profile-btn" id="edit-profile">Edit Profile</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Quiz Start Buttons - Separate Card -->
+                        <div class="quiz-start-card">
+                            <div class="quiz-start-header">
+                                <h4>Start Quiz</h4>
+                                <p>Choose your practice mode</p>
+                            </div>
+                            <div class="quiz-start-buttons">
+                                <button class="quiz-start-btn" onclick="window.location.href='quiz.html?mode=practice'">
+                                    <div class="quiz-btn-icon">📚</div>
+                                    <div class="quiz-btn-content">
+                                        <span class="quiz-btn-title">Practice</span>
+                                        <span class="quiz-btn-subtitle">All Questions</span>
+                                    </div>
+                                </button>
+                                <button class="quiz-start-btn" onclick="window.location.href='quiz.html?mode=exam'">
+                                    <div class="quiz-btn-icon">📝</div>
+                                    <div class="quiz-btn-content">
+                                        <span class="quiz-btn-title">Exam</span>
+                                        <span class="quiz-btn-subtitle">33 Questions</span>
+                                    </div>
+                                </button>
+                                <button class="quiz-start-btn" onclick="window.location.href='quiz.html?mode=review'">
+                                    <div class="quiz-btn-icon">📖</div>
+                                    <div class="quiz-btn-content">
+                                        <span class="quiz-btn-title">Review</span>
+                                        <span class="quiz-btn-subtitle">Study Mode</span>
+                                    </div>
+                                </button>
+                                <button class="quiz-start-btn" onclick="showBundeslandSelector()">
+                                    <div class="quiz-btn-icon">🏛️</div>
+                                    <div class="quiz-btn-content">
+                                        <span class="quiz-btn-title">Bundesland</span>
+                                        <span class="quiz-btn-subtitle">State-Specific</span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -272,6 +311,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 </div> <!-- Close dashboard-content -->
@@ -282,6 +322,116 @@
 
 
     </main>
+
+    <!-- Bundesland Selector Modal -->
+    <div id="bundesland-modal" class="bundesland-modal" style="display: none;">
+        <div class="bundesland-modal-overlay" onclick="closeBundeslandSelector()"></div>
+        <div class="bundesland-modal-content">
+            <div class="bundesland-modal-header">
+                <h3>Choose Your Bundesland</h3>
+                <p>Select your German state for specific questions</p>
+                <button class="close-btn" onclick="closeBundeslandSelector()">×</button>
+            </div>
+            <div class="bundesland-grid">
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Baden-Württemberg')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Baden-Württemberg</span>
+                        <span class="bundesland-capital">Stuttgart</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Bayern')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Bayern</span>
+                        <span class="bundesland-capital">München</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Berlin')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Berlin</span>
+                        <span class="bundesland-capital">Berlin</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Brandenburg')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Brandenburg</span>
+                        <span class="bundesland-capital">Potsdam</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Bremen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Bremen</span>
+                        <span class="bundesland-capital">Bremen</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Hamburg')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Hamburg</span>
+                        <span class="bundesland-capital">Hamburg</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Hessen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Hessen</span>
+                        <span class="bundesland-capital">Wiesbaden</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Mecklenburg-Vorpommern')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Mecklenburg-Vorpommern</span>
+                        <span class="bundesland-capital">Schwerin</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Niedersachsen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Niedersachsen</span>
+                        <span class="bundesland-capital">Hannover</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Nordrhein-Westfalen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Nordrhein-Westfalen</span>
+                        <span class="bundesland-capital">Düsseldorf</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Rheinland-Pfalz')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Rheinland-Pfalz</span>
+                        <span class="bundesland-capital">Mainz</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Saarland')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Saarland</span>
+                        <span class="bundesland-capital">Saarbrücken</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Sachsen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Sachsen</span>
+                        <span class="bundesland-capital">Dresden</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Sachsen-Anhalt')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Sachsen-Anhalt</span>
+                        <span class="bundesland-capital">Magdeburg</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Schleswig-Holstein')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Schleswig-Holstein</span>
+                        <span class="bundesland-capital">Kiel</span>
+                    </div>
+                </button>
+                <button class="bundesland-btn" onclick="startBundeslandQuiz('Thüringen')">
+                    <div class="bundesland-info">
+                        <span class="bundesland-name">Thüringen</span>
+                        <span class="bundesland-capital">Erfurt</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">

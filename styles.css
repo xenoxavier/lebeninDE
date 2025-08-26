@@ -1955,6 +1955,177 @@ body {
     animation: gradientFlow 3s ease infinite;
 }
 
+/* Quiz Preview Section */
+.quiz-preview-section {
+    padding: 6rem 0;
+    background: var(--light-dark);
+    position: relative;
+}
+
+.quiz-preview-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.sample-question-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 0;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-width: 600px;
+    width: 100%;
+}
+
+.sample-question-card:hover {
+    box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.25), 0 0 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.sample-question-card .question-number-badge {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+.sample-question-card .question-content {
+    padding: 2.5rem 2.5rem 0 2.5rem;
+}
+
+.sample-question-card .question-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    filter: blur(0px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.sample-options {
+    display: grid;
+    gap: 12px;
+    padding: 0 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.sample-option {
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #334155;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    text-align: left;
+    width: 100%;
+}
+
+.sample-option:hover {
+    background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.sample-option.correct {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-color: #047857;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.sample-option.wrong {
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    border-color: #be185d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
+}
+
+.score-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border: 1px solid #22c55e;
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin: 0 2.5rem 2rem 2.5rem;
+    color: #166534;
+    font-weight: 600;
+}
+
+.score-text {
+    font-size: 1.1rem;
+}
+
+.score-icon {
+    font-size: 1.5rem;
+    color: #22c55e;
+}
+
+.quiz-navigation {
+    padding: 0 2.5rem 2.5rem 2.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.quiz-nav-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.quiz-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.quiz-preview-cta {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.quiz-preview-cta h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.quiz-preview-cta p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
 /* Enhanced Responsive Design */
 @media (max-width: 1024px) {
     .hero-content {

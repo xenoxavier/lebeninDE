@@ -1,0 +1,2754 @@
+{
+  "questions": [
+    {
+      "number": 1,
+      "question": "In Deutschland dürfen Menschen offen etwas gegen die Regierung sagen, weil …",
+      "options": [
+        "hier Religionsfreiheit gilt.",
+        "die Menschen Steuern zahlen.",
+        "die Menschen das Wahlrecht haben.",
+        "hier Meinungsfreiheit gilt."
+      ],
+      "answer": "hier Meinungsfreiheit gilt."
+    },
+    {
+      "number": 2,
+      "question": "In Deutschland können Eltern bis zum 14. Lebensjahr ihres Kindes entscheiden, ob es in der Schule am …",
+      "options": [
+        "Geschichtsunterricht teilnimmt.",
+        "Religionsunterricht teilnimmt.",
+        "Politikunterricht teilnimmt.",
+        "Sprachunterricht teilnimmt."
+      ],
+      "answer": "Religionsunterricht teilnimmt."
+    },
+    {
+      "number": 3,
+      "question": "Deutschland ist ein Rechtsstaat. Was ist damit gemeint?",
+      "options": [
+        "Alle Einwohnerinnen/Einwohner und der Staat müssen sich an die Gesetze halten.",
+        "Der Staat muss sich nicht an die Gesetze halten.",
+        "Nur Deutsche müssen die Gesetze befolgen.",
+        "Die Gerichte machen die Gesetze."
+      ],
+      "answer": "Alle Einwohnerinnen/Einwohner und der Staat müssen sich an die Gesetze halten."
+    },
+    {
+      "number": 4,
+      "question": "Welches Recht gehört zu den Grundrechten in Deutschland?",
+      "options": [
+        "Waffenbesitz",
+        "Faustrecht",
+        "Meinungsfreiheit",
+        "Selbstjustiz"
+      ],
+      "answer": "Meinungsfreiheit"
+    },
+    {
+      "number": 5,
+      "question": "Wahlen in Deutschland sind frei. Was bedeutet das?",
+      "options": [
+        "Man darf Geld annehmen, wenn man dafür eine bestimmte Kandidatin/einen bestimmten Kandidaten wählt.",
+        "Nur Personen, die noch nie im Gefängnis waren, dürfen wählen.",
+        "Die Wählerin/der Wähler darf bei der Wahl weder beeinflusst noch zu einer bestimmten Stimmabgabe gezwungen werden und keine Nachteile durch die Wahl haben.",
+        "Alle wahlberechtigten Personen müssen wählen."
+      ],
+      "answer": "Die Wählerin/der Wähler darf bei der Wahl weder beeinflusst noch zu einer bestimmten Stimmabgabe gezwungen werden und keine Nachteile durch die Wahl haben."
+    },
+    {
+      "number": 6,
+      "question": "Wie heißt die deutsche Verfassung?",
+      "options": [
+        "Volksgesetz",
+        "Bundesgesetz",
+        "Deutsches Gesetz",
+        "Grundgesetz"
+      ],
+      "answer": "Grundgesetz"
+    },
+    {
+      "number": 7,
+      "question": "Welches Recht gehört zu den Grundrechten, die nach der deutschen Verfassung garantiert werden? Das Recht auf …",
+      "options": [
+        "Glaubens- und Gewissensfreiheit",
+        "Unterhaltung",
+        "Arbeit",
+        "Wohnung"
+      ],
+      "answer": "Glaubens- und Gewissensfreiheit"
+    },
+    {
+      "number": 8,
+      "question": "Was steht nicht im Grundgesetz von Deutschland?",
+      "options": [
+        "Die Würde des Menschen ist unantastbar.",
+        "Alle sollen gleich viel Geld haben.",
+        "Jeder Mensch darf seine Meinung sagen.",
+        "Alle sind vor dem Gesetz gleich."
+      ],
+      "answer": "Alle sollen gleich viel Geld haben."
+    },
+    {
+      "number": 9,
+      "question": "Welches Grundrecht gilt in Deutschland nur für Ausländerinnen/Ausländer? Das Grundrecht auf …",
+      "options": [
+        "Schutz der Familie",
+        "Menschenwürde",
+        "Asyl",
+        "Meinungsfreiheit"
+      ],
+      "answer": "Asyl"
+    },
+    {
+      "number": 10,
+      "question": "Was ist mit dem deutschen Grundgesetz vereinbar?",
+      "options": [
+        "die Prügelstrafe",
+        "die Folter",
+        "die Todesstrafe",
+        "die Geldstrafe"
+      ],
+      "answer": "die Geldstrafe"
+    },
+    {
+      "number": 11,
+      "question": "Wie wird die Verfassung der Bundesrepublik Deutschland genannt?",
+      "options": [
+        "Grundgesetz",
+        "Bundesverfassung",
+        "Gesetzbuch",
+        "Verfassungsvertrag"
+      ],
+      "answer": "Grundgesetz"
+    },
+    {
+      "number": 12,
+      "question": "Eine Partei im Deutschen Bundestag will die Pressefreiheit abschaffen. Ist das möglich?",
+      "options": [
+        "Ja, wenn mehr als die Hälfte der Abgeordneten im Bundestag dafür sind.",
+        "Ja, aber dazu müssen zwei Drittel der Abgeordneten im Bundestag dafür sein.",
+        "Nein, denn die Pressefreiheit ist ein Grundrecht. Sie kann nicht abgeschafft werden.",
+        "Nein, denn nur der Bundesrat kann die Pressefreiheit abschaffen."
+      ],
+      "answer": "Nein, denn die Pressefreiheit ist ein Grundrecht. Sie kann nicht abgeschafft werden."
+    },
+    {
+      "number": 13,
+      "question": "Im Parlament steht der Begriff 'Opposition' für …",
+      "options": [
+        "die regierenden Parteien.",
+        "die Fraktion mit den meisten Abgeordneten.",
+        "alle Parteien, die bei der letzten Wahl die 5%-Hürde erreichen konnten.",
+        "alle Abgeordneten, die nicht zu der Regierungspartei/den Regierungsparteien gehören."
+      ],
+      "answer": "alle Abgeordneten, die nicht zu der Regierungspartei/den Regierungsparteien gehören."
+    },
+    {
+      "number": 14,
+      "question": "Meinungsfreiheit in Deutschland heißt, dass ich …",
+      "options": [
+        "Passanten auf der Straße beschimpfen darf.",
+        "meine Meinung im Internet äußern kann.",
+        "Nazi-, Hamas- oder Islamischer Staat-Symbole öffentlich tragen darf.",
+        "meine Meinung nur dann äußern darf, solange ich der Regierung nicht widerspreche."
+      ],
+      "answer": "meine Meinung im Internet äußern kann."
+    },
+    {
+      "number": 15,
+      "question": "Was verbietet das deutsche Grundgesetz?",
+      "options": [
+        "Militärdienst",
+        "Zwangsarbeit",
+        "freie Berufswahl",
+        "Arbeit im Ausland"
+      ],
+      "answer": "Zwangsarbeit"
+    },
+    {
+      "number": 16,
+      "question": "Wann ist die Meinungsfreiheit in Deutschland eingeschränkt?",
+      "options": [
+        "bei der öffentlichen Verbreitung falscher Behauptungen über einzelne Personen",
+        "bei Meinungsäußerungen über die Bundesregierung",
+        "bei Diskussionen über Religionen",
+        "bei Kritik am Staat"
+      ],
+      "answer": "bei der öffentlichen Verbreitung falscher Behauptungen über einzelne Personen"
+    },
+    {
+      "number": 17,
+      "question": "Die deutschen Gesetze verbieten …",
+      "options": [
+        "Meinungsfreiheit der Einwohnerinnen und Einwohner.",
+        "Petitionen der Bürgerinnen und Bürger.",
+        "Versammlungsfreiheit der Einwohnerinnen und Einwohner.",
+        "Ungleichbehandlung der Bürgerinnen und Bürger durch den Staat."
+      ],
+      "answer": "Ungleichbehandlung der Bürgerinnen und Bürger durch den Staat."
+    },
+    {
+      "number": 18,
+      "question": "Welches Grundrecht ist in Artikel 1 des Grundgesetzes der Bundesrepublik Deutschland garantiert?",
+      "options": [
+        "die Unantastbarkeit der Menschenwürde",
+        "das Recht auf Leben",
+        "Religionsfreiheit",
+        "Meinungsfreiheit"
+      ],
+      "answer": "die Unantastbarkeit der Menschenwürde"
+    },
+    {
+      "number": 19,
+      "question": "Was versteht man unter dem Recht der 'Freizügigkeit' in Deutschland?",
+      "options": [
+        "Man darf sich seinen Wohnort selbst aussuchen.",
+        "Man kann seinen Beruf wechseln.",
+        "Man darf sich für eine andere Religion entscheiden.",
+        "Man darf sich in der Öffentlichkeit nur leicht bekleidet bewegen."
+      ],
+      "answer": "Man darf sich seinen Wohnort selbst aussuchen."
+    },
+    {
+      "number": 20,
+      "question": "Eine Partei in Deutschland verfolgt das Ziel, eine Diktatur zu errichten. Sie ist dann …",
+      "options": [
+        "tolerant.",
+        "rechtsstaatlich orientiert.",
+        "gesetzestreu.",
+        "verfassungswidrig."
+      ],
+      "answer": "verfassungswidrig."
+    },
+    {
+      "number": 21,
+      "question": "Welches ist das Wappen der Bundesrepublik Deutschland?",
+      "options": [
+        "Bild 1",
+        "Bild 2",
+        "Bild 3",
+        "Bild 4"
+      ],
+      "answer": "Bild 1"
+    },
+    {
+      "number": 22,
+      "question": "Was für eine Staatsform hat Deutschland?",
+      "options": [
+        "Monarchie",
+        "Diktatur",
+        "Republik",
+        "Fürstentum"
+      ],
+      "answer": "Republik"
+    },
+    {
+      "number": 23,
+      "question": "In Deutschland sind die meisten Erwerbstätigen …",
+      "options": [
+        "in kleinen Familienunternehmen beschäftigt.",
+        "ehrenamtlich für ein Bundesland tätig.",
+        "selbstständig mit einer eigenen Firma tätig.",
+        "bei einer Firma oder Behörde beschäftigt."
+      ],
+      "answer": "bei einer Firma oder Behörde beschäftigt."
+    },
+    {
+      "number": 24,
+      "question": "Wie viele Bundesländer hat die Bundesrepublik Deutschland?",
+      "options": [
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "answer": "16"
+    },
+    {
+      "number": 25,
+      "question": "Was ist kein Bundesland der Bundesrepublik Deutschland?",
+      "options": [
+        "Elsass-Lothringen",
+        "Nordrhein-Westfalen",
+        "Mecklenburg-Vorpommern",
+        "Sachsen-Anhalt"
+      ],
+      "answer": "Elsass-Lothringen"
+    },
+    {
+      "number": 26,
+      "question": "Deutschland ist …",
+      "options": [
+        "eine kommunistische Republik.",
+        "ein demokratischer und sozialer Bundesstaat.",
+        "eine kapitalistische und soziale Monarchie.",
+        "ein sozialer und sozialistischer Bundesstaat."
+      ],
+      "answer": "ein demokratischer und sozialer Bundesstaat."
+    },
+    {
+      "number": 27,
+      "question": "Deutschland ist …",
+      "options": [
+        "ein sozialistischer Staat.",
+        "ein Bundesstaat.",
+        "eine Diktatur.",
+        "eine Monarchie."
+      ],
+      "answer": "ein Bundesstaat."
+    },
+    {
+      "number": 28,
+      "question": "Wer wählt in Deutschland die Abgeordneten zum Bundestag?",
+      "options": [
+        "das Militär",
+        "die Wirtschaft",
+        "das wahlberechtigte Volk",
+        "die Verwaltung"
+      ],
+      "answer": "das wahlberechtigte Volk"
+    },
+    {
+      "number": 29,
+      "question": "Welches Tier ist das Wappentier der Bundesrepublik Deutschland?",
+      "options": [
+        "Löwe",
+        "Adler",
+        "Bär",
+        "Pferd"
+      ],
+      "answer": "Adler"
+    },
+    {
+      "number": 30,
+      "question": "Was ist kein Merkmal unserer Demokratie?",
+      "options": [
+        "regelmäßige Wahlen",
+        "Pressezensur",
+        "Meinungsfreiheit",
+        "verschiedene Parteien"
+      ],
+      "answer": "Pressezensur"
+    },
+    {
+      "number": 31,
+      "question": "Die Zusammenarbeit von Parteien zur Bildung einer Regierung nennt man in Deutschland …",
+      "options": [
+        "Einheit.",
+        "Koalition.",
+        "Ministerium.",
+        "Fraktion."
+      ],
+      "answer": "Koalition"
+    },
+    {
+      "number": 32,
+      "question": "Was ist keine staatliche Gewalt in Deutschland?",
+      "options": [
+        "Gesetzgebung",
+        "Regierung",
+        "Presse",
+        "Rechtsprechung"
+      ],
+      "answer": "Presse"
+    },
+    {
+      "number": 33,
+      "question": "Welche Aussage ist richtig? In Deutschland …",
+      "options": [
+        "sind Staat und Religionsgemeinschaften voneinander getrennt.",
+        "bilden die Religionsgemeinschaften den Staat.",
+        "ist der Staat abhängig von den Religionsgemeinschaften.",
+        "bilden Staat und Religionsgemeinschaften eine Einheit."
+      ],
+      "answer": "sind Staat und Religionsgemeinschaften voneinander getrennt."
+    },
+    {
+      "number": 34,
+      "question": "Was ist Deutschland nicht?",
+      "options": [
+        "eine Demokratie",
+        "ein Rechtsstaat",
+        "eine Monarchie",
+        "ein Sozialstaat"
+      ],
+      "answer": "eine Monarchie"
+    },
+    {
+      "number": 35,
+      "question": "Womit finanziert der deutsche Staat die Sozialversicherung?",
+      "options": [
+        "Kirchensteuer",
+        "Sozialabgaben",
+        "Spendengeldern",
+        "Vereinsbeiträgen"
+      ],
+      "answer": "Sozialabgaben"
+    },
+    {
+      "number": 36,
+      "question": "Welche Maßnahme schafft in Deutschland soziale Sicherheit?",
+      "options": [
+        "die Krankenversicherung",
+        "die Autoversicherung",
+        "die Gebäudeversicherung",
+        "die Haftpflichtversicherung"
+      ],
+      "answer": "die Krankenversicherung"
+    },
+    {
+      "number": 37,
+      "question": "Wie werden die Regierungschefinnen/Regierungschefs der meisten Bundesländer in Deutschland genannt?",
+      "options": [
+        "Erste Ministerin/Erster Minister",
+        "Premierministerin/Premierminister",
+        "Senatorin/Senator",
+        "Ministerpräsidentin/Ministerpräsident"
+      ],
+      "answer": "Ministerpräsidentin/Ministerpräsident"
+    },
+    {
+      "number": 38,
+      "question": "Die Bundesrepublik Deutschland ist ein demokratischer und sozialer …",
+      "options": [
+        "Staatenverbund.",
+        "Bundesstaat.",
+        "Staatenbund.",
+        "Zentralstaat."
+      ],
+      "answer": "Bundesstaat."
+    },
+    {
+      "number": 39,
+      "question": "Was hat jedes deutsche Bundesland?",
+      "options": [
+        "eine eigene Außenministerin/einen eigenen Außenminister",
+        "eine eigene Währung",
+        "eine eigene Armee",
+        "eine eigene Regierung"
+      ],
+      "answer": "eine eigene Regierung"
+    },
+    {
+      "number": 40,
+      "question": "Mit welchen Worten beginnt die deutsche Nationalhymne?",
+      "options": [
+        "Völker, hört die Signale …",
+        "Einigkeit und Recht und Freiheit …",
+        "Freude schöner Götterfunken …",
+        "Deutschland einig Vaterland …"
+      ],
+      "answer": "Einigkeit und Recht und Freiheit …"
+    },
+    {
+      "number": 41,
+      "question": "Warum gibt es in einer Demokratie mehr als eine Partei?",
+      "options": [
+        "weil dadurch die unterschiedlichen Meinungen der Bürgerinnen und Bürger vertreten werden",
+        "damit Bestechung in der Politik begrenzt wird",
+        "um politische Demonstrationen zu verhindern",
+        "um wirtschaftlichen Wettbewerb anzuregen"
+      ],
+      "answer": "weil dadurch die unterschiedlichen Meinungen der Bürgerinnen und Bürger vertreten werden"
+    },
+    {
+      "number": 42,
+      "question": "Wer beschließt in Deutschland ein neues Gesetz?",
+      "options": [
+        "die Regierung",
+        "das Parlament",
+        "die Gerichte",
+        "die Polizei"
+      ],
+      "answer": "das Parlament"
+    },
+    {
+      "number": 43,
+      "question": "Wann kann in Deutschland eine Partei verboten werden?",
+      "options": [
+        "wenn ihr Wahlkampf zu teuer ist",
+        "wenn sie gegen die Verfassung kämpft",
+        "wenn sie Kritik am Staatsoberhaupt äußert",
+        "wenn ihr Programm eine neue Richtung vorschlägt"
+      ],
+      "answer": "wenn sie gegen die Verfassung kämpft"
+    },
+    {
+      "number": 44,
+      "question": "Wen kann man als Bürgerin/Bürger in Deutschland nicht direkt wählen?",
+      "options": [
+        "Abgeordnete des EU-Parlaments",
+        "Die Bundespräsidentin/den Bundespräsidenten",
+        "Landtagsabgeordnete",
+        "Bundestagsabgeordnete"
+      ],
+      "answer": "Die Bundespräsidentin/den Bundespräsidenten"
+    },
+    {
+      "number": 45,
+      "question": "Zu welcher Versicherung gehört die Pflegeversicherung?",
+      "options": [
+        "Sozialversicherung",
+        "Unfallversicherung",
+        "Hausratsversicherung",
+        "Haftpflicht- und Feuerversicherung"
+      ],
+      "answer": "Sozialversicherung"
+    },
+    {
+      "number": 46,
+      "question": "Der deutsche Staat hat viele Aufgaben. Welche Aufgabe gehört dazu?",
+      "options": [
+        "Er baut Straßen und Schulen.",
+        "Er verkauft Lebensmittel und Kleidung.",
+        "Er versorgt alle Einwohnerinnen und Einwohner kostenlos mit Zeitungen.",
+        "Er produziert Autos und Busse."
+      ],
+      "answer": "Er baut Straßen und Schulen."
+    },
+    {
+      "number": 47,
+      "question": "Der deutsche Staat hat viele Aufgaben. Welche Aufgabe gehört nicht dazu?",
+      "options": [
+        "Er bezahlt für alle Staatsangehörigen Urlaubsreisen.",
+        "Er zahlt Kindergeld.",
+        "Er unterstützt Museen.",
+        "Er fördert Sportlerinnen und Sportler."
+      ],
+      "answer": "Er bezahlt für alle Staatsangehörigen Urlaubsreisen."
+    },
+    {
+      "number": 48,
+      "question": "Welches Organ gehört nicht zu den Verfassungsorganen Deutschlands?",
+      "options": [
+        "der Bundesrat",
+        "die Bundespräsidentin/der Bundespräsident",
+        "die Bürgerversammlung",
+        "die Regierung"
+      ],
+      "answer": "die Bürgerversammlung"
+    },
+    {
+      "number": 49,
+      "question": "Wer bestimmt in Deutschland die Schulpolitik?",
+      "options": [
+        "die Lehrer und Lehrerinnen",
+        "die Bundesländer",
+        "das Familienministerium",
+        "die Universitäten"
+      ],
+      "answer": "die Bundesländer"
+    },
+    {
+      "number": 50,
+      "question": "Die Wirtschaftsform in Deutschland nennt man …",
+      "options": [
+        "freie Zentralwirtschaft.",
+        "soziale Marktwirtschaft.",
+        "gelenkte Zentralwirtschaft.",
+        "Planwirtschaft."
+      ],
+      "answer": "soziale Marktwirtschaft."
+    },
+    {
+      "number": 51,
+      "question": "Zu einem demokratischen Rechtsstaat gehört es nicht, dass …",
+      "options": [
+        "Menschen sich kritisch über die Regierung äußern können.",
+        "Bürger friedlich demonstrieren gehen dürfen.",
+        "Menschen von einer Privatpolizei ohne Grund verhaftet werden.",
+        "jemand ein Verbrechen begeht und deshalb verhaftet wird."
+      ],
+      "answer": "Menschen von einer Privatpolizei ohne Grund verhaftet werden."
+    },
+    {
+      "number": 52,
+      "question": "Was bedeutet \"Volkssouveränität\"? Alle Staatsgewalt geht vom ...",
+      "options": [
+        "Volke aus.",
+        "Bundestag aus.",
+        "preußischen König aus.",
+        "Bundesverfassungsgericht aus."
+      ],
+      "answer": "Volke aus."
+    },
+    {
+      "number": 53,
+      "question": "Was bedeutet \"Rechtsstaat\" in Deutschland?",
+      "options": [
+        "Der Staat hat Recht.",
+        "Es gibt nur rechte Parteien.",
+        "Die Bürgerinnen und Bürger entscheiden über Gesetze.",
+        "Der Staat muss die Gesetze einhalten."
+      ],
+      "answer": "Der Staat muss die Gesetze einhalten."
+    },
+    {
+      "number": 54,
+      "question": "Was ist keine staatliche Gewalt in Deutschland?",
+      "options": [
+        "Legislative",
+        "Judikative",
+        "Exekutive",
+        "Direktive"
+      ],
+      "answer": "Direktive"
+    },
+    {
+      "number": 55,
+      "question": "Was zeigt dieses Bild?",
+      "options": [
+        "den Bundestagssitz in Berlin",
+        "das Bundesverfassungsgericht in Karlsruhe",
+        "das Bundesratsgebäude in Berlin",
+        "das Bundeskanzleramt in Berlin"
+      ],
+      "answer": "den Bundestagssitz in Berlin"
+    },
+    {
+      "number": 56,
+      "question": "Welches Amt gehört in Deutschland zur Gemeindeverwaltung?",
+      "options": [
+        "Pfarramt",
+        "Ordnungsamt",
+        "Finanzamt",
+        "Auswärtiges Amt"
+      ],
+      "answer": "Ordnungsamt"
+    },
+    {
+      "number": 57,
+      "question": "Wer wird meistens zur Präsidentin/zum Präsidenten des Deutschen Bundestages gewählt?",
+      "options": [
+        "die/der älteste Abgeordnete im Parlament",
+        "die Ministerpräsidentin/der Ministerpräsident des größten Bundeslandes",
+        "eine ehemalige Bundeskanzlerin/ein ehemaliger Bundeskanzler",
+        "eine Abgeordnete/ein Abgeordneter der stärksten Fraktion"
+      ],
+      "answer": "eine Abgeordnete/ein Abgeordneter der stärksten Fraktion"
+    },
+    {
+      "number": 58,
+      "question": "Wer ernennt in Deutschland die Ministerinnen/die Minister der Bundesregierung?",
+      "options": [
+        "die Präsidentin/der Präsident des Bundesverfassungsgerichtes",
+        "die Bundespräsidentin/der Bundespräsident",
+        "die Bundesratspräsidentin/der Bundesratspräsident",
+        "die Bundestagspräsidentin/der Bundestagspräsident"
+      ],
+      "answer": "die Bundespräsidentin/der Bundespräsident"
+    },
+    {
+      "number": 59,
+      "question": "Vor wie vielen Jahren gab es erstmals eine jüdische Gemeinde auf dem Gebiet des heutigen Deutschlands?",
+      "options": [
+        "vor etwa 300 Jahren",
+        "vor etwa 700 Jahren",
+        "vor etwa 1150 Jahren",
+        "vor etwa 1700 Jahren"
+      ],
+      "answer": "vor etwa 1700 Jahren"
+    },
+    {
+      "number": 60,
+      "question": "In Deutschland gehören der Bundestag und der Bundesrat zur …",
+      "options": [
+        "Exekutive.",
+        "Legislative.",
+        "Direktive.",
+        "Judikative."
+      ],
+      "answer": "Legislative."
+    },
+    {
+      "number": 61,
+      "question": "Was bedeutet \"Volkssouveränität\"?",
+      "options": [
+        "Die Königin/der König herrscht über das Volk.",
+        "Das Bundesverfassungsgericht steht über der Verfassung.",
+        "Die Interessenverbände üben die Souveränität zusammen mit der Regierung aus.",
+        "Die Staatsgewalt geht vom Volke aus."
+      ],
+      "answer": "Die Staatsgewalt geht vom Volke aus."
+    },
+    {
+      "number": 62,
+      "question": "Wenn das Parlament eines deutschen Bundeslandes gewählt wird, nennt man das …",
+      "options": [
+        "Kommunalwahl",
+        "Landtagswahl",
+        "Europawahl",
+        "Bundestagswahl"
+      ],
+      "answer": "Landtagswahl"
+    },
+    {
+      "number": 63,
+      "question": "Was gehört in Deutschland nicht zur Exekutive?",
+      "options": [
+        "die Polizei",
+        "die Gerichte",
+        "das Finanzamt",
+        "die Ministerien"
+      ],
+      "answer": "die Gerichte"
+    },
+    {
+      "number": 64,
+      "question": "Die Bundesrepublik Deutschland ist heute gegliedert in …",
+      "options": [
+        "vier Besatzungszonen.",
+        "einen Oststaat und einen Weststaat.",
+        "16 Kantone.",
+        "Bund, Länder und Kommunen."
+      ],
+      "answer": "Bund, Länder und Kommunen."
+    },
+    {
+      "number": 65,
+      "question": "Es gehört nicht zu den Aufgaben des Deutschen Bundestages, …",
+      "options": [
+        "Gesetze zu entwerfen.",
+        "die Bundesregierung zu kontrollieren.",
+        "die Bundeskanzlerin/den Bundeskanzler zu wählen.",
+        "das Bundeskabinett zu bilden."
+      ],
+      "answer": "das Bundeskabinett zu bilden."
+    },
+    {
+      "number": 66,
+      "question": "Welche Städte haben die größten jüdischen Gemeinden in Deutschland?",
+      "options": [
+        "Berlin und München",
+        "Hamburg und Essen",
+        "Nürnberg und Stuttgart",
+        "Worms und Speyer"
+      ],
+      "answer": "Berlin und München"
+    },
+    {
+      "number": 67,
+      "question": "Was ist in Deutschland vor allem eine Aufgabe der Bundesländer?",
+      "options": [
+        "Verteidigungspolitik",
+        "Außenpolitik",
+        "Wirtschaftspolitik",
+        "Schulpolitik"
+      ],
+      "answer": "Schulpolitik"
+    },
+    {
+      "number": 68,
+      "question": "Warum kontrolliert der Staat in Deutschland das Schulwesen?",
+      "options": [
+        "weil es in Deutschland nur staatliche Schulen gibt",
+        "weil alle Schülerinnen und Schüler einen Schulabschluss haben müssen",
+        "weil es in den Bundesländern verschiedene Schulen gibt",
+        "weil es nach dem Grundgesetz seine Aufgabe ist"
+      ],
+      "answer": "weil es nach dem Grundgesetz seine Aufgabe ist"
+    },
+    {
+      "number": 69,
+      "question": "Die Bundesrepublik Deutschland hat einen dreistufigen Verwaltungsaufbau. Wie heißt die unterste politische Stufe?",
+      "options": [
+        "Stadräte",
+        "Landräte",
+        "Gemeinden",
+        "Bezirksämter"
+      ],
+      "answer": "Gemeinden"
+    },
+    {
+      "number": 70,
+      "question": "Der deutsche Bundespräsident Gustav Heinemann gibt Helmut Schmidt 1974 die Ernennungsurkunde zum deutschen Bundeskanzler. Was gehört zu den Aufgaben der deutschen Bundespräsidentin/des deutschen Bundespräsidenten?",
+      "options": [
+        "Sie/Er führt die Regierungsgeschäfte.",
+        "Sie/Er kontrolliert die Regierungspartei.",
+        "Sie/Er wählt die Ministerinnen/Minister aus.",
+        "Sie/Er schlägt die Kanzlerin/den Kanzler zur Wahl vor."
+      ],
+      "answer": "Sie/Er schlägt die Kanzlerin/den Kanzler zur Wahl vor."
+    },
+    {
+      "number": 71,
+      "question": "Wo hält sich die deutsche Bundeskanzlerin/der deutsche Bundeskanzler am häufigsten auf? Am häufigsten ist sie/er …",
+      "options": [
+        "in Bonn, weil sich dort das Bundeskanzleramt und der Bundestag befinden.",
+        "auf Schloss Meseberg, dem Gästehaus der Bundesregierung, um Staatsgäste zu empfangen.",
+        "auf Schloss Bellevue, dem Amtssitz der Bundespräsidentin/des Bundespräsidenten, um Staatsgäste zu empfangen.",
+        "in Berlin, weil sich dort das Bundeskanzleramt und der Bundestag befinden."
+      ],
+      "answer": "in Berlin, weil sich dort das Bundeskanzleramt und der Bundestag befinden."
+    },
+    {
+      "number": 72,
+      "question": "Wie heißt die jetzige Bundeskanzlerin/der jetzige Bundeskanzler von Deutschland?",
+      "options": [
+        "Gerhard Schröder",
+        "Angela Merkel",
+        "Ursula von der Leyen",
+        "Friedrich Merz"
+      ],
+      "answer": "Angela Merkel"
+    },
+    {
+      "number": 73,
+      "question": "Die beiden größten Fraktionen im Deutschen Bundestag heißen zurzeit …",
+      "options": [
+        "CDU/CSU und AfD.",
+        "Die Linke und Bündnis 90/Die Grünen.",
+        "Bündnis 90/Die Grünen und SPD.",
+        "Die Linke und CDU/CSU."
+      ],
+      "answer": "CDU/CSU und AfD."
+    },
+    {
+      "number": 74,
+      "question": "Wie heißt das Parlament für ganz Deutschland?",
+      "options": [
+        "Bundesversammlung",
+        "Volkskammer",
+        "Bundestag",
+        "Bundesgerichtshof"
+      ],
+      "answer": "Bundestag"
+    },
+    {
+      "number": 75,
+      "question": "Wie heißt Deutschlands heutiges Staatsoberhaupt?",
+      "options": [
+        "Frank-Walter Steinmeier",
+        "Bärbel Bas",
+        "Bodo Ramelow",
+        "Joachim Gauck"
+      ],
+      "answer": "Frank-Walter Steinmeier"
+    },
+    {
+      "number": 76,
+      "question": "Was bedeutet die Abkürzung CDU in Deutschland?",
+      "options": [
+        "Christliche Deutsche Union",
+        "Club Deutscher Unternehmer",
+        "Christlicher Deutscher Umweltschutz",
+        "Christlich Demokratische Union"
+      ],
+      "answer": "Christlich Demokratische Union"
+    },
+    {
+      "number": 77,
+      "question": "Was ist die Bundeswehr?",
+      "options": [
+        "die deutsche Polizei",
+        "ein deutscher Hafen",
+        "eine deutsche Bürgerinitiative",
+        "die deutsche Armee"
+      ],
+      "answer": "die deutsche Armee"
+    },
+    {
+      "number": 78,
+      "question": "Was bedeutet die Abkürzung SPD?",
+      "options": [
+        "Sozialistische Partei Deutschlands",
+        "Sozialpolitische Partei Deutschlands",
+        "Sozialdemokratische Partei Deutschlands",
+        "Sozialgerechte Partei Deutschlands"
+      ],
+      "answer": "Sozialdemokratische Partei Deutschlands"
+    },
+    {
+      "number": 79,
+      "question": "Was bedeutet die Abkürzung FDP in Deutschland?",
+      "options": [
+        "Friedliche Demonstrative Partei",
+        "Freie Deutschland Partei",
+        "Führende Demokratische Partei",
+        "Freie Demokratische Partei"
+      ],
+      "answer": "Freie Demokratische Partei"
+    },
+    {
+      "number": 80,
+      "question": "Welches Gericht in Deutschland ist zuständig für die Auslegung des Grundgesetzes?",
+      "options": [
+        "Oberlandesgericht",
+        "Amtsgericht",
+        "Bundesverfassungsgericht",
+        "Verwaltungsgericht"
+      ],
+      "answer": "Bundesverfassungsgericht"
+    },
+    {
+      "number": 81,
+      "question": "Wer wählt die Bundeskanzlerin/den Bundeskanzler in Deutschland?",
+      "options": [
+        "der Bundesrat",
+        "die Bundesversammlung",
+        "das Volk",
+        "der Bundestag"
+      ],
+      "answer": "der Bundestag"
+    },
+    {
+      "number": 82,
+      "question": "Wer leitet das deutsche Bundeskabinett?",
+      "options": [
+        "die Bundestagspräsidentin/der Bundestagspräsident",
+        "die Bundespräsidentin/der Bundespräsident",
+        "die Bundesratspräsidentin/der Bundesratspräsident",
+        "die Bundeskanzlerin/der Bundeskanzler"
+      ],
+      "answer": "die Bundeskanzlerin/der Bundeskanzler"
+    },
+    {
+      "number": 83,
+      "question": "Wer wählt die deutsche Bundeskanzlerin/den deutschen Bundeskanzler?",
+      "options": [
+        "das Volk",
+        "die Bundesversammlung",
+        "der Bundestag",
+        "die Bundesregierung"
+      ],
+      "answer": "der Bundestag"
+    },
+    {
+      "number": 84,
+      "question": "Welche Hauptaufgabe hat die deutsche Bundespräsidentin/der deutsche Bundespräsident? Sie/Er …",
+      "options": [
+        "regiert das Land.",
+        "entwirft die Gesetze.",
+        "repräsentiert das Land.",
+        "überwacht die Einhaltung der Gesetze."
+      ],
+      "answer": "repräsentiert das Land."
+    },
+    {
+      "number": 85,
+      "question": "Wer bildet den deutschen Bundesrat?",
+      "options": [
+        "die Abgeordneten des Bundestages",
+        "die Ministerinnen und Minister der Bundesregierung",
+        "die Regierungsvertreter der Bundesländer",
+        "die Parteimitglieder"
+      ],
+      "answer": "die Regierungsvertreter der Bundesländer"
+    },
+    {
+      "number": 86,
+      "question": "Wer wählt in Deutschland die Bundespräsidentin/den Bundespräsidenten?",
+      "options": [
+        "die Bundesversammlung",
+        "der Bundesrat",
+        "das Bundesparlament",
+        "das Bundesverfassungsgericht"
+      ],
+      "answer": "die Bundesversammlung"
+    },
+    {
+      "number": 87,
+      "question": "Wer ist das Staatsoberhaupt der Bundesrepublik Deutschland?",
+      "options": [
+        "die Bundeskanzlerin/der Bundeskanzler",
+        "die Bundespräsidentin/der Bundespräsident",
+        "die Bundesratspräsidentin/der Bundesratspräsident",
+        "die Bundestagspräsidentin/der Bundestagspräsident"
+      ],
+      "answer": "die Bundespräsidentin/der Bundespräsident"
+    },
+    {
+      "number": 88,
+      "question": "Die parlamentarische Opposition im Deutschen Bundestag …",
+      "options": [
+        "kontrolliert die Regierung.",
+        "entscheidet, wer Bundesministerin/Bundesminister wird.",
+        "bestimmt, wer im Bundesrat sitzt.",
+        "schlägt die Regierungschefinnen/Regierungschefs der Länder vor."
+      ],
+      "answer": "kontrolliert die Regierung."
+    },
+    {
+      "number": 89,
+      "question": "Wie nennt man in Deutschland die Vereinigung von Abgeordneten einer Partei im Parlament?",
+      "options": [
+        "Verband",
+        "Ältestenrat",
+        "Fraktion",
+        "Opposition"
+      ],
+      "answer": "Fraktion"
+    },
+    {
+      "number": 90,
+      "question": "Die deutschen Bundesländer wirken an der Gesetzgebung des Bundes mit durch …",
+      "options": [
+        "den Bundesrat.",
+        "die Bundesversammlung.",
+        "den Bundestag.",
+        "die Bundesregierung."
+      ],
+      "answer": "den Bundesrat."
+    },
+    {
+      "number": 91,
+      "question": "In Deutschland kann ein Regierungswechsel in einem Bundesland Auswirkungen auf die Bundespolitik haben. Das Regieren wird …",
+      "options": [
+        "schwieriger, wenn sich dadurch die Mehrheit im Bundestag ändert.",
+        "leichter, wenn dadurch neue Parteien in den Bundesrat kommen.",
+        "schwieriger, wenn dadurch die Mehrheit im Bundesrat verändert wird.",
+        "leichter, wenn es sich um ein reiches Bundesland handelt."
+      ],
+      "answer": "schwieriger, wenn dadurch die Mehrheit im Bundesrat verändert wird."
+    },
+    {
+      "number": 92,
+      "question": "Was bedeutet die Abkürzung CSU in Deutschland?",
+      "options": [
+        "Christlich Sichere Union",
+        "Christlich Süddeutsche Union",
+        "Christlich Sozialer Unternehmerverband",
+        "Christlich Soziale Union"
+      ],
+      "answer": "Christlich Soziale Union"
+    },
+    {
+      "number": 93,
+      "question": "Je mehr \"Zweitstimmen\" eine Partei bei einer Bundestagswahl bekommt, desto …",
+      "options": [
+        "weniger Erststimmen kann sie haben.",
+        "mehr Direktkandidaten der Partei ziehen ins Parlament ein.",
+        "größer ist das Risiko, eine Koalition bilden zu müssen.",
+        "mehr Sitze erhält die Partei im Parlament."
+      ],
+      "answer": "mehr Sitze erhält die Partei im Parlament."
+    },
+    {
+      "number": 94,
+      "question": "Ab welchem Alter darf man in Deutschland an der Wahl zum Deutschen Bundestag teilnehmen?",
+      "options": [
+        "16",
+        "18",
+        "21",
+        "23"
+      ],
+      "answer": "18"
+    },
+    {
+      "number": 95,
+      "question": "Was gilt für die meisten Kinder in Deutschland?",
+      "options": [
+        "Wahlpflicht",
+        "Schulpflicht",
+        "Schweigepflicht",
+        "Religionspflicht"
+      ],
+      "answer": "Schulpflicht"
+    },
+    {
+      "number": 96,
+      "question": "Wie kann jemand, der den Holocaust leugnet, bestraft werden?",
+      "options": [
+        "Kürzung sozialer Leistungen",
+        "bis zu 100 Sozialstunden",
+        "gar nicht, Holocaustleugnung ist erlaubt",
+        "mit Freiheitsstrafe bis zu fünf Jahren oder mit Geldstrafe"
+      ],
+      "answer": "mit Freiheitsstrafe bis zu fünf Jahren oder mit Geldstrafe"
+    },
+    {
+      "number": 97,
+      "question": "Was bezahlt man in Deutschland automatisch, wenn man fest angestellt ist?",
+      "options": [
+        "Sozialversicherung",
+        "Sozialhilfe",
+        "Kindergeld",
+        "Wohngeld"
+      ],
+      "answer": "Sozialversicherung"
+    },
+    {
+      "number": 98,
+      "question": "Wenn Abgeordnete im Deutschen Bundestag ihre Fraktion wechseln, …",
+      "options": [
+        "dürfen sie nicht mehr an den Sitzungen des Parlaments teilnehmen.",
+        "kann die Regierung ihre Mehrheit verlieren.",
+        "muss die Bundespräsidentin/der Bundespräsident zuvor ihr/sein Einverständnis geben.",
+        "dürfen die Wählerinnen/Wähler dieser Abgeordneten noch einmal wählen."
+      ],
+      "answer": "kann die Regierung ihre Mehrheit verlieren."
+    },
+    {
+      "number": 99,
+      "question": "Wer bezahlt in Deutschland die Sozialversicherungen?",
+      "options": [
+        "Arbeitgeberinnen/Arbeitgeber und Arbeitnehmerinnen/Arbeitnehmer",
+        "nur Arbeitnehmerinnen/Arbeitnehmer",
+        "alle Staatsangehörigen",
+        "nur Arbeitgeberinnen/Arbeitgeber"
+      ],
+      "answer": "Arbeitgeberinnen/Arbeitgeber und Arbeitnehmerinnen/Arbeitnehmer"
+    },
+    {
+      "number": 100,
+      "question": "Was gehört nicht zur gesetzlichen Sozialversicherung?",
+      "options": [
+        "die Lebensversicherung",
+        "die gesetzliche Rentenversicherung",
+        "die Arbeitslosenversicherung",
+        "die Pflegeversicherung"
+      ],
+      "answer": "die Lebensversicherung"
+    },
+    {
+      "number": 101,
+      "question": "Gewerkschaften sind Interessenverbände der …",
+      "options": [
+        "Jugendlichen.",
+        "Arbeitnehmerinnen und Arbeitnehmer.",
+        "Rentnerinnen und Rentner.",
+        "Arbeitgeberinnen und Arbeitgeber."
+      ],
+      "answer": "Arbeitnehmerinnen und Arbeitnehmer."
+    },
+    {
+      "number": 102,
+      "question": "Womit kann man in der Bundesrepublik Deutschland geehrt werden, wenn man auf politischem, wirtschaftlichem, kulturellem, geistigem oder sozialem Gebiet eine besondere Leistung erbracht hat? Mit dem …",
+      "options": [
+        "Bundesverdienstkreuz",
+        "Bundesadler",
+        "Vaterländischen Verdienstorden",
+        "Ehrentitel 'Held der Deutschen Demokratischen Republik'"
+      ],
+      "answer": "Bundesverdienstkreuz"
+    },
+    {
+      "number": 103,
+      "question": "Was wird in Deutschland als 'Ampelkoalition' bezeichnet? Die Zusammenarbeit …",
+      "options": [
+        "der Bundestagsfraktionen von CDU und CSU",
+        "von SPD, FDP und Bündnis 90/Die Grünen in einer Regierung",
+        "von CSU, Die LINKE und Bündnis 90/Die Grünen in einer Regierung",
+        "der Bundestagsfraktionen von CDU und SPD"
+      ],
+      "answer": "von SPD, FDP und Bündnis 90/Die Grünen in einer Regierung"
+    },
+    {
+      "number": 104,
+      "question": "Eine Frau in Deutschland verliert ihre Arbeit. Was darf nicht der Grund für diese Entlassung sein?",
+      "options": [
+        "Die Frau ist lange krank und arbeitsunfähig.",
+        "Die Frau kam oft zu spät zur Arbeit.",
+        "Die Frau erledigt private Sachen während der Arbeitszeit.",
+        "Die Frau bekommt ein Kind und ihr Chef weiß das."
+      ],
+      "answer": "Die Frau bekommt ein Kind und ihr Chef weiß das."
+    },
+    {
+      "number": 105,
+      "question": "Was ist eine Aufgabe von Wahlhelferinnen/Wahlhelfern in Deutschland?",
+      "options": [
+        "Sie helfen alten Menschen bei der Stimmabgabe in der Wahlkabine.",
+        "Sie schreiben die Wahlbenachrichtigungen vor der Wahl.",
+        "Sie geben Zwischenergebnisse an die Medien weiter.",
+        "Sie zählen die Stimmen nach dem Ende der Wahl."
+      ],
+      "answer": "Sie zählen die Stimmen nach dem Ende der Wahl."
+    },
+    {
+      "number": 106,
+      "question": "In Deutschland helfen ehrenamtliche Wahlhelferinnen und Wahlhelfer bei den Wahlen. Was ist eine Aufgabe von Wahlhelferinnen/Wahlhelfern?",
+      "options": [
+        "Sie helfen Kindern und alten Menschen beim Wählen.",
+        "Sie schreiben Karten und Briefe mit der Angabe des Wahllokals.",
+        "Sie geben Zwischenergebnisse an Journalisten weiter.",
+        "Sie zählen die Stimmen nach dem Ende der Wahl."
+      ],
+      "answer": "Sie zählen die Stimmen nach dem Ende der Wahl."
+    },
+    {
+      "number": 107,
+      "question": "Für wie viele Jahre wird der Bundestag in Deutschland gewählt?",
+      "options": [
+        "2 Jahre",
+        "4 Jahre",
+        "6 Jahre",
+        "8 Jahre"
+      ],
+      "answer": "4 Jahre"
+    },
+    {
+      "number": 108,
+      "question": "Bei einer Bundestagswahl in Deutschland darf jede/jeder wählen, die/der …",
+      "options": [
+        "in der Bundesrepublik Deutschland wohnt und wählen möchte.",
+        "Bürgerin/Bürger der Bundesrepublik Deutschland ist und mindestens 18 Jahre alt ist.",
+        "seit mindestens 3 Jahren in der Bundesrepublik Deutschland lebt.",
+        "Bürgerin/Bürger der Bundesrepublik Deutschland ist und mindestens 21 Jahre alt ist."
+      ],
+      "answer": "Bürgerin/Bürger der Bundesrepublik Deutschland ist und mindestens 18 Jahre alt ist."
+    },
+    {
+      "number": 109,
+      "question": "Wie oft gibt es normalerweise Bundestagswahlen in Deutschland?",
+      "options": [
+        "alle drei Jahre",
+        "alle vier Jahre",
+        "alle fünf Jahre",
+        "alle sechs Jahre"
+      ],
+      "answer": "alle vier Jahre"
+    },
+    {
+      "number": 110,
+      "question": "Für wie viele Jahre wird der Bundestag in Deutschland gewählt?",
+      "options": [
+        "2 Jahre",
+        "3 Jahre",
+        "4 Jahre",
+        "5 Jahre"
+      ],
+      "answer": "4 Jahre"
+    },
+    {
+      "number": 111,
+      "question": "Welche Handlungen mit Bezug auf den Staat Israel sind in Deutschland verboten?",
+      "options": [
+        "die Politik Israels öffentlich kritisieren",
+        "das Aufhängen einer israelischen Flagge auf dem Privatgrundstück",
+        "eine Diskussion über die Politik Israels",
+        "der öffentliche Aufruf zur Vernichtung Israels"
+      ],
+      "answer": "der öffentliche Aufruf zur Vernichtung Israels"
+    },
+    {
+      "number": 112,
+      "question": "Die Wahlen in Deutschland sind …",
+      "options": [
+        "speziell.",
+        "geheim.",
+        "berufsbezogen.",
+        "geschlechtsabhängig."
+      ],
+      "answer": "geheim."
+    },
+    {
+      "number": 113,
+      "question": "Wahlen in Deutschland gewinnt die Partei, die …",
+      "options": [
+        "die meisten Stimmen bekommt.",
+        "die meisten Männer mehrheitlich gewählt haben.",
+        "die meisten Stimmen bei den Arbeiterinnen/Arbeitern bekommen hat.",
+        "die meisten Erststimmen für ihre Kanzlerkandidatin/ihren Kanzlerkandidaten erhalten hat."
+      ],
+      "answer": "die meisten Stimmen bekommt."
+    },
+    {
+      "number": 114,
+      "question": "An demokratischen Wahlen in Deutschland teilzunehmen ist …",
+      "options": [
+        "eine Pflicht.",
+        "ein Recht.",
+        "ein Zwang.",
+        "eine Last."
+      ],
+      "answer": "ein Recht."
+    },
+    {
+      "number": 115,
+      "question": "Was bedeutet 'aktives Wahlrecht' in Deutschland?",
+      "options": [
+        "Man kann gewählt werden.",
+        "Man muss wählen gehen.",
+        "Man kann wählen.",
+        "Man muss zur Auszählung der Stimmen gehen."
+      ],
+      "answer": "Man kann wählen."
+    },
+    {
+      "number": 116,
+      "question": "Wenn Sie bei einer Bundestagswahl in Deutschland wählen dürfen, heißt das …",
+      "options": [
+        "aktive Wahlkampagne.",
+        "aktives Wahlverfahren.",
+        "aktiver Wahlkampf.",
+        "aktives Wahlrecht."
+      ],
+      "answer": "aktives Wahlrecht."
+    },
+    {
+      "number": 117,
+      "question": "Wie viel Prozent der Zweitstimmen müssen Parteien mindestens bekommen, um in den Deutschen Bundestag gewählt zu werden?",
+      "options": [
+        "3%",
+        "4%",
+        "5%",
+        "6%"
+      ],
+      "answer": "5%"
+    },
+    {
+      "number": 118,
+      "question": "Wer darf bei den rund 40 jüdischen Makkabi-Sportvereinen Mitglied werden?",
+      "options": [
+        "nur Deutsche",
+        "nur Israelis",
+        "nur religiöse Menschen",
+        "alle Menschen"
+      ],
+      "answer": "alle Menschen"
+    },
+    {
+      "number": 119,
+      "question": "Wahlen in Deutschland sind frei. Was bedeutet das?",
+      "options": [
+        "Alle verurteilten Straftäterinnen/Straftäter dürfen nicht wählen.",
+        "Wenn ich wählen gehen möchte, muss meine Arbeitgeberin/mein Arbeitgeber mir frei geben.",
+        "Jede Person kann ohne Zwang entscheiden, ob sie wählen möchte und wen sie wählen möchte.",
+        "Ich kann frei entscheiden, wo ich wählen gehen möchte."
+      ],
+      "answer": "Jede Person kann ohne Zwang entscheiden, ob sie wählen möchte und wen sie wählen möchte."
+    },
+    {
+      "number": 120,
+      "question": "Das Wahlsystem in Deutschland ist ein …",
+      "options": [
+        "Zensuswahlrecht.",
+        "Dreiklassenwahlrecht.",
+        "Mehrheits- und Verhältniswahlrecht.",
+        "allgemeines Männerwahlrecht."
+      ],
+      "answer": "Mehrheits- und Verhältniswahlrecht."
+    },
+    {
+      "number": 141,
+      "question": "Was kann ein Gericht in Deutschland entscheiden?",
+      "options": [
+        "nur, ob jemand unschuldig ist",
+        "nur, ob jemand schuldig ist",
+        "ob eine Person schuldig oder unschuldig ist und welche Strafe verhängt wird",
+        "nur, wie hoch eine Geldstrafe ist"
+      ],
+      "answer": "ob eine Person schuldig oder unschuldig ist und welche Strafe verhängt wird"
+    },
+    {
+      "number": 142,
+      "question": "Welche Strafen können in Deutschland vor Gericht verhängt werden?",
+      "options": [
+        "nur Geldstrafen",
+        "nur Freiheitsstrafen",
+        "Geldstrafen und Freiheitsstrafen",
+        "nur Gemeindearbeit"
+      ],
+      "answer": "Geldstrafen und Freiheitsstrafen"
+    },
+    {
+      "number": 143,
+      "question": "In Deutschland entscheidet das Gericht über …",
+      "options": [
+        "alle Strafverfahren.",
+        "den Ausgang jeder Wahl.",
+        "die Höhe der Steuern.",
+        "das Einkommen von Politikern."
+      ],
+      "answer": "alle Strafverfahren."
+    },
+    {
+      "number": 144,
+      "question": "In welchem Land können sich Menschen gegen den Staat im Rahmen einer Klage wehren?",
+      "options": [
+        "In einem demokratischen Land wie Deutschland.",
+        "In Ländern mit einer starken Regierung.",
+        "In Ländern ohne Pressefreiheit.",
+        "In autoritären Staaten."
+      ],
+      "answer": "In einem demokratischen Land wie Deutschland."
+    },
+    {
+      "number": 145,
+      "question": "Wer entscheidet in Deutschland, ob ein Gesetz verfassungswidrig ist?",
+      "options": [
+        "Der Bundestag",
+        "Das Bundesverfassungsgericht",
+        "Die Bundesregierung",
+        "Der Bundesrat"
+      ],
+      "answer": "Das Bundesverfassungsgericht"
+    },
+    {
+      "number": 146,
+      "question": "Das Bundesverfassungsgericht kann …",
+      "options": [
+        "Gesetze ändern.",
+        "Gesetze für verfassungswidrig erklären.",
+        "Gesetze erlassen.",
+        "Regierungen wählen."
+      ],
+      "answer": "Gesetze für verfassungswidrig erklären."
+    },
+    {
+      "number": 147,
+      "question": "Welches Gericht in Deutschland ist für Verfassungsfragen zuständig?",
+      "options": [
+        "Der Bundesgerichtshof",
+        "Das Bundesverfassungsgericht",
+        "Das Landgericht",
+        "Das Arbeitsgericht"
+      ],
+      "answer": "Das Bundesverfassungsgericht"
+    },
+    {
+      "number": 148,
+      "question": "In Deutschland ist der Bundespräsident die/der …",
+      "options": [
+        "Vertreterin/Vertreter des Volkes.",
+        "oberste Regierungsbehörde.",
+        "oberste Richterschaft des Landes.",
+        "Repräsentantin/Repräsentant der Bundesregierung."
+      ],
+      "answer": "Repräsentantin/Repräsentant der Bundesregierung."
+    },
+    {
+      "number": 149,
+      "question": "Das Bundesverfassungsgericht ist in Deutschland dafür zuständig, …",
+      "options": [
+        "Gesetze zu erlassen.",
+        "Gesetze zu überprüfen.",
+        "Regierungen zu wählen.",
+        "Bundespräsidenten zu wählen."
+      ],
+      "answer": "Gesetze zu überprüfen."
+    },
+    {
+      "number": 150,
+      "question": "Das Grundgesetz für die Bundesrepublik Deutschland legt fest, dass …",
+      "options": [
+        "alle Menschen in Deutschland gleiche Rechte haben.",
+        "nur Deutsche bestimmte Rechte haben.",
+        "die Menschenrechte nicht gelten.",
+        "der Präsident des Bundes eine absolute Macht hat."
+      ],
+      "answer": "alle Menschen in Deutschland gleiche Rechte haben."
+    },
+    {
+      "number": 151,
+      "question": "Welches Recht schützt das Grundgesetz für die Bundesrepublik Deutschland?",
+      "options": [
+        "Das Recht, die Wohnung jederzeit zu betreten.",
+        "Das Recht auf Arbeit.",
+        "Das Recht auf Bildung.",
+        "Das Recht auf freie Meinungsäußerung."
+      ],
+      "answer": "Das Recht auf freie Meinungsäußerung."
+    },
+    {
+      "number": 152,
+      "question": "Die Bundesrepublik Deutschland ist ein Land mit …",
+      "options": [
+        "einer zentralisierten Regierung.",
+        "einem föderalen System.",
+        "einer Monarchie.",
+        "einem Einparteienstaat."
+      ],
+      "answer": "einem föderalen System."
+    },
+    {
+      "number": 153,
+      "question": "Wie viele Bundesländer hat Deutschland?",
+      "options": [
+        "16",
+        "13",
+        "14",
+        "12"
+      ],
+      "answer": "16"
+    },
+    {
+      "number": 154,
+      "question": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "options": [
+        "1949",
+        "1950",
+        "1961",
+        "1989"
+      ],
+      "answer": "1949"
+    },
+    {
+      "number": 155,
+      "question": "Welche Funktion hat der Bundesrat in Deutschland?",
+      "options": [
+        "Er entscheidet über die Verfassung.",
+        "Er vertritt die Länder und muss Gesetze zustimmen.",
+        "Er überprüft die Wahl des Bundeskanzlers.",
+        "Er spricht im Namen der Bundesregierung."
+      ],
+      "answer": "Er vertritt die Länder und muss Gesetze zustimmen."
+    },
+    {
+      "number": 156,
+      "question": "Welches Amt wird in Deutschland vom Bundespräsidenten ausgeübt?",
+      "options": [
+        "Die Oberste Regierungsmacht.",
+        "Das Staatsoberhaupt.",
+        "Die Kanzlerschaft.",
+        "Die Kontrolle über das Parlament."
+      ],
+      "answer": "Das Staatsoberhaupt."
+    },
+    {
+      "number": 157,
+      "question": "Was ist die Aufgabe der Bundeskanzlerin/des Bundeskanzlers in Deutschland?",
+      "options": [
+        "Er/Sie ist der/die Vorsitzende des Bundesrats.",
+        "Er/Sie leitet die Regierung und bestimmt die Politik.",
+        "Er/Sie vertritt den Bundestag.",
+        "Er/Sie entscheidet über das Einkommen der Minister."
+      ],
+      "answer": "Er/Sie leitet die Regierung und bestimmt die Politik."
+    },
+    {
+      "number": 158,
+      "question": "Was ist die Regierung der Bundesrepublik Deutschland?",
+      "options": [
+        "Der Bundestag.",
+        "Der Bundesrat.",
+        "Der Bundeskanzler mit den Ministerinnen und Ministern.",
+        "Der Bundespräsident."
+      ],
+      "answer": "Der Bundeskanzler mit den Ministerinnen und Ministern."
+    },
+    {
+      "number": 159,
+      "question": "Das Grundgesetz für die Bundesrepublik Deutschland ist die Verfassung, die …",
+      "options": [
+        "alle Bürgerinnen und Bürger zu politischen Aktionen aufruft.",
+        "die Rechte und Pflichten der Regierung und des Volkes regelt.",
+        "die Bundeskanzlerin auf ihren Posten setzt.",
+        "den Bundespräsidenten ernennt."
+      ],
+      "answer": "die Rechte und Pflichten der Regierung und des Volkes regelt."
+    },
+    {
+      "number": 160,
+      "question": "Die Bundesländer in Deutschland haben eigene Gesetze, die …",
+      "options": [
+        "mit den Bundesgesetzen übereinstimmen müssen.",
+        "die Bundesgesetze ersetzen.",
+        "den Bundeskanzler kontrollieren.",
+        "die Rechte der Bürgerinnen und Bürger einschränken."
+      ],
+      "answer": "mit den Bundesgesetzen übereinstimmen müssen."
+    },
+    {
+      "number": 161,
+      "question": "Was ist das „Dritte Reich“?",
+      "options": [
+        "Ein demokratischer Staat.",
+        "Eine Monarchie.",
+        "Eine Diktatur.",
+        "Eine Räterepublik."
+      ],
+      "answer": "Eine Diktatur."
+    },
+    {
+      "number": 162,
+      "question": "Claus Schenk Graf von Stauffenberg wurde bekannt durch …",
+      "options": [
+        "eine Goldmedaille bei den Olympischen Spielen 1936.",
+        "den Bau des Reichstagsgebäudes.",
+        "den Aufbau der Wehrmacht.",
+        "das Attentat auf Hitler am 20. Juli 1944."
+      ],
+      "answer": "das Attentat auf Hitler am 20. Juli 1944."
+    },
+    {
+      "number": 163,
+      "question": "In welchem Jahr zerstörten die Nationalsozialisten Synagogen und jüdische Geschäfte in Deutschland?",
+      "options": [
+        "1925",
+        "1930",
+        "1938",
+        "1945"
+      ],
+      "answer": "1938"
+    },
+    {
+      "number": 164,
+      "question": "Was passierte am 9. November 1938 in Deutschland?",
+      "options": [
+        "Mit dem Angriff auf Polen beginnt der Zweite Weltkrieg.",
+        "Die Nationalsozialisten verlieren eine Wahl und lösen den Reichstag auf.",
+        "Jüdische Geschäfte und Synagogen werden durch Nationalsozialisten und ihre Anhänger zerstört.",
+        "Hitler wird Reichspräsident und lässt alle Parteien verbieten."
+      ],
+      "answer": "Jüdische Geschäfte und Synagogen werden durch Nationalsozialisten und ihre Anhänger zerstört."
+    },
+    {
+      "number": 165,
+      "question": "Wie hieß der erste Bundeskanzler der Bundesrepublik Deutschland?",
+      "options": [
+        "Konrad Adenauer",
+        "Kurt Georg Kiesinger",
+        "Helmut Schmidt",
+        "Willy Brandt"
+      ],
+      "answer": "Konrad Adenauer"
+    },
+    {
+      "number": 166,
+      "question": "Bei welchen Demonstrationen in Deutschland riefen die Menschen 'Wir sind das Volk'?",
+      "options": [
+        "beim Arbeiteraufstand 1953 in der DDR",
+        "bei den Demonstrationen 1968 in der Bundesrepublik Deutschland",
+        "bei den Anti-Atomkraft-Demonstrationen 1985 in der Bundesrepublik Deutschland",
+        "bei den Montagsdemonstrationen 1989 in der DDR"
+      ],
+      "answer": "bei den Montagsdemonstrationen 1989 in der DDR"
+    },
+    {
+      "number": 167,
+      "question": "Welche Länder wurden nach dem Zweiten Weltkrieg in Deutschland als 'Alliierte Besatzungsmächte' bezeichnet?",
+      "options": [
+        "Sowjetunion, Großbritannien, Polen, Schweden",
+        "Frankreich, Sowjetunion, Italien, Japan",
+        "USA, Sowjetunion, Spanien, Portugal",
+        "USA, Sowjetunion, Großbritannien, Frankreich"
+      ],
+      "answer": "USA, Sowjetunion, Großbritannien, Frankreich"
+    },
+    {
+      "number": 168,
+      "question": "Welches Land war keine 'Alliierte Besatzungsmacht' in Deutschland?",
+      "options": [
+        "USA",
+        "Sowjetunion",
+        "Frankreich",
+        "Japan"
+      ],
+      "answer": "Japan"
+    },
+    {
+      "number": 169,
+      "question": "Wann wurde die Bundesrepublik Deutschland gegründet?",
+      "options": [
+        "1939",
+        "1945",
+        "1949",
+        "1951"
+      ],
+      "answer": "1949"
+    },
+    {
+      "number": 170,
+      "question": "Was gab es während der Zeit des Nationalsozialismus in Deutschland?",
+      "options": [
+        "das Verbot von Parteien",
+        "das Recht zur freien Entfaltung der Persönlichkeit",
+        "Pressefreiheit",
+        "den Schutz der Menschenwürde"
+      ],
+      "answer": "das Verbot von Parteien"
+    },
+    {
+      "number": 171,
+      "question": "Soziale Marktwirtschaft bedeutet, die Wirtschaft …",
+      "options": [
+        "steuert sich allein nach Angebot und Nachfrage.",
+        "wird vom Staat geplant und gesteuert, Angebot und Nachfrage werden nicht berücksichtigt.",
+        "richtet sich nach der Nachfrage im Ausland.",
+        "richtet sich nach Angebot und Nachfrage, aber der Staat sorgt für einen sozialen Ausgleich."
+      ],
+      "answer": "richtet sich nach Angebot und Nachfrage, aber der Staat sorgt für einen sozialen Ausgleich."
+    },
+    {
+      "number": 172,
+      "question": "In welcher Besatzungszone wurde die DDR gegründet? In der …",
+      "options": [
+        "amerikanischen Besatzungszone",
+        "französischen Besatzungszone",
+        "britischen Besatzungszone",
+        "sowjetischen Besatzungszone"
+      ],
+      "answer": "sowjetischen Besatzungszone"
+    },
+    {
+      "number": 173,
+      "question": "Die Bundesrepublik Deutschland ist ein Gründungsmitglied …",
+      "options": [
+        "des Nordatlantikpakts (NATO).",
+        "der Vereinten Nationen (VN).",
+        "der Europäischen Union (EU).",
+        "des Warschauer Pakts."
+      ],
+      "answer": "des Nordatlantikpakts (NATO)."
+    },
+    {
+      "number": 174,
+      "question": "Wann wurde die DDR gegründet?",
+      "options": [
+        "1947",
+        "1949",
+        "1953",
+        "1956"
+      ],
+      "answer": "1949"
+    },
+    {
+      "number": 175,
+      "question": "Wie viele Besatzungszonen gab es in Deutschland nach dem Zweiten Weltkrieg?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "4"
+    },
+    {
+      "number": 176,
+      "question": "Wie waren die Besatzungszonen Deutschlands nach 1945 verteilt?",
+      "options": [
+        "1=Großbritannien, 2=Sowjetunion, 3=Frankreich, 4=USA",
+        "1=Sowjetunion, 2=Großbritannien, 3=USA, 4=Frankreich",
+        "1=Großbritannien, 2=Sowjetunion, 3=USA, 4=Frankreich",
+        "1=Großbritannien, 2=USA, 3=Sowjetunion, 4=Frankreich"
+      ],
+      "answer": "1=Großbritannien, 2=Sowjetunion, 3=USA, 4=Frankreich"
+    },
+    {
+      "number": 177,
+      "question": "Welche deutsche Stadt wurde nach dem Zweiten Weltkrieg in vier Sektoren aufgeteilt?",
+      "options": [
+        "München",
+        "Berlin",
+        "Dresden",
+        "Frankfurt/Oder"
+      ],
+      "answer": "Berlin"
+    },
+    {
+      "number": 178,
+      "question": "Vom Juni 1948 bis zum Mai 1949 wurden die Bürgerinnen und Bürger von West-Berlin durch eine Luftbrücke versorgt. Welcher Umstand war dafür verantwortlich?",
+      "options": [
+        "Für Frankreich war eine Versorgung der West-Berliner Bevölkerung mit dem Flugzeug kostengünstiger.",
+        "Die amerikanischen Soldatinnen und Soldaten hatten beim Landtransport Angst vor Überfällen.",
+        "Für Großbritannien war die Versorgung über die Luftbrücke schneller.",
+        "Die Sowjetunion unterbrach den gesamten Verkehr auf dem Landwege."
+      ],
+      "answer": "Die Sowjetunion unterbrach den gesamten Verkehr auf dem Landwege."
+    },
+    {
+      "number": 179,
+      "question": "Wie endete der Zweite Weltkrieg in Europa offiziell?",
+      "options": [
+        "mit dem Tod Adolf Hitlers",
+        "durch die bedingungslose Kapitulation Deutschlands",
+        "mit dem Rückzug der Deutschen aus den besetzten Gebieten",
+        "durch eine Revolution in Deutschland"
+      ],
+      "answer": "durch die bedingungslose Kapitulation Deutschlands"
+    },
+    {
+      "number": 180,
+      "question": "Der erste Bundeskanzler der Bundesrepublik Deutschland war …",
+      "options": [
+        "Ludwig Erhard.",
+        "Willy Brandt.",
+        "Konrad Adenauer.",
+        "Gerhard Schröder."
+      ],
+      "answer": "Konrad Adenauer."
+    },
+    {
+      "number": 181,
+      "question": "Was war der Kalte Krieg?",
+      "options": [
+        "Ein militärischer Konflikt zwischen Ost- und Westdeutschland.",
+        "Ein ideologischer Konflikt zwischen der Sowjetunion und den USA.",
+        "Ein wirtschaftlicher Wettbewerb zwischen der DDR und der Bundesrepublik.",
+        "Ein militärischer Konflikt zwischen Frankreich und Deutschland."
+      ],
+      "answer": "Ein ideologischer Konflikt zwischen der Sowjetunion und den USA."
+    },
+    {
+      "number": 182,
+      "question": "In welchem Jahr trat die DDR der Vereinten Nationen bei?",
+      "options": [
+        "1960",
+        "1973",
+        "1989",
+        "1990"
+      ],
+      "answer": "1973"
+    },
+    {
+      "number": 183,
+      "question": "Welcher deutsche Politiker war als „Kanzler der Einheit“ bekannt?",
+      "options": [
+        "Konrad Adenauer",
+        "Willy Brandt",
+        "Gerhard Schröder",
+        "Helmut Kohl"
+      ],
+      "answer": "Helmut Kohl"
+    },
+    {
+      "number": 184,
+      "question": "Wie hieß der Friedensvertrag, der 1919 den Ersten Weltkrieg beendete?",
+      "options": [
+        "Vertrag von Versailles",
+        "Vertrag von Potsdam",
+        "Vertrag von Maastricht",
+        "Vertrag von Rom"
+      ],
+      "answer": "Vertrag von Versailles"
+    },
+    {
+      "number": 185,
+      "question": "Was war die Berliner Blockade?",
+      "options": [
+        "Eine Mauer, die West- und Ost-Berlin trennte.",
+        "Eine militärische Aktion der Westalliierten gegen die DDR.",
+        "Eine sowjetische Maßnahme, um den Zugang nach West-Berlin zu blockieren.",
+        "Ein internationaler Vertrag zur Abrüstung."
+      ],
+      "answer": "Eine sowjetische Maßnahme, um den Zugang nach West-Berlin zu blockieren."
+    },
+    {
+      "number": 186,
+      "question": "Welche Organisation wurde 1993 gegründet und umfasst heute fast alle europäischen Länder?",
+      "options": [
+        "Europäische Union",
+        "NATO",
+        "Vereinte Nationen",
+        "Europarat"
+      ],
+      "answer": "Europäische Union"
+    },
+    {
+      "number": 187,
+      "question": "Wer war der Präsident der USA, als die Berliner Mauer 1961 gebaut wurde?",
+      "options": [
+        "John F. Kennedy",
+        "Dwight D. Eisenhower",
+        "Lyndon B. Johnson",
+        "Richard Nixon"
+      ],
+      "answer": "John F. Kennedy"
+    },
+    {
+      "number": 188,
+      "question": "Welche Währung wurde in Westdeutschland 1948 eingeführt?",
+      "options": [
+        "Euro",
+        "Mark",
+        "Deutsche Mark",
+        "Reichsmark"
+      ],
+      "answer": "Deutsche Mark"
+    },
+    {
+      "number": 189,
+      "question": "Was versteht man unter der „Wiedervereinigung“ Deutschlands?",
+      "options": [
+        "Der Beitritt der DDR zur NATO.",
+        "Die Eingliederung Westdeutschlands in die Europäische Union.",
+        "Der Fall der Berliner Mauer und die politische Vereinigung der beiden deutschen Staaten.",
+        "Die Abschaffung des Grundgesetzes in der Bundesrepublik."
+      ],
+      "answer": "Der Fall der Berliner Mauer und die politische Vereinigung der beiden deutschen Staaten."
+    },
+    {
+      "number": 190,
+      "question": "Was war die Funktion der Berliner Mauer?",
+      "options": [
+        "Eine Trennung zwischen den westlichen und östlichen Zonen Berlins.",
+        "Eine Absicherung gegen Feinde von außen.",
+        "Ein Symbol der Wiedervereinigung Deutschlands.",
+        "Ein Verteidigungswerk gegen das westliche Militär."
+      ],
+      "answer": "Eine Trennung zwischen den westlichen und östlichen Zonen Berlins."
+    },
+    {
+      "number": 191,
+      "question": "Was bedeutet „Sozialstaat“?",
+      "options": [
+        "Ein Staat, der den Wohlstand seiner Bürger fördert.",
+        "Ein Staat, in dem es keinen freien Markt gibt.",
+        "Ein Staat, der soziale Gerechtigkeit durch staatliche Eingriffe in den Markt sicherstellt.",
+        "Ein Staat, in dem jeder Bürger für sich selbst verantwortlich ist."
+      ],
+      "answer": "Ein Staat, der soziale Gerechtigkeit durch staatliche Eingriffe in den Markt sicherstellt."
+    },
+    {
+      "number": 192,
+      "question": "Welche war die größte politische Partei der DDR?",
+      "options": [
+        "SPD",
+        "Die Linke",
+        "SED",
+        "FDP"
+      ],
+      "answer": "SED"
+    },
+    {
+      "number": 193,
+      "question": "Welche politische Bewegung trat 1968 in Deutschland in Erscheinung?",
+      "options": [
+        "Die Studentenbewegung",
+        "Die Frauenbewegung",
+        "Die Anti-AKW-Bewegung",
+        "Die Arbeiterbewegung"
+      ],
+      "answer": "Die Studentenbewegung"
+    },
+    {
+      "number": 194,
+      "question": "Wann fand der Zweite Weltkrieg sein Ende?",
+      "options": [
+        "1943",
+        "1944",
+        "1945",
+        "1946"
+      ],
+      "answer": "1945"
+    },
+    {
+      "number": 195,
+      "question": "Was war die „Ostpolitik“ der Bundesrepublik Deutschland?",
+      "options": [
+        "Die Politik der Annäherung und Anerkennung der DDR.",
+        "Die Politik der Förderung von Ost-Asien.",
+        "Die Wirtschaftshilfe für die Länder des Ostblocks.",
+        "Die Isolation der DDR auf politischer Ebene."
+      ],
+      "answer": "Die Politik der Annäherung und Anerkennung der DDR."
+    },
+    {
+      "number": 196,
+      "question": "Wer war der erste Präsident der Deutschen Demokratischen Republik (DDR)?",
+      "options": [
+        "Erich Honecker",
+        "Walter Ulbricht",
+        "Karl Marx",
+        "Wilhelm Pieck"
+      ],
+      "answer": "Wilhelm Pieck"
+    },
+    {
+      "number": 197,
+      "question": "Wer wurde nach dem Mauerfall 1989 Bundeskanzler der Bundesrepublik Deutschland?",
+      "options": [
+        "Gerhard Schröder",
+        "Willy Brandt",
+        "Konrad Adenauer",
+        "Helmut Kohl"
+      ],
+      "answer": "Helmut Kohl"
+    },
+    {
+      "number": 198,
+      "question": "Was versteht man unter dem Begriff „Europäische Einigung“?",
+      "options": [
+        "Die politische, wirtschaftliche und kulturelle Integration der Staaten in Europa.",
+        "Die Einführung eines gemeinsamen Militärs in Europa.",
+        "Die Vereinbarung eines gemeinsamen Währungsraums in Europa.",
+        "Die geografische Erweiterung der Europäischen Union."
+      ],
+      "answer": "Die politische, wirtschaftliche und kulturelle Integration der Staaten in Europa."
+    },
+    {
+      "number": 199,
+      "question": "Was war die Hauptursache für den Ausbruch des Zweiten Weltkriegs?",
+      "options": [
+        "Der Vertrag von Versailles.",
+        "Die Französische Revolution.",
+        "Die Gründung des Deutschen Kaiserreichs.",
+        "Der Marshall-Plan."
+      ],
+      "answer": "Der Vertrag von Versailles."
+    },
+    {
+      "number": 200,
+      "question": "Was war die „Wirtschaftswunder“ in der Bundesrepublik Deutschland?",
+      "options": [
+        "Der rasche Wiederaufbau der deutschen Wirtschaft nach dem Zweiten Weltkrieg.",
+        "Der massive Anstieg der Arbeitslosigkeit nach dem Krieg.",
+        "Die Einführung der Rentenversicherung.",
+        "Die wirtschaftliche Krise der 70er Jahre."
+      ],
+      "answer": "Der rasche Wiederaufbau der deutschen Wirtschaft nach dem Zweiten Weltkrieg."
+    },
+    {
+      "number": 201,
+      "question": "Was war die Hauptursache für die Gründung der Europäischen Union?",
+      "options": [
+        "Die Bekämpfung des Kommunismus",
+        "Die Förderung des Friedens und der wirtschaftlichen Zusammenarbeit in Europa",
+        "Die Einführung einer gemeinsamen Währung",
+        "Die Erweiterung der NATO"
+      ],
+      "answer": "Die Förderung des Friedens und der wirtschaftlichen Zusammenarbeit in Europa"
+    },
+    {
+      "number": 202,
+      "question": "Welches Land war kein Mitglied der Europäischen Wirtschaftsgemeinschaft (EWG) bei ihrer Gründung?",
+      "options": [
+        "Großbritannien",
+        "Deutschland",
+        "Frankreich",
+        "Italien"
+      ],
+      "answer": "Großbritannien"
+    },
+    {
+      "number": 203,
+      "question": "Wann trat Deutschland der Europäischen Union bei?",
+      "options": [
+        "1951",
+        "1973",
+        "1986",
+        "1993"
+      ],
+      "answer": "1993"
+    },
+    {
+      "number": 204,
+      "question": "Was bedeutet der Begriff „Brüsseler Vertrag“?",
+      "options": [
+        "Ein Vertrag zur Gründung der NATO",
+        "Ein Vertrag zur Gründung der Europäischen Union",
+        "Ein Friedensvertrag nach dem Ersten Weltkrieg",
+        "Ein Handelsabkommen zwischen Deutschland und Frankreich"
+      ],
+      "answer": "Ein Vertrag zur Gründung der Europäischen Union"
+    },
+    {
+      "number": 205,
+      "question": "Wann begann der Kalte Krieg?",
+      "options": [
+        "1940",
+        "1945",
+        "1947",
+        "1950"
+      ],
+      "answer": "1947"
+    },
+    {
+      "number": 206,
+      "question": "Welches Ereignis führte direkt zum Fall der Berliner Mauer?",
+      "options": [
+        "Die Unruhen in der DDR",
+        "Der Besuch von Mikhail Gorbatschow in Deutschland",
+        "Die Forderung nach Reisefreiheit in der DDR",
+        "Der NATO-Gipfel in Bonn"
+      ],
+      "answer": "Die Forderung nach Reisefreiheit in der DDR"
+    },
+    {
+      "number": 207,
+      "question": "Was ist die Schengen-Zone?",
+      "options": [
+        "Ein Wirtschaftsraum innerhalb der EU",
+        "Ein Freihandelsabkommen zwischen der EU und den USA",
+        "Ein Gebiet, in dem es keine Grenzkontrollen zwischen den Mitgliedstaaten gibt",
+        "Ein Vertrag zur militärischen Zusammenarbeit zwischen den Mitgliedstaaten"
+      ],
+      "answer": "Ein Gebiet, in dem es keine Grenzkontrollen zwischen den Mitgliedstaaten gibt"
+    },
+    {
+      "number": 208,
+      "question": "Was bedeutet der Begriff „Europäischer Binnenmarkt“?",
+      "options": [
+        "Ein gemeinsamer Markt für landwirtschaftliche Produkte",
+        "Der Wegfall von Zollbarrieren und Handelshemmnissen zwischen den EU-Staaten",
+        "Eine gemeinsame Währung in der EU",
+        "Die Einführung eines europaweiten Sozialversicherungssystems"
+      ],
+      "answer": "Der Wegfall von Zollbarrieren und Handelshemmnissen zwischen den EU-Staaten"
+    },
+    {
+      "number": 209,
+      "question": "Wann wurde der Euro als Bargeld eingeführt?",
+      "options": [
+        "1998",
+        "2000",
+        "2002",
+        "2005"
+      ],
+      "answer": "2002"
+    },
+    {
+      "number": 210,
+      "question": "Welche Institution überwacht die Einhaltung der EU-Verträge?",
+      "options": [
+        "Der Europäische Rat",
+        "Das Europäische Parlament",
+        "Der Europäische Gerichtshof",
+        "Die Europäische Zentralbank"
+      ],
+      "answer": "Der Europäische Gerichtshof"
+    },
+    {
+      "number": 211,
+      "question": "Was versteht man unter dem Begriff „Europäische Zentralbank“?",
+      "options": [
+        "Eine Bank, die den Finanzmarkt in der EU reguliert",
+        "Eine Organisation, die für die Verteidigung der EU zuständig ist",
+        "Eine Institution, die die Geldpolitik in der Eurozone steuert",
+        "Eine Institution, die für den Handel mit europäischen Waren verantwortlich ist"
+      ],
+      "answer": "Eine Institution, die die Geldpolitik in der Eurozone steuert"
+    },
+    {
+      "number": 212,
+      "question": "Wann wurde der Vertrag von Maastricht unterzeichnet?",
+      "options": [
+        "1957",
+        "1963",
+        "1991",
+        "1993"
+      ],
+      "answer": "1991"
+    },
+    {
+      "number": 213,
+      "question": "Was ist der Schengen-Raum?",
+      "options": [
+        "Ein militärisches Bündnis in Europa",
+        "Ein Handelsabkommen zwischen der EU und Afrika",
+        "Ein Vertrag zur Einführung einer gemeinsamen Währung",
+        "Ein Gebiet ohne Grenzkontrollen zwischen den Mitgliedsstaaten"
+      ],
+      "answer": "Ein Gebiet ohne Grenzkontrollen zwischen den Mitgliedsstaaten"
+    },
+    {
+      "number": 214,
+      "question": "Was ist der Grundsatz der „Subsidiarität“ in der EU?",
+      "options": [
+        "Die EU muss die Verantwortung für alle politischen Bereiche übernehmen",
+        "Die EU darf nur in Bereichen tätig werden, in denen die Mitgliedstaaten nicht selbst handeln können",
+        "Die EU muss immer zuerst die Zustimmung der Mitgliedstaaten einholen",
+        "Die EU muss für das Wohl aller europäischen Staaten sorgen"
+      ],
+      "answer": "Die EU darf nur in Bereichen tätig werden, in denen die Mitgliedstaaten nicht selbst handeln können"
+    },
+    {
+      "number": 215,
+      "question": "Was ist das Hauptziel der Europäischen Union?",
+      "options": [
+        "Die Einführung einer einheitlichen Steuerpolitik",
+        "Die Förderung des Friedens und der Sicherheit in Europa",
+        "Die Einführung einer gemeinsamen Armee",
+        "Die Kontrolle der nationalen Wirtschaftspolitik der Mitgliedstaaten"
+      ],
+      "answer": "Die Förderung des Friedens und der Sicherheit in Europa"
+    },
+    {
+      "number": 216,
+      "question": "Welches Land trat als letztes der Europäischen Union bei?",
+      "options": [
+        "Irland",
+        "Polen",
+        "Rumänien",
+        "Kroatien"
+      ],
+      "answer": "Kroatien"
+    },
+    {
+      "number": 217,
+      "question": "Was bedeutet der Begriff „EU-Kommission“?",
+      "options": [
+        "Das Parlament der EU",
+        "Das Organ, das die Verwaltung der EU übernimmt",
+        "Das militärische Organ der EU",
+        "Das Gericht der EU"
+      ],
+      "answer": "Das Organ, das die Verwaltung der EU übernimmt"
+    },
+    {
+      "number": 218,
+      "question": "Wer ist die höchste Institution der EU?",
+      "options": [
+        "Das Europäische Parlament",
+        "Der Europäische Rat",
+        "Die Europäische Kommission",
+        "Der Europäische Gerichtshof"
+      ],
+      "answer": "Der Europäische Rat"
+    },
+    {
+      "number": 219,
+      "question": "Wann wurde das Schengen-Abkommen unterzeichnet?",
+      "options": [
+        "1991",
+        "1985",
+        "2000",
+        "1999"
+      ],
+      "answer": "1985"
+    },
+    {
+      "number": 220,
+      "question": "Welches Land verließ 2020 die Europäische Union?",
+      "options": [
+        "Norwegen",
+        "Schweden",
+        "Großbritannien",
+        "Island"
+      ],
+      "answer": "Großbritannien"
+    },
+    {
+      "number": 221,
+      "question": "Was bedeutet das Schengen-Abkommen für die Bürger der EU?",
+      "options": [
+        "Sie können in jedes Land der EU ohne Visum einreisen.",
+        "Sie können ihre Steuern in jedem EU-Land bezahlen.",
+        "Sie können in jedem Land der EU arbeiten.",
+        "Sie können in jedes Land der EU ohne Identitätsnachweis reisen."
+      ],
+      "answer": "Sie können in jedes Land der EU ohne Visum einreisen."
+    },
+    {
+      "number": 222,
+      "question": "Welches Land hat nie der Europäischen Union angehört?",
+      "options": [
+        "Norwegen",
+        "Österreich",
+        "Polen",
+        "Ungarn"
+      ],
+      "answer": "Norwegen"
+    },
+    {
+      "number": 223,
+      "question": "Welches Land wurde als erstes Mitgliedstaat der EU nach der Erweiterung im Jahr 2004?",
+      "options": [
+        "Polen",
+        "Tschechien",
+        "Estland",
+        "Ungarn"
+      ],
+      "answer": "Polen"
+    },
+    {
+      "number": 224,
+      "question": "Wie wird der Präsident der Europäischen Kommission gewählt?",
+      "options": [
+        "Von den Mitgliedstaaten der EU",
+        "Durch das Europäische Parlament",
+        "Durch den Europäischen Rat",
+        "Durch eine Volksabstimmung"
+      ],
+      "answer": "Durch das Europäische Parlament"
+    },
+    {
+      "number": 225,
+      "question": "Was ist der Zweck der Europäischen Zentralbank?",
+      "options": [
+        "Die Kontrolle des Finanzmarktes der EU",
+        "Die Einführung von Strafzöllen innerhalb der EU",
+        "Die Koordinierung der Währungspolitik in der EU",
+        "Die Einführung von Renten und Arbeitslosenhilfe"
+      ],
+      "answer": "Die Koordinierung der Währungspolitik in der EU"
+    },
+    {
+      "number": 226,
+      "question": "Wie viele Mitglieder hat das Europäische Parlament?",
+      "options": [
+        "700",
+        "751",
+        "500",
+        "600"
+      ],
+      "answer": "751"
+    },
+    {
+      "number": 227,
+      "question": "Welches Land gehört nicht zu den Gründungsmitgliedern der EU?",
+      "options": [
+        "Deutschland",
+        "Frankreich",
+        "Großbritannien",
+        "Italien"
+      ],
+      "answer": "Großbritannien"
+    },
+    {
+      "number": 228,
+      "question": "Was bedeutet der Begriff „Europäische Union“?",
+      "options": [
+        "Ein militärisches Verteidigungsbündnis",
+        "Ein wirtschaftliches Freihandelsabkommen",
+        "Ein politischer und wirtschaftlicher Zusammenschluss von Staaten in Europa",
+        "Ein Zusammenschluss für den Austausch von kulturellen Gütern"
+      ],
+      "answer": "Ein politischer und wirtschaftlicher Zusammenschluss von Staaten in Europa"
+    },
+    {
+      "number": 229,
+      "question": "Wie oft finden Wahlen zum Europäischen Parlament statt?",
+      "options": [
+        "Alle drei Jahre",
+        "Alle fünf Jahre",
+        "Alle sechs Jahre",
+        "Alle vier Jahre"
+      ],
+      "answer": "Alle fünf Jahre"
+    },
+    {
+      "number": 230,
+      "question": "Wann wurde der Vertrag von Maastricht unterzeichnet?",
+      "options": [
+        "1991",
+        "1992",
+        "1993",
+        "1994"
+      ],
+      "answer": "1992"
+    },
+    {
+      "number": 231,
+      "question": "Was ist die Hauptaufgabe der Europäischen Kommission?",
+      "options": [
+        "Gesetze zu erlassen",
+        "Die Entwicklung von Wirtschaftspolitik",
+        "Die Durchsetzung der EU-Verträge",
+        "Die Kontrolle der nationalen Regierungen"
+      ],
+      "answer": "Die Durchsetzung der EU-Verträge"
+    },
+    {
+      "number": 232,
+      "question": "Welches Land hat den Euro als erste Währung eingeführt?",
+      "options": [
+        "Deutschland",
+        "Frankreich",
+        "Italien",
+        "Griechenland"
+      ],
+      "answer": "Deutschland"
+    },
+    {
+      "number": 233,
+      "question": "Was ist der Europäische Binnenmarkt?",
+      "options": [
+        "Ein System der gemeinsamen Steuergesetze",
+        "Ein Markt ohne Zölle und Handelsbarrieren zwischen den EU-Staaten",
+        "Ein gemeinsames Gesundheits- und Rentensystem",
+        "Einheitliche Löhne in allen EU-Staaten"
+      ],
+      "answer": "Ein Markt ohne Zölle und Handelsbarrieren zwischen den EU-Staaten"
+    },
+    {
+      "number": 234,
+      "question": "Welches Land ist der größte Nettozahler der EU?",
+      "options": [
+        "Deutschland",
+        "Frankreich",
+        "Italien",
+        "Vereinigtes Königreich"
+      ],
+      "answer": "Deutschland"
+    },
+    {
+      "number": 235,
+      "question": "Was bedeutet der Begriff „EU-Verfassung“?",
+      "options": [
+        "Das Regelwerk für die Außenpolitik der EU",
+        "Die Grundlage für das politische System der EU",
+        "Ein Vertrag zur Vereinheitlichung der Steuergesetze in Europa",
+        "Ein Plan zur Abschaffung von Steuern in Europa"
+      ],
+      "answer": "Die Grundlage für das politische System der EU"
+    },
+    {
+      "number": 236,
+      "question": "Wann wurde der Vertrag von Lissabon unterzeichnet?",
+      "options": [
+        "2007",
+        "2008",
+        "2009",
+        "2010"
+      ],
+      "answer": "2007"
+    },
+    {
+      "number": 237,
+      "question": "Was sind die Hauptziele der Europäischen Union?",
+      "options": [
+        "Wirtschaftswachstum und politische Integration",
+        "Einheitliche Verteidigung und Steuerpolitik",
+        "Die Bekämpfung von Kriminalität und Terrorismus",
+        "Kulturelle Kooperation und Umweltschutz"
+      ],
+      "answer": "Wirtschaftswachstum und politische Integration"
+    },
+    {
+      "number": 238,
+      "question": "Was bedeutet die Erweiterung der Europäischen Union?",
+      "options": [
+        "Die Aufnahme neuer Mitglieder in die EU",
+        "Die Vereinheitlichung der Steuern in Europa",
+        "Die Einführung einer einheitlichen Sprache",
+        "Die Schaffung einer gemeinsamen Armee"
+      ],
+      "answer": "Die Aufnahme neuer Mitglieder in die EU"
+    },
+    {
+      "number": 239,
+      "question": "Wie wird das Verfahren zur Entscheidung über EU-Gesetze genannt?",
+      "options": [
+        "Der Gesetzgebungsprozess",
+        "Der Verfassungsprozess",
+        "Das Parlamentarische Verfahren",
+        "Das Abstimmungsverfahren"
+      ],
+      "answer": "Der Gesetzgebungsprozess"
+    },
+    {
+      "number": 240,
+      "question": "Welches Land ist nicht Mitglied der Europäischen Union?",
+      "options": [
+        "Irland",
+        "Norwegen",
+        "Schweden",
+        "Österreich"
+      ],
+      "answer": "Norwegen"
+    },
+    {
+      "number": 271,
+      "question": "Was ist in Deutschland ein Brauch zu Weihnachten?",
+      "options": [
+        "bunte Eier verstecken",
+        "einen Tannenbaum schmücken",
+        "sich mit Masken und Kostümen verkleiden",
+        "Kürbisse vor die Tür stellen"
+      ],
+      "answer": "einen Tannenbaum schmücken"
+    },
+    {
+      "number": 272,
+      "question": "Welche Lebensform ist in Deutschland nicht erlaubt?",
+      "options": [
+        "Mann und Frau sind geschieden und leben mit neuen Partnern zusammen.",
+        "Zwei Frauen leben zusammen.",
+        "Ein alleinerziehender Vater lebt mit seinen zwei Kindern zusammen.",
+        "Ein Mann ist mit zwei Frauen zur selben Zeit verheiratet."
+      ],
+      "answer": "Ein Mann ist mit zwei Frauen zur selben Zeit verheiratet."
+    },
+    {
+      "number": 273,
+      "question": "Bei Erziehungsproblemen gehen Sie in Deutschland …",
+      "options": [
+        "zur Ärztin/zum Arzt.",
+        "zum Gesundheitsamt.",
+        "zum Einwohnermeldeamt.",
+        "zum Jugendamt."
+      ],
+      "answer": "zum Jugendamt."
+    },
+    {
+      "number": 274,
+      "question": "Sie haben in Deutschland absichtlich einen Brief geöffnet, der an eine andere Person adressiert ist. Was haben Sie nicht beachtet?",
+      "options": [
+        "das Schweigerecht",
+        "das Briefgeheimnis",
+        "die Schweigepflicht",
+        "die Meinungsfreiheit"
+      ],
+      "answer": "das Briefgeheimnis"
+    },
+    {
+      "number": 275,
+      "question": "Was braucht man in Deutschland für eine Ehescheidung?",
+      "options": [
+        "die Einwilligung der Eltern",
+        "ein Attest einer Ärztin/eines Arztes",
+        "die Einwilligung der Kinder",
+        "die Unterstützung einer Anwältin/eines Anwalts"
+      ],
+      "answer": "die Unterstützung einer Anwältin/eines Anwalts"
+    },
+    {
+      "number": 276,
+      "question": "Was sollten Sie tun, wenn Sie von Ihrer Ansprechpartnerin/Ihrem Ansprechpartner in einer deutschen Behörde schlecht behandelt werden?",
+      "options": [
+        "Ich kann nichts tun.",
+        "Ich muss mir diese Behandlung gefallen lassen.",
+        "Ich drohe der Person.",
+        "Ich kann mich bei der Behördenleiterin/beim Behördenleiter beschweren."
+      ],
+      "answer": "Ich kann mich bei der Behördenleiterin/beim Behördenleiter beschweren."
+    },
+    {
+      "number": 277,
+      "question": "Eine Frau, die ein zweijähriges Kind hat, bewirbt sich in Deutschland um eine Stelle. Was ist ein Beispiel für Diskriminierung? Sie bekommt die Stelle nur deshalb nicht, weil sie …",
+      "options": [
+        "kein Englisch spricht.",
+        "zu hohe Gehaltsvorstellungen hat.",
+        "keine Erfahrungen in diesem Beruf hat.",
+        "Mutter ist."
+      ],
+      "answer": "Mutter ist."
+    },
+    {
+      "number": 278,
+      "question": "Ein Mann im Rollstuhl hat sich auf eine Stelle als Buchhalter in einem Restaurant beworben. Was ist ein Beispiel für Diskriminierung? Er bekommt die Stelle nur deshalb nicht, weil er …",
+      "options": [
+        "im Rollstuhl sitzt.",
+        "keine Erfahrung hat.",
+        "zu hohe Gehaltsvorstellungen hat.",
+        "kein Englisch spricht."
+      ],
+      "answer": "im Rollstuhl sitzt."
+    },
+    {
+      "number": 279,
+      "question": "In den meisten Mietshäusern in Deutschland gibt es eine 'Hausordnung'. Was steht in einer solchen 'Hausordnung'? Sie nennt …",
+      "options": [
+        "Regeln für die Benutzung öffentlicher Verkehrsmittel.",
+        "alle Mieterinnen und Mieter im Haus.",
+        "Regeln, an die sich alle Bewohnerinnen und Bewohner halten müssen.",
+        "die Adresse des nächsten Ordnungsamtes."
+      ],
+      "answer": "Regeln, an die sich alle Bewohnerinnen und Bewohner halten müssen."
+    },
+    {
+      "number": 280,
+      "question": "Wenn Sie sich in Deutschland gegen einen falschen Steuerbescheid wehren wollen, müssen Sie …",
+      "options": [
+        "nichts machen.",
+        "den Bescheid wegwerfen.",
+        "Einspruch einlegen.",
+        "warten, bis ein anderer Bescheid kommt."
+      ],
+      "answer": "Einspruch einlegen."
+    },
+    {
+      "number": 281,
+      "question": "Zwei Freunde wollen in ein öffentliches Schwimmbad in Deutschland. Beide haben eine dunkle Hautfarbe und werden deshalb nicht hineingelassen. Welches Recht wird in dieser Situation verletzt? Das Recht auf …",
+      "options": [
+        "Meinungsfreiheit",
+        "Gleichbehandlung",
+        "Versammlungsfreiheit",
+        "Freizügigkeit"
+      ],
+      "answer": "Gleichbehandlung"
+    },
+    {
+      "number": 282,
+      "question": "Welches Ehrenamt müssen deutsche Staatsbürgerinnen und Staatsbürger übernehmen, wenn sie dazu aufgefordert werden?",
+      "options": [
+        "Vereinstrainerin/Vereinstrainer",
+        "Wahlhelferin/Wahlhelfer",
+        "Bibliotheksaufsicht",
+        "Lehrerin/Lehrer"
+      ],
+      "answer": "Wahlhelferin/Wahlhelfer"
+    },
+    {
+      "number": 283,
+      "question": "Was tun Sie, wenn Sie eine falsche Rechnung von einer deutschen Behörde bekommen?",
+      "options": [
+        "Ich lasse die Rechnung liegen.",
+        "Ich lege Widerspruch bei der Behörde ein.",
+        "Ich schicke die Rechnung an die Behörde zurück.",
+        "Ich gehe mit der Rechnung zum Finanzamt."
+      ],
+      "answer": "Ich lege Widerspruch bei der Behörde ein."
+    },
+    {
+      "number": 284,
+      "question": "Was man für die Arbeit können muss, ändert sich in Zukunft sehr schnell. Was kann man tun?",
+      "options": [
+        "Es ist egal, was man lernt.",
+        "Erwachsene müssen auch nach der Ausbildung immer weiter lernen.",
+        "Kinder lernen in der Schule alles, was im Beruf wichtig ist. Nach der Schule muss man nicht weiter lernen.",
+        "Alle müssen früher aufhören zu arbeiten, weil sich alles ändert."
+      ],
+      "answer": "Erwachsene müssen auch nach der Ausbildung immer weiter lernen."
+    },
+    {
+      "number": 285,
+      "question": "Frau Frost arbeitet als fest angestellte Mitarbeiterin in einem Büro. Was muss sie nicht von ihrem Gehalt bezahlen?",
+      "options": [
+        "Lohnsteuer",
+        "Beiträge zur Arbeitslosenversicherung",
+        "Beiträge zur Renten- und Krankenversicherung",
+        "Umsatzsteuer"
+      ],
+      "answer": "Umsatzsteuer"
+    },
+    {
+      "number": 286,
+      "question": "Welche Organisation in einer Firma hilft den Arbeitnehmerinnen und Arbeitnehmern bei Problemen mit der Arbeitgeberin/dem Arbeitgeber?",
+      "options": [
+        "der Betriebsrat",
+        "die Betriebsprüferin/der Betriebsprüfer",
+        "die Betriebsgruppe",
+        "das Betriebsmanagement"
+      ],
+      "answer": "der Betriebsrat"
+    },
+    {
+      "number": 287,
+      "question": "Sie möchten bei einer Firma in Deutschland ihr Arbeitsverhältnis beenden. Was müssen Sie beachten?",
+      "options": [
+        "die Gehaltszahlungen",
+        "die Arbeitszeit",
+        "die Kündigungsfrist",
+        "die Versicherungspflicht"
+      ],
+      "answer": "die Kündigungsfrist"
+    },
+    {
+      "number": 288,
+      "question": "Woraus begründet sich Deutschlands besondere Verantwortung für Israel?",
+      "options": [
+        "aus der Mitgliedschaft in der Europäischen Union (EU)",
+        "aus den nationalsozialistischen Verbrechen gegen Juden",
+        "aus dem Grundgesetz der Bundesrepublik Deutschland",
+        "aus der christlichen Tradition"
+      ],
+      "answer": "aus den nationalsozialistischen Verbrechen gegen Juden"
+    },
+    {
+      "number": 289,
+      "question": "Ein Mann mit dunkler Hautfarbe bewirbt sich um eine Stelle als Kellner in einem Restaurant in Deutschland. Was ist ein Beispiel für Diskriminierung? Er bekommt die Stelle nur deshalb nicht, weil …",
+      "options": [
+        "seine Deutschkenntnisse zu gering sind.",
+        "er zu hohe Gehaltsvorstellungen hat.",
+        "er eine dunkle Haut hat.",
+        "er keine Erfahrungen im Beruf hat."
+      ],
+      "answer": "er eine dunkle Haut hat."
+    },
+    {
+      "number": 290,
+      "question": "Sie haben in Deutschland einen Fernseher gekauft. Zu Hause packen Sie den Fernseher aus, doch er funktioniert nicht. Der Fernseher ist kaputt. Was können Sie machen?",
+      "options": [
+        "eine Anzeige schreiben",
+        "den Fernseher reklamieren",
+        "das Gerät ungefragt austauschen",
+        "die Garantie verlängern"
+      ],
+      "answer": "den Fernseher reklamieren"
+    },
+    {
+      "number": 291,
+      "question": "Warum muss man in Deutschland bei der Steuererklärung aufschreiben, ob man zu einer Kirche gehört oder nicht? Weil …",
+      "options": [
+        "es eine Kirchensteuer gibt, die an die Einkommen- und Lohnsteuer geknüpft ist.",
+        "das für die Statistik in Deutschland wichtig ist.",
+        "man mehr Steuern zahlen muss, wenn man nicht zu einer Kirche gehört.",
+        "die Kirche für die Steuererklärung verantwortlich ist."
+      ],
+      "answer": "es eine Kirchensteuer gibt, die an die Einkommen- und Lohnsteuer geknüpft ist."
+    },
+    {
+      "number": 292,
+      "question": "Die Menschen in Deutschland leben nach dem Grundsatz der religiösen Toleranz. Was bedeutet das?",
+      "options": [
+        "Es dürfen keine Moscheen gebaut werden.",
+        "Alle Menschen glauben an Gott.",
+        "Jeder kann glauben, was er möchte.",
+        "Der Staat entscheidet, an welchen Gott die Menschen glauben."
+      ],
+      "answer": "Jeder kann glauben, was er möchte."
+    },
+    {
+      "number": 293,
+      "question": "Was ist in Deutschland ein Brauch zu Ostern?",
+      "options": [
+        "Kürbisse vor die Tür stellen",
+        "einen Tannenbaum schmücken",
+        "Eier bemalen",
+        "Raketen in die Luft schießen"
+      ],
+      "answer": "Eier bemalen"
+    },
+    {
+      "number": 294,
+      "question": "Pfingsten ist ein …",
+      "options": [
+        "christlicher Feiertag.",
+        "deutscher Gedenktag.",
+        "internationaler Trauertag.",
+        "bayerischer Brauch."
+      ],
+      "answer": "christlicher Feiertag."
+    },
+    {
+      "number": 295,
+      "question": "Welche Religion hat die europäische und deutsche Kultur geprägt?",
+      "options": [
+        "der Hinduismus",
+        "das Christentum",
+        "der Buddhismus",
+        "der Islam"
+      ],
+      "answer": "das Christentum"
+    },
+    {
+      "number": 296,
+      "question": "In Deutschland nennt man die letzten vier Wochen vor Weihnachten …",
+      "options": [
+        "den Buß- und Bettag.",
+        "das Erntedankfest.",
+        "die Adventszeit.",
+        "Allerheiligen."
+      ],
+      "answer": "die Adventszeit."
+    },
+    {
+      "number": 297,
+      "question": "Aus welchem Land sind die meisten Migrantinnen und Migranten nach Deutschland gekommen?",
+      "options": [
+        "Italien",
+        "Polen",
+        "Marokko",
+        "Türkei"
+      ],
+      "answer": "Türkei"
+    },
+    {
+      "number": 298,
+      "question": "In der DDR lebten vor allem Migrantinnen und Migranten aus …",
+      "options": [
+        "Vietnam, Polen, Mosambik.",
+        "Frankreich, Rumänien, Somalia.",
+        "Chile, Ungarn, Simbabwe.",
+        "Nordkorea, Mexiko, Ägypten."
+      ],
+      "answer": "Vietnam, Polen, Mosambik."
+    },
+    {
+      "number": 299,
+      "question": "Ausländische Arbeitnehmerinnen und Arbeitnehmer, die in den 50er und 60er Jahren von der Bundesrepublik Deutschland angeworben wurden, nannte man …",
+      "options": [
+        "Schwarzarbeiterinnen/Schwarzarbeiter.",
+        "Gastarbeiterinnen/Gastarbeiter.",
+        "Zeitarbeiterinnen/Zeitarbeiter.",
+        "Schichtarbeiterinnen/Schichtarbeiter."
+      ],
+      "answer": "Gastarbeiterinnen/Gastarbeiter."
+    },
+    {
+      "number": 300,
+      "question": "Aus welchem Land kamen die ersten Gastarbeiterinnen und Gastarbeiter in die Bundesrepublik Deutschland?",
+      "options": [
+        "Italien",
+        "Spanien",
+        "Portugal",
+        "Türkei"
+      ],
+      "answer": "Italien"
+    }
+  ]
+}

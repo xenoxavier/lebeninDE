@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Quiz</title>
+</head>
+<body>
+    <h1>Quiz Debug</h1>
+    <div id="debug-output"></div>
+    <button onclick="testQuiz()">Test Quiz Loading</button>
+    
+    <script>
+        async function testQuiz() {
+            const output = document.getElementById('debug-output');
+            output.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                console.log('Testing fetch...');
+                const response = await fetch('fragen/questions-working.json');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Data loaded:', data);
+                
+                let questionArray;
+                if (Array.isArray(data)) {
+                    questionArray = data;
+                } else if (data.questions && Array.isArray(data.questions)) {
+                    questionArray = data.questions;
+                } else {
+                    throw new Error('No valid questions found');
+                }
+                
+                console.log('Questions found:', questionArray.length);
+                
+                // Find question 300
+                const q300 = questionArray.find(q => q.number === 300);
+                
+                output.innerHTML = `
+                    <p>✅ JSON loaded successfully</p>
+                    <p>✅ Questions count: ${questionArray.length}</p>
+                    <p>✅ Question 300: ${q300 ? q300.question : 'NOT FOUND'}</p>
+                    <p>✅ First question: ${questionArray[0].question}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                output.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Warum muss man in Deutschland bei der Steuererklärung aufschreiben, ob man zu einer Kirche gehört oder nicht? Weil …",
+      "answers": [
+        "es eine Kirchensteuer gibt, die an die Einkommen- und Lohnsteuer geknüpft ist.",
+        "das für die Statistik in Deutschland wichtig ist.",
+        "man mehr Steuern zahlen muss, wenn man nicht zu einer Kirche gehört.",
+        "die Kirche für die Steuererklärung verantwortlich ist."
+      ],
+      "correct_answer": "es eine Kirchensteuer gibt, die an die Einkommen- und Lohnsteuer geknüpft ist."
+    },
+    {
+      "id": 2,
+      "question": "Die Menschen in Deutschland leben nach dem Grundsatz der religiösen Toleranz. Was bedeutet das?",
+      "answers": [
+        "Es dürfen keine Moscheen gebaut werden.",
+        "Alle Menschen glauben an Gott.",
+        "Jeder kann glauben, was er möchte.",
+        "Der Staat entscheidet, an welchen Gott die Menschen glauben."
+      ],
+      "correct_answer": "Jeder kann glauben, was er möchte."
+    },
+    {
+      "id": 3,
+      "question": "Was ist in Deutschland ein Brauch zu Ostern?",
+      "answers": [
+        "Kürbisse vor die Tür stellen",
+        "einen Tannenbaum schmücken",
+        "Eier bemalen",
+        "Raketen in die Luft schießen"
+      ],
+      "correct_answer": "Eier bemalen"
+    },
+    {
+      "id": 4,
+      "question": "Pfingsten ist ein …",
+      "answers": [
+        "christlicher Feiertag.",
+        "deutscher Gedenktag.",
+        "internationaler Trauertag.",
+        "bayerischer Brauch."
+      ],
+      "correct_answer": "christlicher Feiertag."
+    },
+    {
+      "id": 5,
+      "question": "Welche Religion hat die europäische und deutsche Kultur geprägt?",
+      "answers": [
+        "der Hinduismus",
+        "das Christentum",
+        "der Buddhismus",
+        "der Islam"
+      ],
+      "correct_answer": "das Christentum"
+    },
+    {
+      "id": 6,
+      "question": "In Deutschland nennt man die letzten vier Wochen vor Weihnachten …",
+      "answers": [
+        "den Buß- und Bettag.",
+        "das Erntedankfest.",
+        "die Adventszeit.",
+        "Allerheiligen."
+      ],
+      "correct_answer": "die Adventszeit."
+    },
+    {
+      "id": 7,
+      "question": "Aus welchem Land sind die meisten Migrantinnen und Migranten nach Deutschland gekommen?",
+      "answers": [
+        "Italien",
+        "Polen",
+        "Marokko",
+        "Türkei"
+      ],
+      "correct_answer": "Türkei"
+    },
+    {
+      "id": 8,
+      "question": "In der DDR lebten vor allem Migrantinnen und Migranten aus …",
+      "answers": [
+        "Vietnam, Polen, Mosambik.",
+        "Frankreich, Rumänien, Somalia.",
+        "Chile, Ungarn, Simbabwe.",
+        "Nordkorea, Mexiko, Ägypten."
+      ],
+      "correct_answer": "Vietnam, Polen, Mosambik."
+    },
+    {
+      "id": 9,
+      "question": "Ausländische Arbeitnehmerinnen und Arbeitnehmer, die in den 50er und 60er Jahren von der Bundesrepublik Deutschland angeworben wurden, nannte man …",
+      "answers": [
+        "Schwarzarbeiterinnen/Schwarzarbeiter.",
+        "Gastarbeiterinnen/Gastarbeiter.",
+        "Zeitarbeiterinnen/Zeitarbeiter.",
+        "Schichtarbeiterinnen/Schichtarbeiter."
+      ],
+      "correct_answer": "Gastarbeiterinnen/Gastarbeiter."
+    },
+    {
+      "id": 10,
+      "question": "Aus welchem Land kamen die ersten Gastarbeiterinnen und Gastarbeiter in die Bundesrepublik Deutschland?",
+      "answers": [
+        "Italien",
+        "Spanien",
+        "Portugal",
+        "Türkei"
+      ],
+      "correct_answer": "Italien"
+    }
+  ]
+}

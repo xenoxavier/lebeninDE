@@ -1,0 +1,1 @@
+console.log("Starting JSON test..."); fetch("fragen/questions.json").then(r => r.json()).then(data => { console.log("Questions:", data.questions.length); const q300 = data.questions.find(q => q.number === 300); console.log("Q300:", q300 ? q300.question : "NOT FOUND"); }).catch(e => console.error("Error:", e));
