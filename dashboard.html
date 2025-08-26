@@ -107,18 +107,11 @@
                                         <span class="quiz-btn-subtitle">All Questions</span>
                                     </div>
                                 </button>
-                                <button class="quiz-start-btn" onclick="window.location.href='quiz.html?mode=exam'">
+                                <button class="quiz-start-btn" onclick="window.location.href='exam-simulation.html'">
                                     <div class="quiz-btn-icon">📝</div>
                                     <div class="quiz-btn-content">
-                                        <span class="quiz-btn-title">Exam</span>
-                                        <span class="quiz-btn-subtitle">33 Questions</span>
-                                    </div>
-                                </button>
-                                <button class="quiz-start-btn" onclick="window.location.href='quiz.html?mode=review'">
-                                    <div class="quiz-btn-icon">📖</div>
-                                    <div class="quiz-btn-content">
-                                        <span class="quiz-btn-title">Review</span>
-                                        <span class="quiz-btn-subtitle">Study Mode</span>
+                                        <span class="quiz-btn-title">Exam Simulation</span>
+                                        <span class="quiz-btn-subtitle">33 Questions, 60 min</span>
                                     </div>
                                 </button>
                                 <button class="quiz-start-btn" onclick="showBundeslandSelector()">
@@ -290,27 +283,19 @@
                         </div>
                     </div>
 
-                    <!-- Achievement Showcase -->
-                    <div class="dashboard-card achievements-showcase">
+                    <!-- Exam History -->
+                    <div class="dashboard-card exam-history-card">
                         <div class="card-header">
-                            <div class="card-icon">🏅</div>
-                            <h3>Recent Achievements</h3>
+                            <div class="card-icon">📋</div>
+                            <h3>Exam History</h3>
                         </div>
-                        <div class="achievement-grid" id="dashboard-achievements">
-                            <div class="achievement-slot empty">
-                                <div class="achievement-icon">❓</div>
-                                <span class="achievement-name">Complete your first quiz!</span>
-                            </div>
-                            <div class="achievement-slot empty">
-                                <div class="achievement-icon">❓</div>
-                                <span class="achievement-name">Keep practicing!</span>
-                            </div>
-                            <div class="achievement-slot empty">
-                                <div class="achievement-icon">❓</div>
-                                <span class="achievement-name">More achievements await!</span>
+                        <div class="exam-history-content" id="exam-history-list">
+                            <div class="exam-history-empty">
+                                <p>No exam attempts yet. Take your first exam simulation!</p>
                             </div>
                         </div>
                     </div>
+
 
                 </div>
 
@@ -505,6 +490,471 @@
                 }
             }
         }
+
+        // Dashboard functionality
+        function loadDashboardData() {
+            const dashboardData = JSON.parse(localStorage.getItem('lebenDE_dashboard') || '{}');
+            
+            // Update profile stats
+            if (dashboardData.stats) {
+                document.getElementById('profile-total-sessions').textContent = dashboardData.stats.totalExams || 0;
+                document.getElementById('profile-study-time').textContent = Math.round((dashboardData.stats.totalExamTime || 0) / 60) + 'h';
+                document.getElementById('profile-success-rate').textContent = dashboardData.stats.averageScore || 0 + '%';
+            }
+            
+            // Update quick stats
+            document.getElementById('total-questions-answered').textContent = 
+                (dashboardData.examHistory || []).reduce((total, exam) => total + exam.totalQuestions, 0);
+            
+            if (dashboardData.stats && dashboardData.stats.totalExams > 0) {
+                const avgTime = Math.round((dashboardData.stats.totalExamTime * 60) / dashboardData.stats.totalExams);
+                document.getElementById('average-time').textContent = avgTime + 's';
+                document.getElementById('best-streak').textContent = dashboardData.stats.bestScore + '%';
+            }
+            
+            // Update progress
+            if (dashboardData.examHistory && dashboardData.examHistory.length > 0) {
+                const latestExam = dashboardData.examHistory[dashboardData.examHistory.length - 1];
+                updateProgressCircle(latestExam.score);
+                
+                document.getElementById('dashboard-correct').textContent = latestExam.correctAnswers;
+                document.getElementById('dashboard-incorrect').textContent = 
+                    latestExam.totalQuestions - latestExam.correctAnswers;
+                document.getElementById('dashboard-remaining').textContent = 
+                    Math.max(0, 33 - latestExam.totalQuestions);
+            }
+            
+            // Update recent activity
+            updateRecentActivity(dashboardData.recentActivity || []);
+            
+            // Update exam history
+            updateExamHistory(dashboardData.examHistory || []);
+            
+            // Update study streak
+            updateStudyStreak(dashboardData);
+        }
+
+        function updateProgressCircle(percentage) {
+            const circle = document.getElementById('dashboard-progress-circle');
+            const text = document.getElementById('dashboard-progress-text');
+            const circumference = 2 * Math.PI * 50; // radius = 50
+            const offset = circumference - (percentage / 100) * circumference;
+            
+            circle.style.strokeDashoffset = offset;
+            text.textContent = percentage + '%';
+        }
+
+        function updateRecentActivity(activities) {
+            const container = document.getElementById('recent-activity');
+            
+            if (activities.length === 0) {
+                container.innerHTML = `
+                    <div class="activity-item empty">
+                        <div class="activity-icon">🎯</div>
+                        <div class="activity-content">
+                            <p>Start your first exam to see activity here!</p>
+                            <span class="activity-time">No activity yet</span>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = activities.slice(0, 5).map(activity => {
+                const date = new Date(activity.date);
+                const timeAgo = getTimeAgo(date);
+                const icon = activity.passed ? '✅' : '❌';
+                const status = activity.passed ? 'Passed' : 'Failed';
+                
+                return `
+                    <div class="activity-item">
+                        <div class="activity-icon">${icon}</div>
+                        <div class="activity-content">
+                            <p>Exam ${status}: ${activity.score}% (${activity.duration} min)</p>
+                            <span class="activity-time">${timeAgo}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateExamHistory(examHistory) {
+            const container = document.getElementById('exam-history-list');
+            
+            if (examHistory.length === 0) {
+                container.innerHTML = `
+                    <div class="exam-history-empty">
+                        <p>No exam attempts yet. Take your first exam simulation!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const recentExams = examHistory.slice(0, 2).reverse();
+            const hasMore = examHistory.length > 2;
+            
+            let historyHTML = recentExams.map(exam => {
+                const date = new Date(exam.date);
+                const formattedDate = date.toLocaleDateString('de-DE', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const formattedTime = date.toLocaleTimeString('de-DE', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                const statusClass = exam.passed ? 'passed' : 'failed';
+                const statusIcon = exam.passed ? '✅' : '❌';
+                const statusText = exam.passed ? 'BESTANDEN' : 'NICHT BESTANDEN';
+                
+                return `
+                    <div class="exam-item ${statusClass}">
+                        <div class="exam-status">
+                            <span class="status-icon">${statusIcon}</span>
+                            <span class="status-text">${statusText}</span>
+                        </div>
+                        <div class="exam-details">
+                            <div class="exam-score">${exam.score}%</div>
+                            <div class="exam-info">
+                                <span>${exam.correctAnswers}/${exam.totalQuestions} korrekt</span>
+                                <span>${exam.duration} Minuten</span>
+                            </div>
+                            <div class="exam-date">${formattedDate} ${formattedTime}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            if (hasMore) {
+                historyHTML += `
+                    <div class="view-all-exams">
+                        <button class="view-all-btn" onclick="showAllExams()">
+                            Alle ${examHistory.length} Prüfungen anzeigen
+                        </button>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = historyHTML;
+        }
+
+        function showAllExams() {
+            const dashboardData = JSON.parse(localStorage.getItem('lebenDE_dashboard') || '{}');
+            const examHistory = dashboardData.examHistory || [];
+            
+            const allExamsHTML = `
+                <div class="all-exams-modal" id="all-exams-modal">
+                    <div class="modal-overlay" onclick="closeAllExams()"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Alle Prüfungsversuche (${examHistory.length})</h2>
+                            <button class="close-btn" onclick="closeAllExams()" title="Schließen">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="all-exams-list">
+                                ${examHistory.reverse().map(exam => {
+                                    const date = new Date(exam.date);
+                                    const formattedDate = date.toLocaleDateString('de-DE', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: 'numeric'
+                                    });
+                                    const formattedTime = date.toLocaleTimeString('de-DE', {
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    });
+                                    
+                                    const statusClass = exam.passed ? 'passed' : 'failed';
+                                    const statusIcon = exam.passed ? '✅' : '❌';
+                                    const statusText = exam.passed ? 'BESTANDEN' : 'NICHT BESTANDEN';
+                                    
+                                    return `
+                                        <div class="exam-item ${statusClass}">
+                                            <div class="exam-status">
+                                                <span class="status-icon">${statusIcon}</span>
+                                                <span class="status-text">${statusText}</span>
+                                            </div>
+                                            <div class="exam-details">
+                                                <div class="exam-score">${exam.score}%</div>
+                                                <div class="exam-info">
+                                                    <span>${exam.correctAnswers}/${exam.totalQuestions} korrekt</span>
+                                                    <span>${exam.duration} Minuten</span>
+                                                </div>
+                                                <div class="exam-date">${formattedDate} ${formattedTime}</div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', allExamsHTML);
+        }
+
+        function closeAllExams() {
+            const modal = document.getElementById('all-exams-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diff = now - date;
+            const minutes = Math.floor(diff / (1000 * 60));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+            if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+            return 'Just now';
+        }
+
+        // Bundesland functions
+        function showBundeslandSelector() {
+            document.getElementById('bundesland-modal').style.display = 'flex';
+        }
+
+        function closeBundeslandSelector() {
+            document.getElementById('bundesland-modal').style.display = 'none';
+        }
+
+        function startBundeslandQuiz(bundeslandName) {
+            // Map Bundesland names to their HTML files
+            const bundeslandFiles = {
+                'Baden-Württemberg': 'baden-wuerttemberg-quiz.html',
+                'Bayern': 'bayern-quiz.html',
+                'Berlin': 'berlin-quiz.html',
+                'Brandenburg': 'brandenburg-quiz.html',
+                'Bremen': 'bremen-quiz.html',
+                'Hamburg': 'hamburg-quiz.html',
+                'Hessen': 'hessen-quiz.html',
+                'Mecklenburg-Vorpommern': 'mecklenburg-vorpommern-quiz.html',
+                'Niedersachsen': 'niedersachsen-quiz.html',
+                'Nordrhein-Westfalen': 'nordrhein-westfalen-quiz.html',
+                'Rheinland-Pfalz': 'rheinland-pfalz-quiz.html',
+                'Saarland': 'saarland-quiz.html',
+                'Sachsen': 'sachsen-quiz.html',
+                'Sachsen-Anhalt': 'sachsen-anhalt-quiz.html',
+                'Schleswig-Holstein': 'schleswig-holstein-quiz.html',
+                'Thüringen': 'thueringen-quiz.html'
+            };
+            
+            const fileName = bundeslandFiles[bundeslandName];
+            if (fileName) {
+                window.location.href = fileName;
+            } else {
+                alert('Quiz für dieses Bundesland ist noch nicht verfügbar.');
+            }
+            closeBundeslandSelector();
+        }
+
+        // Study Streak Functions
+        function updateStudyStreak(dashboardData) {
+            const currentStreak = calculateCurrentStreak(dashboardData);
+            const bestStreak = calculateBestStreak(dashboardData);
+            
+            // Update UI elements
+            document.getElementById('current-streak').textContent = currentStreak;
+            document.getElementById('best-streak').textContent = bestStreak;
+            
+            // Update streak message
+            updateStreakMessage(currentStreak);
+            
+            // Update streak calendar
+            updateStreakCalendar(dashboardData);
+        }
+        
+        function calculateCurrentStreak(dashboardData) {
+            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory) {
+                return 0;
+            }
+            
+            // Combine all exam activities
+            const allActivities = [];
+            
+            if (dashboardData.examHistory) {
+                allActivities.push(...dashboardData.examHistory.map(exam => ({
+                    date: exam.date,
+                    timestamp: exam.timestamp || new Date(exam.date).toISOString()
+                })));
+            }
+            
+            if (dashboardData.bundeslandHistory) {
+                allActivities.push(...dashboardData.bundeslandHistory.map(exam => ({
+                    date: exam.date,
+                    timestamp: exam.timestamp
+                })));
+            }
+            
+            if (allActivities.length === 0) return 0;
+            
+            // Sort by date (most recent first)
+            allActivities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            // Get unique study dates
+            const studyDates = [...new Set(allActivities.map(activity => activity.date))];
+            studyDates.sort((a, b) => new Date(b) - new Date(a));
+            
+            let streak = 0;
+            const today = new Date().toLocaleDateString('de-DE');
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toLocaleDateString('de-DE');
+            
+            // Check if user studied today or yesterday
+            if (studyDates.includes(today)) {
+                streak = 1;
+                let checkDate = new Date();
+                checkDate.setDate(checkDate.getDate() - 1);
+                
+                // Count consecutive days backwards
+                while (checkDate >= 0) {
+                    const dateStr = checkDate.toLocaleDateString('de-DE');
+                    if (studyDates.includes(dateStr)) {
+                        streak++;
+                        checkDate.setDate(checkDate.getDate() - 1);
+                    } else {
+                        break;
+                    }
+                }
+            } else if (studyDates.includes(yesterdayStr)) {
+                // User studied yesterday but not today - check if we should count streak
+                streak = 1;
+                let checkDate = new Date();
+                checkDate.setDate(checkDate.getDate() - 2);
+                
+                while (checkDate >= 0) {
+                    const dateStr = checkDate.toLocaleDateString('de-DE');
+                    if (studyDates.includes(dateStr)) {
+                        streak++;
+                        checkDate.setDate(checkDate.getDate() - 1);
+                    } else {
+                        break;
+                    }
+                }
+            }
+            
+            return streak;
+        }
+        
+        function calculateBestStreak(dashboardData) {
+            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory) {
+                return 0;
+            }
+            
+            // Combine all exam activities
+            const allActivities = [];
+            
+            if (dashboardData.examHistory) {
+                allActivities.push(...dashboardData.examHistory.map(exam => ({
+                    date: exam.date,
+                    timestamp: exam.timestamp || new Date(exam.date).toISOString()
+                })));
+            }
+            
+            if (dashboardData.bundeslandHistory) {
+                allActivities.push(...dashboardData.bundeslandHistory.map(exam => ({
+                    date: exam.date,
+                    timestamp: exam.timestamp
+                })));
+            }
+            
+            if (allActivities.length === 0) return 0;
+            
+            // Get unique study dates and sort them
+            const studyDates = [...new Set(allActivities.map(activity => activity.date))];
+            studyDates.sort((a, b) => new Date(a) - new Date(b));
+            
+            let maxStreak = 0;
+            let currentStreak = 0;
+            let previousDate = null;
+            
+            for (let dateStr of studyDates) {
+                const currentDate = new Date(dateStr.split('.').reverse().join('-')); // Convert DD.MM.YYYY to YYYY-MM-DD
+                
+                if (previousDate === null) {
+                    currentStreak = 1;
+                } else {
+                    const daysDiff = Math.floor((currentDate - previousDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysDiff === 1) {
+                        // Consecutive day
+                        currentStreak++;
+                    } else {
+                        // Gap in streak
+                        maxStreak = Math.max(maxStreak, currentStreak);
+                        currentStreak = 1;
+                    }
+                }
+                
+                previousDate = currentDate;
+            }
+            
+            return Math.max(maxStreak, currentStreak);
+        }
+        
+        function updateStreakMessage(streak) {
+            const messageElement = document.getElementById('streak-message');
+            
+            if (streak === 0) {
+                messageElement.textContent = "Start studying to build your streak! 🎯";
+            } else if (streak === 1) {
+                messageElement.textContent = "Great start! Keep it up tomorrow! 💪";
+            } else if (streak < 7) {
+                messageElement.textContent = `${streak} days strong! You're building momentum! 🔥`;
+            } else if (streak < 30) {
+                messageElement.textContent = `Amazing ${streak}-day streak! You're on fire! 🚀`;
+            } else {
+                messageElement.textContent = `Incredible ${streak}-day streak! You're unstoppable! ⭐`;
+            }
+        }
+        
+        function updateStreakCalendar(dashboardData) {
+            const calendarElement = document.getElementById('streak-calendar');
+            
+            // Combine all study activities
+            const allActivities = [];
+            
+            if (dashboardData.examHistory) {
+                allActivities.push(...dashboardData.examHistory.map(exam => exam.date));
+            }
+            
+            if (dashboardData.bundeslandHistory) {
+                allActivities.push(...dashboardData.bundeslandHistory.map(exam => exam.date));
+            }
+            
+            const studyDates = [...new Set(allActivities)];
+            
+            // Generate last 7 days
+            const last7Days = [];
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                last7Days.push({
+                    date: date.toLocaleDateString('de-DE'),
+                    day: date.getDate(),
+                    studied: studyDates.includes(date.toLocaleDateString('de-DE'))
+                });
+            }
+            
+            // Generate calendar HTML
+            calendarElement.innerHTML = last7Days.map(day => `
+                <div class="calendar-day ${day.studied ? 'active' : ''}" title="${day.date}">
+                    <span class="day-number">${day.day}</span>
+                    <div class="day-dot"></div>
+                </div>
+            `).join('');
+        }
+
+        // Load dashboard data when page loads
+        document.addEventListener('DOMContentLoaded', loadDashboardData);
     </script>
     <script src="script.js"></script>
 </body>
