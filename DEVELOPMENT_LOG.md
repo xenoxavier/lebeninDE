@@ -1,5 +1,28 @@
 # Development Log - Leben in Deutschland Quiz App
 
+## 🚨 PRIORITY TODO FOR NEXT SESSION
+**CRITICAL: Dashboard Stats Integration Missing**
+
+### MUST IMPLEMENT FIRST:
+1. **Connect ALL quiz types to dashboard stats:**
+   - ❌ Practice quiz (300 questions) → dashboard tracking MISSING
+   - ❌ Bundesland quizzes (all 16) → dashboard tracking MISSING  
+   - ✅ Exam simulation → dashboard tracking WORKING
+   
+2. **Missing dashboard integrations:**
+   - Focus areas tracking from quiz results
+   - Learning progress updates from all quiz sources
+   - Study time and session tracking across all quiz types
+   - Success rate calculation from all exam attempts
+
+3. **Implementation needed:**
+   - Add localStorage save functions to all quiz completion screens
+   - Track question categories for focus areas analysis
+   - Update dashboard stats from practice and Bundesland quizzes
+   - Ensure study streak works with all quiz types
+
+**Current Issue**: Only exam-simulation.html saves results to dashboard. Practice quiz and all 16 Bundesland quizzes complete successfully but don't update dashboard statistics.
+
 ## Project Overview
 German citizenship test application with interactive quiz functionality, dashboard, and exam simulation.
 
