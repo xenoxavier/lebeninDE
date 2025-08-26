@@ -3,19 +3,722 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Leben in Deutschland</title>
+    <title>Thüringen Quiz - Leben in Deutschland</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .exam-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .quiz-info {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bundesland-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .bundesland-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .quiz-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .circular-progress {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
+        .progress-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+
+        .progress-bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            stroke: #667eea;
+            stroke-dasharray: 314.16;
+            stroke-dashoffset: 314.16;
+            transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .stat {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .stat-number {
+            font-weight: 700;
+            color: white;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: auto;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Question Area */
+        .question-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 3rem 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .question-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #1e293b;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        /* Answer Options */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        /* Control Buttons */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        /* Results Screen */
+        .results-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .results-content {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .results-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .final-score {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0;
+        }
+
+        .results-message {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .results-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .exam-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+
+            .sidebar {
+                padding: 1rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .quiz-info {
+                text-align: left;
+            }
+
+            .bundesland-name {
+                font-size: 1.2rem;
+            }
+
+            .progress-section {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem;
+            }
+
+            .circular-progress {
+                width: 60px;
+                height: 60px;
+                margin: 0;
+            }
+
+            .question-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+                padding: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; font-family: 'Inter', sans-serif;">
-        <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 3rem; max-width: 500px;">
-            <div style="font-size: 4rem; margin-bottom: 2rem;">🏗️</div>
-            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Quiz in Entwicklung</h1>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">Dieses Bundesland-Quiz ist noch nicht verfügbar.</p>
-            <a href="dashboard.html" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block;">
-                ← Zurück zum Dashboard
-            </a>
+    <div class="exam-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="quiz-info">
+                <div class="bundesland-icon">🏛️</div>
+                <div class="bundesland-name">Thüringen</div>
+                <div class="quiz-subtitle">Bundesland-spezifische Fragen</div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-title">Fortschritt</div>
+                <div class="circular-progress">
+                    <svg class="progress-circle" viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="50"></circle>
+                        <circle class="progress-bar" cx="50" cy="50" r="50" id="progress-circle"></circle>
+                    </svg>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+                <div class="progress-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="correct-count">0</span>
+                        <span>Richtig</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10</span>
+                        <span>Gesamt</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="dashboard.html" class="btn btn-back">← Zurück</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number" id="question-number">Frage 1 von 10</div>
+                </div>
+
+                <div class="question-text" id="question-text">
+                    Frage wird geladen...
+                </div>
+
+                <div class="options-container" id="options-container">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" id="back-btn" onclick="previousQuestion()" disabled>
+                        ← Zurück
+                    </button>
+                    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>
+                        Weiter →
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Results Screen -->
+    <div class="results-screen" id="results-screen">
+        <div class="results-content">
+            <div class="results-icon" id="results-icon">🎉</div>
+            <div class="results-title">Quiz beendet!</div>
+            <div class="final-score" id="final-score">0/10</div>
+            <div class="results-message" id="results-message">Ergebnis wird berechnet...</div>
+            <div class="results-actions">
+                <button class="btn btn-primary" onclick="restartQuiz()">Nochmal versuchen</button>
+                <a href="dashboard.html" class="btn btn-secondary">Zurück zum Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Thüringen quiz questions
+        const questions = [
+            {
+                question: "Welches ist ein Landkreis in Thüringen?",
+                options: ["Ammerland", "Altötting", "Nordfriesland", "Wartburgkreis"],
+                correct: 3
+            },
+            {
+                question: "Für wie viele Jahre wird der Landtag in Thüringen gewählt?",
+                options: ["3", "4", "5", "6"],
+                correct: 2
+            },
+            {
+                question: "Ab welchem Alter darf man in Thüringen bei Kommunalwahlen wählen?",
+                options: ["14", "16", "18", "20"],
+                correct: 1
+            },
+            {
+                question: "Welche Farben hat die Landesflagge von Thüringen?",
+                options: ["blau-weiß-rot", "weiß-rot", "grün-weiß-rot", "schwarz-gold"],
+                correct: 1
+            },
+            {
+                question: "Wo können Sie sich in Thüringen über politische Themen informieren?",
+                options: [
+                    "bei den Kirchen",
+                    "bei der Verbraucherzentrale", 
+                    "bei der Landeszentrale für politische Bildung",
+                    "beim Ordnungsamt der Gemeinde"
+                ],
+                correct: 2
+            },
+            {
+                question: "Die Landeshauptstadt von Thüringen heißt …",
+                options: ["Eisenach", "Erfurt", "Gera", "Jena"],
+                correct: 1
+            },
+            {
+                question: "Wie nennt man die Regierungschefin/den Regierungschef in Thüringen?",
+                options: [
+                    "Erste Ministerin/Erster Minister",
+                    "Premierministerin/Premierminister",
+                    "Bürgermeisterin/Bürgermeister",
+                    "Ministerpräsidentin/Ministerpräsident"
+                ],
+                correct: 3
+            },
+            {
+                question: "Welche Ministerin/welchen Minister hat Thüringen nicht?",
+                options: [
+                    "Justizministerin/Justizminister",
+                    "Außenministerin/Außenminister",
+                    "Finanzministerin/Finanzminister", 
+                    "Innenministerin/Innenminister"
+                ],
+                correct: 1
+            },
+            {
+                question: "Was ist Thüringen?",
+                options: [
+                    "Ein Stadtstaat",
+                    "Ein Freistaat",
+                    "Eine kreisfreie Stadt",
+                    "Ein Landkreis"
+                ],
+                correct: 1
+            },
+            {
+                question: "Welches Wappen gehört zum Freistaat Thüringen?",
+                options: [
+                    "Roter Löwe mit goldener Krone",
+                    "Weißer Adler auf rotem Grund", 
+                    "Schwarzer Bär auf gelbem Grund",
+                    "Goldener Löwe auf blauem Grund"
+                ],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedAnswers = new Array(questions.length).fill(null);
+        let correctAnswers = 0;
+
+        // Show current question
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            
+            document.getElementById('question-number').textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index);
+                
+                if (selectedAnswers[currentQuestion] === index) {
+                    optionDiv.classList.add('selected');
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation
+            document.getElementById('back-btn').disabled = currentQuestion === 0;
+            document.getElementById('next-btn').disabled = selectedAnswers[currentQuestion] === null;
+            
+            updateProgress();
+        }
+
+        // Select answer option
+        function selectOption(index) {
+            selectedAnswers[currentQuestion] = index;
+            
+            // Update UI
+            document.querySelectorAll('.option').forEach((option, i) => {
+                option.classList.toggle('selected', i === index);
+            });
+            
+            document.getElementById('next-btn').disabled = false;
+            updateProgress();
+        }
+
+        // Navigation functions
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Update progress display
+        function updateProgress() {
+            const answered = selectedAnswers.filter(answer => answer !== null).length;
+            const progress = (answered / questions.length) * 100;
+            const circumference = 2 * Math.PI * 50;
+            const offset = circumference - (progress / 100) * circumference;
+            
+            document.getElementById('progress-circle').style.strokeDashoffset = offset;
+            document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+            
+            // Update correct count
+            let correct = 0;
+            selectedAnswers.forEach((answer, index) => {
+                if (answer !== null && answer === questions[index].correct) {
+                    correct++;
+                }
+            });
+            document.getElementById('correct-count').textContent = correct;
+        }
+
+        // Show final results
+        function showResults() {
+            // Calculate final score
+            correctAnswers = 0;
+            selectedAnswers.forEach((answer, index) => {
+                if (answer === questions[index].correct) {
+                    correctAnswers++;
+                }
+            });
+            
+            // Hide question container
+            document.querySelector('.exam-container').style.display = 'none';
+            document.getElementById('results-screen').style.display = 'flex';
+            
+            // Update results
+            document.getElementById('final-score').textContent = `${correctAnswers}/10`;
+            
+            const percentage = (correctAnswers / questions.length) * 100;
+            let message, icon;
+            
+            if (percentage >= 80) {
+                message = 'Ausgezeichnet! Sie kennen Thüringen sehr gut.';
+                icon = '🎉';
+            } else if (percentage >= 60) {
+                message = 'Gut gemacht! Sie haben solide Kenntnisse über Thüringen.';
+                icon = '👏';
+            } else {
+                message = 'Nicht schlecht, aber es gibt noch Raum für Verbesserungen.';
+                icon = '📚';
+            }
+            
+            document.getElementById('results-message').textContent = message;
+            document.getElementById('results-icon').textContent = icon;
+        }
+
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 0;
+            selectedAnswers = new Array(questions.length).fill(null);
+            correctAnswers = 0;
+            
+            document.getElementById('results-screen').style.display = 'none';
+            document.querySelector('.exam-container').style.display = 'grid';
+            
+            showQuestion();
+        }
+
+        // Initialize quiz
+        document.addEventListener('DOMContentLoaded', showQuestion);
+    </script>
 </body>
 </html>
