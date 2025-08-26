@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Simulation - Leben in Deutschland</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+
+        .exam-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            gap: 0;
+        }
+
+        /* Left Sidebar - Timer & Controls */
+        .sidebar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+        }
+
+        .exam-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .exam-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .exam-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Timer Section */
+        .timer-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .exam-timer {
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .exam-timer.time-warning {
+            color: #f59e0b;
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .exam-timer.time-critical {
+            color: #ef4444;
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        .timer-info {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Progress Stats */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .stat-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #10b981;
+            font-size: 0.85rem;
+        }
+
+        /* Action Buttons */
+        .actions-section {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-start:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Question Area */
+        .question-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 3rem 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .question-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #1e293b;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        /* Answer Options */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .option {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .option.selected::before {
+            display: none;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 2rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .start-content {
+            max-width: 600px;
+        }
+
+        .start-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .start-info {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .start-info h3 {
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .start-info ul {
+            text-align: left;
+            margin: 0 0 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .start-info li {
+            color: #475569;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .start-instructions {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Results Section */
+        .results-section {
+            grid-column: 1 / -1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .results-container {
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .result-status {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .result-title.passed {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-title.failed {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .result-stat {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .result-btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .result-btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .result-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .result-btn-secondary {
+            background: #64748b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+        }
+
+        .result-btn-secondary:hover {
+            background: #475569;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(100, 116, 139, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .exam-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .exam-header, .stats-section, .actions-section {
+                display: none;
+            }
+
+            .timer-section {
+                padding: 1rem;
+                margin: 0;
+            }
+
+            .exam-timer {
+                font-size: 2rem;
+            }
+
+            .question-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+                padding: 0;
+            }
+
+            .option {
+                padding: 1.25rem;
+            }
+
+            .navigation {
+                padding: 0;
+            }
+
+            .result-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .result-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .result-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .start-title {
+                font-size: 2rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .option {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="exam-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="exam-header">
+                <div class="exam-title">🇩🇪 Einbürgerungstest</div>
+                <div class="exam-subtitle">Prüfungssimulation</div>
+            </div>
+
+            <div class="timer-section" id="timer-section" style="display: none;">
+                <div class="timer-label">Verbleibende Zeit</div>
+                <div id="exam-timer" class="exam-timer">60:00</div>
+                <div class="timer-info">60 Minuten für 33 Fragen</div>
+            </div>
+
+            <div class="stats-section" id="stats-section" style="display: none;">
+                <div class="stats-title">Fortschritt</div>
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Frage</span>
+                        <span class="stat-value" id="current-question">1 / 33</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Beantwortet</span>
+                        <span class="stat-value" id="answered-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Verbleibend</span>
+                        <span class="stat-value" id="remaining-count">33</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Richtig</span>
+                        <span class="stat-value" id="current-correct">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions-section">
+                <button class="btn btn-start" id="start-btn" onclick="examQuiz.startExam()">
+                    📝 Prüfung Starten
+                </button>
+                <button class="btn btn-submit" id="submit-btn" onclick="examQuiz.submitExam()" style="display: none;">
+                    📝 Prüfung beenden
+                </button>
+                <a href="dashboard.html" class="btn btn-back" id="dashboard-link">← Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Start Screen -->
+            <div class="start-screen" id="start-screen">
+                <div class="start-content">
+                    <h1 class="start-title">Einbürgerungstest Simulation</h1>
+                    <div class="start-info">
+                        <h3>Prüfungsbedingungen</h3>
+                        <ul>
+                            <li>33 zufällige Fragen aus dem offiziellen Katalog</li>
+                            <li>60 Minuten Bearbeitungszeit</li>
+                            <li>Mindestens 17 richtige Antworten zum Bestehen (51,5%)</li>
+                            <li>Antworten können nicht geändert werden</li>
+                        </ul>
+                        <div class="start-instructions">
+                            Klicken Sie links auf "Prüfung Starten" um zu beginnen
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Screen (initially hidden) -->
+            <div class="question-screen" id="question-screen" style="display: none;">
+                <div class="question-container">
+                    <div class="question-header">
+                        <div class="question-number" id="question-number">Frage 1 von 33</div>
+                    </div>
+
+                    <div class="question-text" id="question-text">
+                        Laden...
+                    </div>
+
+                    <div class="options-container" id="options-container">
+                        <!-- Options will be loaded dynamically -->
+                    </div>
+
+                    <div class="navigation">
+                        <button class="nav-btn" id="prev-btn" disabled>← Zurück</button>
+                        <button class="nav-btn" id="next-btn">Weiter →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section (initially hidden) -->
+        <div class="results-section" id="results-section" style="display: none;">
+            <!-- Results will be populated dynamically -->
+        </div>
+    </div>
+
+    <script>
+        class ExamQuiz {
+            constructor() {
+                this.allQuestions = [];
+                this.questions = [];
+                this.currentQuestion = 0;
+                this.userAnswers = [];
+                this.correctAnswers = 0;
+                this.isExamStarted = false;
+                this.examStartTime = null;
+                this.examTimeLimit = 60 * 60; // 60 minutes in seconds
+                this.timerInterval = null;
+                
+                this.init();
+            }
+
+            async init() {
+                await this.loadQuestions();
+                this.setupEventListeners();
+                console.log(`Exam ready with ${this.allQuestions.length} questions available`);
+            }
+
+            async loadQuestions() {
+                // Load fallback questions first
+                this.loadFallbackQuestions();
+                
+                // Try to load from JSON file
+                try {
+                    console.log('Loading questions from JSON...');
+                    const response = await fetch('fragen/questions-working.json');
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const textContent = await response.text();
+                    if (textContent.length === 0) {
+                        throw new Error('File is empty');
+                    }
+                    
+                    const data = JSON.parse(textContent);
+                    
+                    let questionArray;
+                    if (Array.isArray(data)) {
+                        questionArray = data;
+                    } else if (data.questions && Array.isArray(data.questions)) {
+                        questionArray = data.questions;
+                    } else {
+                        throw new Error('No valid questions found');
+                    }
+                    
+                    // Convert to internal format
+                    const convertedQuestions = [];
+                    for (let i = 0; i < questionArray.length; i++) {
+                        const q = questionArray[i];
+                        if (q.question && q.options && Array.isArray(q.options) && q.answer) {
+                            const correctIndex = q.options.findIndex(option => option === q.answer);
+                            if (correctIndex !== -1) {
+                                convertedQuestions.push({
+                                    id: q.number || q.id || i + 1,
+                                    question: q.question,
+                                    options: q.options,
+                                    correct: correctIndex
+                                });
+                            }
+                        }
+                    }
+                    
+                    if (convertedQuestions.length > 0) {
+                        this.allQuestions = convertedQuestions;
+                        console.log(`Successfully loaded ${this.allQuestions.length} questions from JSON`);
+                    }
+                    
+                } catch (error) {
+                    console.error('Failed to load questions from JSON:', error);
+                    console.log('Using fallback questions');
+                }
+                
+                console.log(`Total questions available: ${this.allQuestions.length}`);
+            }
+
+            loadFallbackQuestions() {
+                this.allQuestions = [
+                    {
+                        id: 1,
+                        question: "Was ist ein Rechtsstaat?",
+                        options: [
+                            "Ein Staat, in dem es nur rechte politische Parteien gibt",
+                            "Ein Staat, in dem nur Rechtsanwälte regieren dürfen",
+                            "Ein Staat, in dem alle Bürger und Institutionen vor dem Gesetz gleich sind",
+                            "Ein Staat, in dem nur das Parlament Gesetze beschließen darf"
+                        ],
+                        correct: 2
+                    },
+                    {
+                        id: 2,
+                        question: "Was steht nicht im Grundgesetz von Deutschland?",
+                        options: [
+                            "Die Würde des Menschen ist unantastbar",
+                            "Alle Menschen sind vor dem Gesetz gleich",
+                            "Jeder hat das Recht auf freie Meinungsäußerung",
+                            "Alle Bürger müssen an Gott glauben"
+                        ],
+                        correct: 3
+                    }
+                ];
+                
+                // Add more questions to reach at least 33
+                const baseQuestions = [...this.allQuestions];
+                for (let i = 0; i < 31; i++) {
+                    const baseQuestion = baseQuestions[i % baseQuestions.length];
+                    this.allQuestions.push({
+                        id: baseQuestion.id + (i + 1) * 100,
+                        question: `[Demo ${i + 3}] ${baseQuestion.question}`,
+                        options: [...baseQuestion.options],
+                        correct: baseQuestion.correct
+                    });
+                }
+            }
+
+            startExam() {
+                if (this.allQuestions.length === 0) {
+                    alert('Keine Fragen verfügbar. Bitte Seite neu laden.');
+                    return;
+                }
+                
+                // Select 33 random questions
+                const shuffled = [...this.allQuestions].sort(() => 0.5 - Math.random());
+                this.questions = shuffled.slice(0, Math.min(33, this.allQuestions.length));
+                this.userAnswers = new Array(this.questions.length);
+                
+                console.log(`Starting exam with ${this.questions.length} questions`);
+                
+                // Show exam interface
+                document.getElementById('start-screen').style.display = 'none';
+                document.getElementById('question-screen').style.display = 'block';
+                document.getElementById('timer-section').style.display = 'block';
+                document.getElementById('stats-section').style.display = 'block';
+                document.getElementById('start-btn').style.display = 'none';
+                document.getElementById('submit-btn').style.display = 'block';
+                document.getElementById('dashboard-link').style.display = 'none'; // Hide dashboard link during exam
+                
+                // Initialize exam state
+                this.isExamStarted = true;
+                this.examStartTime = Date.now();
+                this.currentQuestion = 0;
+                
+                // Start timer
+                this.startTimer();
+                
+                // Load first question
+                this.loadQuestion();
+                this.updateProgress();
+            }
+
+            startTimer() {
+                this.timerInterval = setInterval(() => {
+                    const elapsed = Math.floor((Date.now() - this.examStartTime) / 1000);
+                    const remaining = Math.max(0, this.examTimeLimit - elapsed);
+                    
+                    this.updateTimerDisplay(remaining);
+                    
+                    if (remaining <= 0) {
+                        this.timeUp();
+                    }
+                }, 1000);
+            }
+
+            updateTimerDisplay(timeRemaining) {
+                const timer = document.getElementById('exam-timer');
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                timer.textContent = timeString;
+                
+                timer.classList.remove('time-warning', 'time-critical');
+                if (timeRemaining <= 300) { // 5 minutes
+                    timer.classList.add('time-critical');
+                } else if (timeRemaining <= 600) { // 10 minutes
+                    timer.classList.add('time-warning');
+                }
+            }
+
+            timeUp() {
+                clearInterval(this.timerInterval);
+                alert('Zeit abgelaufen! Die Prüfung wird automatisch beendet.');
+                this.finishExam();
+            }
+
+            loadQuestion() {
+                const question = this.questions[this.currentQuestion];
+                if (!question) return;
+
+                // Update question display
+                document.getElementById('question-number').textContent = `Frage ${this.currentQuestion + 1} von ${this.questions.length}`;
+                document.getElementById('question-text').textContent = question.question;
+                
+                // Clear and populate options
+                const container = document.getElementById('options-container');
+                container.innerHTML = '';
+                
+                question.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'option';
+                    optionElement.textContent = option;
+                    optionElement.onclick = () => this.selectOption(index);
+                    container.appendChild(optionElement);
+                });
+
+                // Update navigation
+                document.getElementById('prev-btn').disabled = this.currentQuestion === 0;
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.textContent = this.currentQuestion === this.questions.length - 1 ? 'Letzte Frage' : 'Weiter →';
+                
+                // Restore previous selection if any
+                if (this.userAnswers[this.currentQuestion] !== undefined) {
+                    this.showSelection(this.userAnswers[this.currentQuestion]);
+                }
+            }
+
+            selectOption(index) {
+                // In exam mode, only allow one selection per question
+                if (this.userAnswers[this.currentQuestion] !== undefined) {
+                    alert('Sie haben bereits eine Antwort für diese Frage ausgewählt.');
+                    return;
+                }
+                
+                this.userAnswers[this.currentQuestion] = index;
+                this.showSelection(index);
+                this.updateProgress();
+            }
+
+            showSelection(selectedIndex) {
+                const options = document.querySelectorAll('.option');
+                options.forEach((option, index) => {
+                    option.classList.remove('selected');
+                    if (index === selectedIndex) {
+                        option.classList.add('selected');
+                    }
+                });
+            }
+
+            updateProgress() {
+                const answered = this.userAnswers.filter(a => a !== undefined).length;
+                const remaining = this.questions.length - answered;
+                
+                document.getElementById('current-question').textContent = `${this.currentQuestion + 1} / ${this.questions.length}`;
+                document.getElementById('answered-count').textContent = answered;
+                document.getElementById('remaining-count').textContent = remaining;
+                
+                // Update current performance
+                if (answered > 0) {
+                    const correct = this.userAnswers.filter((answer, index) => 
+                        answer !== undefined && answer === this.questions[index].correct
+                    ).length;
+                    const percentage = Math.round((correct / answered) * 100);
+                    document.getElementById('current-correct').textContent = `${correct} (${percentage}%)`;
+                } else {
+                    document.getElementById('current-correct').textContent = '-';
+                }
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.questions.length - 1) {
+                    this.currentQuestion++;
+                    this.loadQuestion();
+                    this.updateProgress();
+                }
+            }
+
+            prevQuestion() {
+                if (this.currentQuestion > 0) {
+                    this.currentQuestion--;
+                    this.loadQuestion();
+                    this.updateProgress();
+                }
+            }
+
+            submitExam() {
+                const answered = this.userAnswers.filter(a => a !== undefined).length;
+                const unanswered = this.questions.length - answered;
+                
+                let message = 'Möchten Sie die Prüfung wirklich beenden?';
+                if (unanswered > 0) {
+                    message += ` Sie haben noch ${unanswered} Fragen nicht beantwortet.`;
+                }
+                
+                if (confirm(message)) {
+                    this.finishExam();
+                }
+            }
+
+            finishExam() {
+                clearInterval(this.timerInterval);
+                
+                // Calculate results
+                this.correctAnswers = 0;
+                for (let i = 0; i < this.questions.length; i++) {
+                    if (this.userAnswers[i] === this.questions[i].correct) {
+                        this.correctAnswers++;
+                    }
+                }
+                
+                const passed = this.correctAnswers >= 17;
+                const percentage = Math.round((this.correctAnswers / this.questions.length) * 100);
+                const duration = Math.floor((Date.now() - this.examStartTime) / 1000 / 60);
+                
+                // Save exam results to dashboard
+                this.saveExamResults(passed, percentage, duration);
+                
+                this.showResults(passed, percentage, duration);
+            }
+
+            saveExamResults(passed, percentage, duration) {
+                // Get existing dashboard data
+                let dashboardData = JSON.parse(localStorage.getItem('lebenDE_dashboard') || '{}');
+                
+                // Initialize if first time
+                if (!dashboardData.examHistory) {
+                    dashboardData.examHistory = [];
+                }
+                if (!dashboardData.stats) {
+                    dashboardData.stats = {
+                        totalExams: 0,
+                        examsPassed: 0,
+                        examsFailed: 0,
+                        bestScore: 0,
+                        totalExamTime: 0,
+                        averageScore: 0
+                    };
+                }
+                
+                // Add new exam result
+                const examResult = {
+                    date: new Date().toISOString(),
+                    passed: passed,
+                    score: percentage,
+                    correctAnswers: this.correctAnswers,
+                    totalQuestions: this.questions.length,
+                    duration: duration,
+                    type: 'exam_simulation'
+                };
+                
+                dashboardData.examHistory.push(examResult);
+                
+                // Update stats
+                dashboardData.stats.totalExams++;
+                if (passed) {
+                    dashboardData.stats.examsPassed++;
+                } else {
+                    dashboardData.stats.examsFailed++;
+                }
+                
+                if (percentage > dashboardData.stats.bestScore) {
+                    dashboardData.stats.bestScore = percentage;
+                }
+                
+                dashboardData.stats.totalExamTime += duration;
+                
+                // Calculate average score
+                const totalScore = dashboardData.examHistory.reduce((sum, exam) => sum + exam.score, 0);
+                dashboardData.stats.averageScore = Math.round(totalScore / dashboardData.examHistory.length);
+                
+                // Update activity log
+                if (!dashboardData.recentActivity) {
+                    dashboardData.recentActivity = [];
+                }
+                
+                dashboardData.recentActivity.unshift({
+                    type: 'exam_completed',
+                    date: new Date().toISOString(),
+                    score: percentage,
+                    passed: passed,
+                    duration: duration
+                });
+                
+                // Keep only last 10 activities
+                dashboardData.recentActivity = dashboardData.recentActivity.slice(0, 10);
+                
+                // Save to localStorage
+                localStorage.setItem('lebenDE_dashboard', JSON.stringify(dashboardData));
+            }
+
+            showResults(passed, percentage, duration) {
+                // Hide main content
+                document.querySelector('.sidebar').style.display = 'none';
+                document.querySelector('.main-content').style.display = 'none';
+                
+                // Show results
+                const resultsSection = document.getElementById('results-section');
+                resultsSection.innerHTML = `
+                    <div class="results-container">
+                        <div class="result-status">${passed ? '🎉' : '😞'}</div>
+                        <h1 class="result-title ${passed ? 'passed' : 'failed'}">
+                            ${passed ? 'Prüfung Bestanden!' : 'Prüfung Nicht Bestanden'}
+                        </h1>
+                        <p class="result-message">
+                            ${passed ? 
+                                'Herzlichen Glückwunsch! Sie haben die deutsche Einbürgerungsprüfung erfolgreich bestanden.' : 
+                                'Sie benötigen mindestens 17 richtige Antworten (51,5%) zum Bestehen der Prüfung.'}
+                        </p>
+                        
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <div class="stat-number">${this.correctAnswers}/${this.questions.length}</div>
+                                <div class="stat-label">Richtige Antworten</div>
+                            </div>
+                            <div class="result-stat">
+                                <div class="stat-number">${percentage}%</div>
+                                <div class="stat-label">Erfolgsquote</div>
+                            </div>
+                            <div class="result-stat">
+                                <div class="stat-number">${duration} min</div>
+                                <div class="stat-label">Benötigte Zeit</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <a href="dashboard.html" class="result-btn result-btn-primary">
+                                📊 Zurück zum Dashboard
+                            </a>
+                            <button class="result-btn result-btn-secondary" onclick="window.location.reload()">
+                                🔄 Neue Simulation starten
+                            </button>
+                        </div>
+                    </div>
+                `;
+                resultsSection.style.display = 'flex';
+            }
+
+            setupEventListeners() {
+                document.getElementById('prev-btn').onclick = () => this.prevQuestion();
+                document.getElementById('next-btn').onclick = () => this.nextQuestion();
+            }
+        }
+
+        // Initialize exam when page loads
+        let examQuiz;
+        window.addEventListener('load', () => {
+            examQuiz = new ExamQuiz();
+        });
+    </script>
+</body>
+</html>

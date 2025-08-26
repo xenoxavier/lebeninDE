@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Debug Test</title>
+</head>
+<body>
+    <h1>Exam Question Loading Debug</h1>
+    <div id="debug-output"></div>
+    <button onclick="testQuestionLoading()">Test Question Loading</button>
+    
+    <script>
+        async function testQuestionLoading() {
+            const output = document.getElementById('debug-output');
+            output.innerHTML = '<p>Testing question loading...</p>';
+            
+            try {
+                console.log('Testing fetch to fragen/questions-working.json...');
+                const response = await fetch('fragen/questions-working.json');
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
+                output.innerHTML += `<p>Response status: ${response.status}, OK: ${response.ok}</p>`;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const textContent = await response.text();
+                console.log('Raw text length:', textContent.length);
+                output.innerHTML += `<p>Raw text length: ${textContent.length}</p>`;
+                
+                const data = JSON.parse(textContent);
+                console.log('JSON parsed successfully');
+                console.log('Data structure:', typeof data, Object.keys(data));
+                
+                if (data.questions && Array.isArray(data.questions)) {
+                    console.log('Questions count:', data.questions.length);
+                    output.innerHTML += `<p>✅ Questions found: ${data.questions.length}</p>`;
+                    
+                    // Test converting first few questions
+                    const converted = [];
+                    for (let i = 0; i < Math.min(5, data.questions.length); i++) {
+                        const q = data.questions[i];
+                        if (q.question && q.options && q.answer) {
+                            const correctIndex = q.options.findIndex(option => option === q.answer);
+                            if (correctIndex !== -1) {
+                                converted.push({
+                                    id: q.number || i + 1,
+                                    question: q.question,
+                                    options: q.options,
+                                    correct: correctIndex
+                                });
+                            }
+                        }
+                    }
+                    
+                    output.innerHTML += `<p>✅ Successfully converted ${converted.length} questions</p>`;
+                    output.innerHTML += `<p>Sample question: ${converted[0]?.question}</p>`;
+                    output.innerHTML += `<p>Sample options: ${converted[0]?.options.join(', ')}</p>`;
+                    output.innerHTML += `<p>Correct answer index: ${converted[0]?.correct}</p>`;
+                    
+                    // Test random selection
+                    const randomQuestions = [...converted].sort(() => 0.5 - Math.random()).slice(0, 3);
+                    output.innerHTML += `<p>✅ Random selection of 3 questions works</p>`;
+                    
+                } else {
+                    throw new Error('No questions array found in data');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                output.innerHTML += `<p style="color: red;">❌ Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

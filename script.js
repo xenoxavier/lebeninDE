@@ -539,7 +539,7 @@ class LebenInDeutschlandQuiz {
                 if (quizBadge) {
                     quizBadge.style.display = 'inline-flex';
                     badgeIcon.textContent = '📝';
-                    badgeText.textContent = 'Exam Mode';
+                    badgeText.textContent = 'Exam Simulation';
                 }
                 if (passRequirement) {
                     passRequirement.style.display = 'flex';
