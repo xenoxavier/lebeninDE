@@ -22,9 +22,18 @@
       "Bash(start index.html)",
       "Bash(start simple-quiz.html)",
       "Bash(start test-debug.html)",
-      "Bash(start:*)"
+      "Bash(start:*)",
+      "Read(/C:\\Users\\DELL\\Documents\\Claude\\frontend-mcp-agent/**)",
+      "Read(/C:\\Users\\DELL\\Documents\\Claude\\my-mcp-server/**)",
+      "Bash(npm run build:*)",
+      "Bash(claude mcp:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(git restore:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\Users\\DELL\\Documents\\Claude\\frontend-mcp-agent"
+    ]
   }
 }

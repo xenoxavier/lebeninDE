@@ -73,6 +73,9 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Performance optimizations */
+    will-change: auto;
+    transform: translateZ(0);
 }
 
 /* Loading Screen */
