@@ -48,12 +48,10 @@
             <ul class="nav-menu" role="menubar">
                 <li class="nav-item" role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
                 <li class="nav-item" role="none"><a href="#features" class="nav-link" role="menuitem">Features</a></li>
-                <li class="nav-item" role="none"><a href="#quiz-preview" class="nav-link" role="menuitem">Quiz</a></li>
                 <li class="nav-item" role="none"><a href="#dashboard-preview" class="nav-link" role="menuitem">Dashboard</a></li>
                 <li class="nav-item" role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
                 <a href="dashboard.html" class="cta-nav-btn" aria-label="Start learning German citizenship test">Start Learning</a>
             </div>
             <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
@@ -465,6 +463,64 @@
         </div>
     </footer>
 
+    <!-- Privacy & Data Notice Modal -->
+    <div id="privacy-modal" class="privacy-modal-overlay">
+        <div class="privacy-modal-content">
+            <div class="privacy-header">
+                <div class="privacy-icon">🔒</div>
+                <h2>Willkommen bei LebenDE</h2>
+                <h3>Ihre Privatsphäre ist uns wichtig</h3>
+            </div>
+            
+            <div class="privacy-body">
+                <div class="privacy-section">
+                    <h4>🏠 100% Lokale Datenspeicherung</h4>
+                    <p>Alle Ihre Daten werden <strong>ausschließlich in Ihrem Browser</strong> gespeichert. Wir übertragen oder speichern <strong>keine Daten auf unseren Servern</strong>.</p>
+                </div>
+
+                <div class="privacy-section">
+                    <h4>📊 Was wir lokal speichern:</h4>
+                    <ul>
+                        <li><strong>Lernfortschritt:</strong> Ihre Quizergebnisse und Statistiken</li>
+                        <li><strong>Präferenzen:</strong> Ihre Einstellungen und Lernziele</li>
+                        <li><strong>Benutzerprofil:</strong> Optionaler Spitzname (keine echten Namen erforderlich)</li>
+                        <li><strong>Verlauf:</strong> Ihre Prüfungsergebnisse zur Fortschrittsverfolgung</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-section">
+                    <h4>🛡️ DSGVO-Konform:</h4>
+                    <ul>
+                        <li>✅ <strong>Keine Datenübertragung</strong> an externe Server</li>
+                        <li>✅ <strong>Keine Tracking-Tools</strong> oder Analyse-Software</li>
+                        <li>✅ <strong>Vollständige Kontrolle:</strong> Sie können alle Daten jederzeit löschen</li>
+                        <li>✅ <strong>Anonym:</strong> Keine persönlichen Identifikationsdaten erforderlich</li>
+                        <li>✅ <strong>Transparent:</strong> Alle gespeicherten Daten sind in Ihrem Browser einsehbar</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-highlight">
+                    <p><strong>🇩🇪 Entwickelt in Deutschland</strong> - Vollständig DSGVO-konform ohne Datensammlung</p>
+                </div>
+            </div>
+
+            <div class="privacy-footer">
+                <div class="privacy-options">
+                    <label class="privacy-checkbox">
+                        <input type="checkbox" id="accept-local-storage" checked>
+                        <span class="checkmark"></span>
+                        Ich stimme der lokalen Datenspeicherung in meinem Browser zu
+                    </label>
+                </div>
+                <div class="privacy-actions">
+                    <button class="btn-privacy-decline" onclick="declineAndContinue()">Ablehnen & Fortfahren</button>
+                    <button class="btn-privacy-accept" onclick="acceptPrivacyAndStart()">Akzeptieren & Starten</button>
+                </div>
+                <p class="privacy-note">Sie können Ihre Daten jederzeit über die Browsereinstellungen löschen.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Simple loading screen hide with fallback
         setTimeout(() => {
@@ -476,6 +532,104 @@
                 }, 500);
             }
         }, 2000);
+
+        // Privacy Modal Functions
+        function showPrivacyModal() {
+            const modal = document.getElementById('privacy-modal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Animate modal in
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function hidePrivacyModal() {
+            const modal = document.getElementById('privacy-modal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function acceptPrivacyAndStart() {
+            const checkbox = document.getElementById('accept-local-storage');
+            
+            if (!checkbox.checked) {
+                alert('Bitte bestätigen Sie die lokale Datenspeicherung, um fortzufahren.');
+                return;
+            }
+
+            // Set privacy consent in localStorage
+            const privacyConsent = {
+                accepted: true,
+                localStorageConsent: true,
+                timestamp: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            localStorage.setItem('lebenDE_privacy_consent', JSON.stringify(privacyConsent));
+            
+            // Initialize user system
+            initializeUserSystem();
+            
+            hidePrivacyModal();
+        }
+
+        function declineAndContinue() {
+            // Set declined status
+            const privacyConsent = {
+                accepted: false,
+                localStorageConsent: false,
+                timestamp: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            localStorage.setItem('lebenDE_privacy_consent', JSON.stringify(privacyConsent));
+            
+            hidePrivacyModal();
+            
+            // Show info about limited functionality
+            setTimeout(() => {
+                alert('Sie können LebenDE weiterhin nutzen, aber Ihr Fortschritt wird nicht gespeichert. Sie können Ihre Entscheidung jederzeit in den Einstellungen ändern.');
+            }, 500);
+        }
+
+        function initializeUserSystem() {
+            // Initialize local user profile if doesn't exist
+            if (!localStorage.getItem('lebenDE_user_profile')) {
+                const defaultProfile = {
+                    displayName: '',
+                    studyGoals: [],
+                    preferredLanguage: 'de',
+                    created: new Date().toISOString(),
+                    version: '1.0'
+                };
+                localStorage.setItem('lebenDE_user_profile', JSON.stringify(defaultProfile));
+            }
+
+            console.log('✅ User system initialized - all data stored locally');
+        }
+
+        // Check privacy consent on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const consent = localStorage.getItem('lebenDE_privacy_consent');
+                
+                if (!consent) {
+                    // First visit - show privacy modal
+                    showPrivacyModal();
+                } else {
+                    const consentData = JSON.parse(consent);
+                    if (consentData.accepted) {
+                        initializeUserSystem();
+                    }
+                }
+            }, 3000); // Show after loading screen
+        });
     </script>
     <script src="script.js"></script>
 </body>

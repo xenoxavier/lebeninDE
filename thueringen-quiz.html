@@ -702,7 +702,92 @@
             }
             
             document.getElementById('results-message').textContent = message;
+            // Save results to dashboard
+            saveBundeslandResults('Thüringen', correctAnswers, percentage);
             document.getElementById('results-icon').textContent = icon;
+        }
+
+        function categorizeQuestion(questionText) {
+            const question = questionText.toLowerCase();
+            
+            // Politics in Democracy keywords
+            if (question.includes('wahl') || question.includes('partei') || question.includes('demokratie') || 
+                question.includes('regierung') || question.includes('parlament') || question.includes('bundestag') || 
+                question.includes('bundesrat') || question.includes('politik') || question.includes('verfassung') ||
+                question.includes('grundgesetz') || question.includes('meinungsfreiheit') || question.includes('rechtsstaat') ||
+                question.includes('gewaltenteilung') || question.includes('bundeskanzler') || question.includes('minister')) {
+                return 'Politik in der Demokratie';
+            }
+            
+            // History and Responsibility keywords
+            if (question.includes('geschichte') || question.includes('nazi') || question.includes('hitler') ||
+                question.includes('holocaust') || question.includes('ddr') || question.includes('brd') ||
+                question.includes('wiedervereinigung') || question.includes('mauer') || question.includes('krieg') ||
+                question.includes('1933') || question.includes('1945') || question.includes('1949') || 
+                question.includes('1990') || question.includes('verantwortung') || question.includes('vergangenheit') ||
+                question.includes('nationalsozialismus') || question.includes('weimarer republik')) {
+                return 'Geschichte und Verantwortung';
+            }
+            
+            // Default to People and Society for everything else
+            return 'Mensch und Gesellschaft';
+        }
+
+        function saveBundeslandResults(bundesland, correctAnswers, percentage) {
+            // Get existing dashboard data
+            let dashboardData = JSON.parse(localStorage.getItem('lebenDE_dashboard') || '{}');
+            
+            // Initialize if first time
+            if (!dashboardData.bundeslandHistory) {
+                dashboardData.bundeslandHistory = [];
+            }
+            if (!dashboardData.stats) {
+                dashboardData.stats = {
+                    totalExams: 0,
+                    examsPassed: 0,
+                    examsFailed: 0,
+                    bestScore: 0,
+                    totalExamTime: 0,
+                    averageScore: 0
+                };
+            }
+            
+            // Calculate category breakdown
+            let categoryStats = {
+                'Politik in der Demokratie': { correct: 0, total: 0 },
+                'Geschichte und Verantwortung': { correct: 0, total: 0 },
+                'Mensch und Gesellschaft': { correct: 0, total: 0 }
+            };
+
+            for (let i = 0; i < questions.length; i++) {
+                const category = categorizeQuestion(questions[i].question);
+                categoryStats[category].total++;
+                
+                if (selectedAnswers[i] === questions[i].correct) {
+                    categoryStats[category].correct++;
+                }
+            }
+
+            // Add new Bundesland quiz result
+            const quizResult = {
+                date: new Date().toISOString(),
+                bundesland: bundesland,
+                score: Math.round(percentage),
+                correctAnswers: correctAnswers,
+                totalQuestions: 10,
+                type: 'bundesland_quiz',
+                categoryStats: categoryStats
+            };
+            
+            dashboardData.bundeslandHistory.push(quizResult);
+            
+            // Update stats if this is the best score
+            if (percentage > dashboardData.stats.bestScore) {
+                dashboardData.stats.bestScore = Math.round(percentage);
+            }
+            
+            // Save back to localStorage
+            localStorage.setItem('lebenDE_dashboard', JSON.stringify(dashboardData));
         }
 
         // Restart quiz

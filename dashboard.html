@@ -772,11 +772,11 @@
         }
         
         function calculateCurrentStreak(dashboardData) {
-            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory) {
+            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory && !dashboardData.practiceHistory) {
                 return 0;
             }
             
-            // Combine all exam activities
+            // Combine all study activities
             const allActivities = [];
             
             if (dashboardData.examHistory) {
@@ -789,7 +789,14 @@
             if (dashboardData.bundeslandHistory) {
                 allActivities.push(...dashboardData.bundeslandHistory.map(exam => ({
                     date: exam.date,
-                    timestamp: exam.timestamp
+                    timestamp: exam.timestamp || new Date(exam.date).toISOString()
+                })));
+            }
+            
+            if (dashboardData.practiceHistory) {
+                allActivities.push(...dashboardData.practiceHistory.map(practice => ({
+                    date: practice.date,
+                    timestamp: practice.timestamp || new Date(practice.date).toISOString()
                 })));
             }
             
@@ -845,11 +852,11 @@
         }
         
         function calculateBestStreak(dashboardData) {
-            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory) {
+            if (!dashboardData.examHistory && !dashboardData.bundeslandHistory && !dashboardData.practiceHistory) {
                 return 0;
             }
             
-            // Combine all exam activities
+            // Combine all study activities
             const allActivities = [];
             
             if (dashboardData.examHistory) {
@@ -862,7 +869,14 @@
             if (dashboardData.bundeslandHistory) {
                 allActivities.push(...dashboardData.bundeslandHistory.map(exam => ({
                     date: exam.date,
-                    timestamp: exam.timestamp
+                    timestamp: exam.timestamp || new Date(exam.date).toISOString()
+                })));
+            }
+            
+            if (dashboardData.practiceHistory) {
+                allActivities.push(...dashboardData.practiceHistory.map(practice => ({
+                    date: practice.date,
+                    timestamp: practice.timestamp || new Date(practice.date).toISOString()
                 })));
             }
             
