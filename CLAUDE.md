@@ -97,3 +97,8 @@ The application loads external libraries via CDN:
 - localStorage for theme persistence
 - Advanced CSS features: conic-gradient, clip-path, transform-style: preserve-3d
 - Performance optimizations: disables complex animations on mobile (<480px)
+
+### Git/Deployment Instructions
+- **IMPORTANT**: Only push to GitHub when explicitly requested by the user
+- User will give explicit permission before any git push operations
+- Always wait for user confirmation before deploying changes

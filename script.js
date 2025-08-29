@@ -59,7 +59,6 @@ class LebenInDeutschlandQuiz {
         this.loadUserData();
         this.setupEventListeners();
         this.setupMobileMenu();
-        this.setupThemeToggle();
         this.setupScrollAnimations();
         this.setupParticleSystem();
         this.setupScrollIndicator();
@@ -319,17 +318,28 @@ class LebenInDeutschlandQuiz {
     }
     
     setupThemeToggle() {
+        console.log('Setting up theme toggle...');
         const themeToggle = document.getElementById('theme-toggle');
-        if (!themeToggle) return;
+        console.log('Theme toggle element:', themeToggle);
+        
+        if (!themeToggle) {
+            console.error('Theme toggle button not found!');
+            return;
+        }
         
         // Check for saved theme preference
         const currentTheme = localStorage.getItem('theme') || 'light';
+        console.log('Current theme:', currentTheme);
+        
         document.documentElement.setAttribute('data-theme', currentTheme);
         themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
         
         themeToggle.addEventListener('click', () => {
+            console.log('Theme toggle clicked');
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            console.log('Switching from', currentTheme, 'to', newTheme);
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
