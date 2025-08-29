@@ -616,19 +616,24 @@
 
         // Check privacy consent on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Ensure body can scroll
+            document.body.style.overflow = 'auto';
+            
             setTimeout(() => {
                 const consent = localStorage.getItem('lebenDE_privacy_consent');
                 
                 if (!consent) {
                     // First visit - show privacy modal
-                    showPrivacyModal();
+                    console.log('No privacy consent found, showing modal...');
+                    // showPrivacyModal(); // Disabled for now
                 } else {
+                    console.log('Privacy consent found:', consent);
                     const consentData = JSON.parse(consent);
                     if (consentData.accepted) {
                         initializeUserSystem();
                     }
                 }
-            }, 3000); // Show after loading screen
+            }, 1000);
         });
     </script>
     <script src="script.js"></script>

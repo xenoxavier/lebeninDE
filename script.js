@@ -1223,7 +1223,7 @@ class LebenInDeutschlandQuiz {
         alertBox.innerHTML = `
             <div style="font-size: 4rem; margin-bottom: 1rem;">${icon}</div>
             <h3 style="color: ${color}; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700;">${message}</h3>
-            <button onclick="this.parentElement.parentElement.remove()" 
+            <button class="alert-ok-btn"
                     style="background: ${color}; color: white; border: none; padding: 0.75rem 2rem; 
                            border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 1rem;
                            transition: transform 0.2s ease;" 
@@ -1233,26 +1233,26 @@ class LebenInDeutschlandQuiz {
             </button>
         `;
         
+        // Add click event listener to the OK button
+        const okButton = alertBox.querySelector('.alert-ok-btn');
+        okButton.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            alertBox.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            }, 300);
+        });
+        
         modal.appendChild(alertBox);
         document.body.appendChild(modal);
         
         // Animate in
-        requestAnimationFrame(() => {
+        setTimeout(() => {
             modal.style.opacity = '1';
             alertBox.style.transform = 'scale(1)';
-        });
-        
-        // Auto close after 5 seconds
-        setTimeout(() => {
-            if (document.body.contains(modal)) {
-                modal.style.opacity = '0';
-                setTimeout(() => {
-                    if (document.body.contains(modal)) {
-                        document.body.removeChild(modal);
-                    }
-                }, 300);
-            }
-        }, 5000);
+        }, 10);
     }
     
     animateNumbers() {

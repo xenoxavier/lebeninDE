@@ -4481,7 +4481,7 @@ a.cta-nav-btn:hover {
 
 /* Privacy Modal Styles */
 .privacy-modal-overlay {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
