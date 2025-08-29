@@ -74,7 +74,7 @@ class LebenInDeutschlandQuiz {
         
         try {
             console.log('Attempting to load questions from fragen/questions-working.json');
-            const response = await fetch('fragen/questions-working.json');
+            const response = await fetch(`fragen/questions-working.json?t=${Date.now()}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -179,11 +179,41 @@ class LebenInDeutschlandQuiz {
             
         } catch (error) {
             console.error('Failed to load questions from JSON file:', error);
+            console.error('Error details:', error.stack);
+            console.log('Error name:', error.name);
+            console.log('Error message:', error.message);
             console.log(`Continuing with ${fallbackCount} fallback questions`);
             // Keep the fallback questions that are already loaded
+            
+            // Show a user-visible warning that only fallback questions loaded
+            setTimeout(() => {
+                const warningDiv = document.createElement('div');
+                warningDiv.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; 
+                    background: orange; color: white; 
+                    padding: 15px; border-radius: 8px; 
+                    z-index: 10000; max-width: 300px;
+                    font-family: Arial, sans-serif;
+                `;
+                warningDiv.innerHTML = `
+                    <strong>⚠️ Warning:</strong><br>
+                    Only ${fallbackCount} sample questions loaded.<br>
+                    <small>JSON file failed to load: ${error.message}</small>
+                `;
+                document.body.appendChild(warningDiv);
+                
+                setTimeout(() => {
+                    if (warningDiv.parentNode) warningDiv.parentNode.removeChild(warningDiv);
+                }, 8000);
+            }, 2000);
         }
         
         console.log(`Final question count: ${this.allQuestions.length}`);
+        
+        // Show question count in page title for easy verification
+        setTimeout(() => {
+            document.title = `Quiz (${this.allQuestions.length} questions) - Leben in Deutschland`;
+        }, 100);
     }
     
     loadFallbackQuestions() {

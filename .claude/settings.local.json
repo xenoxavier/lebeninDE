@@ -28,12 +28,23 @@
       "Bash(npm run build:*)",
       "Bash(claude mcp:*)",
       "mcp__ide__getDiagnostics",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(git log:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npx:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": [],
     "additionalDirectories": [
-      "C:\\Users\\DELL\\Documents\\Claude\\frontend-mcp-agent"
+      "C:\\Users\\DELL\\Documents\\Claude\\frontend-mcp-agent",
+      "C:\\Users\\DELL\\Documents\\Claude"
     ]
   }
 }
