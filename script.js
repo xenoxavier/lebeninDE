@@ -73,8 +73,9 @@ class LebenInDeutschlandQuiz {
         console.log(`Starting with ${fallbackCount} fallback questions`);
         
         try {
-            console.log('Attempting to load questions from fragen/questions-working.json');
-            const response = await fetch(`fragen/questions-working.json?t=${Date.now()}`);
+            console.log('Attempting to load questions from fragen/corrected 300 question.json');
+            // Try without cache-busting first for local development
+            const response = await fetch(`fragen/corrected 300 question.json`);
             
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -134,34 +135,39 @@ class LebenInDeutschlandQuiz {
             for (let index = 0; index < questionArray.length; index++) {
                 const q = questionArray[index];
                 
+                // Handle both English and German field names
+                const questionText = q.question || q.frage;
+                const options = q.options || q.optionen;
+                const correctAnswer = q.correct_answer || q.answer || q.antwort;
+                
                 // Validate question structure
-                if (!q.question || typeof q.question !== 'string') {
-                    console.warn(`Question ${index + 1} missing or invalid 'question' field:`, q);
+                if (!questionText || typeof questionText !== 'string') {
+                    console.warn(`Question ${index + 1} missing or invalid question field:`, q);
                     continue;
                 }
                 
-                if (!q.options || !Array.isArray(q.options) || q.options.length === 0) {
-                    console.warn(`Question ${index + 1} missing or invalid 'options' field:`, q);
+                if (!options || !Array.isArray(options) || options.length === 0) {
+                    console.warn(`Question ${index + 1} missing or invalid options field:`, q);
                     continue;
                 }
                 
-                if (!q.answer || typeof q.answer !== 'string') {
-                    console.warn(`Question ${index + 1} missing or invalid 'answer' field:`, q);
+                if (!correctAnswer) {
+                    console.warn(`Question ${index + 1} missing answer field:`, q);
                     continue;
                 }
                 
                 // Find correct answer index
-                const correctIndex = q.options.findIndex(option => option === q.answer);
+                const correctIndex = options.findIndex(option => option === correctAnswer);
                 if (correctIndex === -1) {
-                    console.warn(`Question ${index + 1} answer "${q.answer}" not found in options:`, q.options);
+                    console.warn(`Question ${index + 1} answer "${correctAnswer}" not found in options:`, options);
                     continue;
                 }
                 
                 // Valid question, convert it
                 jsonQuestions.push({
-                    id: q.number || q.id || index + 1,
-                    question: q.question,
-                    options: q.options,
+                    id: q.aufgabe || q.number || q.id || index + 1,
+                    question: questionText,
+                    options: options,
                     correct: correctIndex
                 });
                 validQuestions++;

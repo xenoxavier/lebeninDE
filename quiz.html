@@ -779,9 +779,9 @@
         // Load questions
         async function loadQuestions() {
             try {
-                updateDebugInfo('🔄 Loading questions from fragen/questions-working.json...');
+                updateDebugInfo('🔄 Loading questions from fragen/corrected 300 question.json...');
                 
-                const response = await fetch(`fragen/questions-working.json?t=${Date.now()}`);
+                const response = await fetch(`fragen/corrected 300 question.json`);
                 updateDebugInfo(`📡 Response status: ${response.status} ${response.statusText}`);
                 
                 if (!response.ok) {
@@ -800,6 +800,14 @@
                 } else {
                     throw new Error('Invalid data format');
                 }
+                
+                // Normalize questions to handle both English and German field names
+                questions = questions.map(q => ({
+                    number: q.aufgabe || q.number || q.id,
+                    question: q.question || q.frage,
+                    options: q.options || q.optionen,
+                    answer: q.correct_answer || q.answer || q.antwort
+                }));
                 
                 // Verify question 300
                 const q300 = questions.find(q => q.number === 300);

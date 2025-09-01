@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug 300 Questions Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        
+        .file-info {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🔍 Debug 300 Questions Loading</h1>
+        
+        <div id="status" class="status info">Ready to test...</div>
+        
+        <button onclick="testFileAccess()">1. Test File Access</button>
+        <button onclick="testJSONStructure()">2. Test JSON Structure</button>
+        <button onclick="testFullLoading()">3. Test Full Loading Logic</button>
+        <button onclick="clearLog()">Clear Log</button>
+        
+        <div class="file-info">
+            <h3>Files to Test:</h3>
+            <ul>
+                <li><strong>fragen/corrected 300 question.json</strong> - New corrected file</li>
+                <li><strong>fragen/questions-working.json</strong> - Original working file</li>
+            </ul>
+        </div>
+        
+        <div id="log" class="log">Debug log will appear here...\n</div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(`[DEBUG-${type}]`, message);
+        }
+        
+        function setStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+        }
+        
+        function clearLog() {
+            document.getElementById('log').textContent = 'Debug log cleared...\n';
+        }
+        
+        async function testFileAccess() {
+            setStatus('Testing file access...', 'info');
+            log('=== TESTING FILE ACCESS ===');
+            
+            const files = [
+                'fragen/corrected 300 question.json',
+                'fragen/questions-working.json'
+            ];
+            
+            for (const file of files) {
+                try {
+                    log(`Testing file: ${file}`);
+                    const response = await fetch(file);
+                    log(`Response status: ${response.status} ${response.statusText}`);
+                    log(`Response headers: ${JSON.stringify([...response.headers.entries()])}`);
+                    
+                    if (!response.ok) {
+                        log(`❌ File ${file} failed to load: ${response.status}`, 'error');
+                        continue;
+                    }
+                    
+                    const text = await response.text();
+                    log(`✅ File ${file} loaded successfully`);
+                    log(`File size: ${text.length} characters`);
+                    log(`First 100 chars: ${text.substring(0, 100)}`);
+                    log(`Last 100 chars: ${text.substring(text.length - 100)}`);
+                    
+                } catch (error) {
+                    log(`❌ Error loading ${file}: ${error.message}`, 'error');
+                    log(`Error details: ${error.stack}`);
+                }
+            }
+            
+            setStatus('File access test completed', 'info');
+        }
+        
+        async function testJSONStructure() {
+            setStatus('Testing JSON structure...', 'info');
+            log('=== TESTING JSON STRUCTURE ===');
+            
+            try {
+                const response = await fetch('fragen/corrected 300 question.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const text = await response.text();
+                log(`Raw text loaded, length: ${text.length}`);
+                
+                let data;
+                try {
+                    data = JSON.parse(text);
+                    log('✅ JSON parsed successfully');
+                } catch (jsonError) {
+                    log(`❌ JSON parsing failed: ${jsonError.message}`, 'error');
+                    
+                    // Try to find the problematic line
+                    const lines = text.split('\n');
+                    const match = jsonError.message.match(/position (\d+)/);
+                    if (match) {
+                        const pos = parseInt(match[1]);
+                        let currentPos = 0;
+                        for (let i = 0; i < lines.length; i++) {
+                            if (currentPos + lines[i].length >= pos) {
+                                log(`Problem likely on line ${i + 1}: ${lines[i]}`);
+                                break;
+                            }
+                            currentPos += lines[i].length + 1; // +1 for newline
+                        }
+                    }
+                    return;
+                }
+                
+                log(`Data type: ${typeof data}`);
+                log(`Data keys: ${Object.keys(data)}`);
+                
+                if (data.questions && Array.isArray(data.questions)) {
+                    log(`✅ Found questions array with ${data.questions.length} items`);
+                    
+                    const firstQ = data.questions[0];
+                    log(`First question structure:`);
+                    log(`- aufgabe: ${firstQ.aufgabe}`);
+                    log(`- question: "${firstQ.question?.substring(0, 50)}..."`);
+                    log(`- options: ${firstQ.options?.length} options`);
+                    log(`- correct_answer: "${firstQ.correct_answer}"`);
+                    
+                    // Test if correct_answer exists in options
+                    const correctIndex = firstQ.options?.findIndex(opt => opt === firstQ.correct_answer);
+                    log(`- correct_answer index: ${correctIndex}`);
+                    
+                    if (correctIndex === -1) {
+                        log(`❌ correct_answer not found in options!`, 'error');
+                        log(`Options: ${JSON.stringify(firstQ.options)}`);
+                    } else {
+                        log(`✅ correct_answer found at index ${correctIndex}`);
+                    }
+                    
+                    // Check question 300
+                    const q300 = data.questions.find(q => q.aufgabe === 300);
+                    if (q300) {
+                        log(`✅ Question 300 found: "${q300.question?.substring(0, 50)}..."`);
+                    } else {
+                        log(`❌ Question 300 NOT found!`, 'error');
+                        const lastQ = data.questions[data.questions.length - 1];
+                        log(`Last question aufgabe: ${lastQ.aufgabe}`);
+                    }
+                    
+                } else {
+                    log(`❌ No questions array found in data`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error testing JSON structure: ${error.message}`, 'error');
+                setStatus('JSON structure test failed', 'error');
+                return;
+            }
+            
+            setStatus('JSON structure test completed', 'success');
+        }
+        
+        async function testFullLoading() {
+            setStatus('Testing full loading logic...', 'info');
+            log('=== TESTING FULL LOADING LOGIC ===');
+            
+            // Simulate the exact loading logic from script.js
+            try {
+                log('Attempting to load questions from fragen/corrected 300 question.json');
+                const response = await fetch(`fragen/corrected 300 question.json?t=${Date.now()}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const textContent = await response.text();
+                log('Raw text length:', textContent.length);
+                
+                if (textContent.length === 0) {
+                    throw new Error('File is empty');
+                }
+                
+                log('First 200 chars:', textContent.substring(0, 200));
+                log('Last 200 chars:', textContent.substring(textContent.length - 200));
+                
+                let data;
+                try {
+                    data = JSON.parse(textContent);
+                    log('JSON parsed successfully');
+                } catch (jsonError) {
+                    log(`JSON parsing failed: ${jsonError}`, 'error');
+                    throw new Error(`JSON Parse Error: ${jsonError.message}`);
+                }
+                
+                log('Data structure:', typeof data, Object.keys(data));
+                
+                if (!data) {
+                    throw new Error('Parsed data is null or undefined');
+                }
+                
+                let questionArray;
+                if (Array.isArray(data)) {
+                    questionArray = data;
+                    log(`Found ${questionArray.length} questions in direct array format`);
+                } else if (data.questions && Array.isArray(data.questions)) {
+                    questionArray = data.questions;
+                    log(`Found ${questionArray.length} questions in object format`);
+                } else {
+                    throw new Error(`No valid questions found. Data type: ${typeof data}`);
+                }
+                
+                log('Sample question structure:', questionArray[0]);
+                
+                // Validate and convert questions (same logic as script.js)
+                const jsonQuestions = [];
+                let validQuestions = 0;
+                
+                for (let index = 0; index < questionArray.length; index++) {
+                    const q = questionArray[index];
+                    
+                    if (!q.question || typeof q.question !== 'string') {
+                        log(`Question ${index + 1} missing or invalid 'question' field`, 'warning');
+                        continue;
+                    }
+                    
+                    if (!q.options || !Array.isArray(q.options) || q.options.length === 0) {
+                        log(`Question ${index + 1} missing or invalid 'options' field`, 'warning');
+                        continue;
+                    }
+                    
+                    if (!q.correct_answer && !q.answer) {
+                        log(`Question ${index + 1} missing answer field`, 'warning');
+                        continue;
+                    }
+                    
+                    const correctAnswer = q.correct_answer || q.answer;
+                    const correctIndex = q.options.findIndex(option => option === correctAnswer);
+                    if (correctIndex === -1) {
+                        log(`Question ${index + 1} answer "${correctAnswer}" not found in options`, 'warning');
+                        continue;
+                    }
+                    
+                    jsonQuestions.push({
+                        id: q.aufgabe || q.number || q.id || index + 1,
+                        question: q.question,
+                        options: q.options,
+                        correct: correctIndex
+                    });
+                    validQuestions++;
+                }
+                
+                if (jsonQuestions.length === 0) {
+                    throw new Error('No valid questions found after processing');
+                }
+                
+                log(`✅ SUCCESS: ${validQuestions} valid questions processed`);
+                log(`Question IDs range: ${jsonQuestions[0].id} to ${jsonQuestions[jsonQuestions.length-1].id}`);
+                
+                setStatus(`✅ SUCCESS: ${validQuestions} questions loaded successfully!`, 'success');
+                
+            } catch (error) {
+                log(`❌ Full loading test failed: ${error.message}`, 'error');
+                log(`Error stack: ${error.stack}`);
+                setStatus('Full loading test failed', 'error');
+            }
+        }
+        
+        // Auto-run basic tests on load
+        window.addEventListener('load', () => {
+            log('Debug page loaded. Click buttons to run tests.');
+        });
+    </script>
+</body>
+</html>
