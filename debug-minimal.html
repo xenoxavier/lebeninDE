@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Debug</title>
+</head>
+<body>
+    <h1>Minimal Debug Test</h1>
+    <div id="status"></div>
+    <div id="details"></div>
+    
+    <script>
+        class TestQuiz {
+            constructor() {
+                this.allQuestions = [];
+                this.loadFallbackQuestions();
+                console.log('Fallback questions loaded:', this.allQuestions.length);
+                this.loadQuestions();
+            }
+            
+            loadFallbackQuestions() {
+                // Just 5 sample questions for testing
+                this.allQuestions = [
+                    {
+                        id: 1,
+                        question: "Was ist ein Rechtsstaat?",
+                        options: ["A", "B", "C", "D"],
+                        correct: 2
+                    },
+                    {
+                        id: 2,
+                        question: "Test question 2?",
+                        options: ["A", "B", "C", "D"],
+                        correct: 1
+                    }
+                ];
+            }
+            
+            async loadQuestions() {
+                const fallbackCount = this.allQuestions.length;
+                console.log(`Starting with ${fallbackCount} fallback questions`);
+                
+                document.getElementById('status').innerHTML = `<p>Loading questions...</p>`;
+                
+                try {
+                    console.log('Attempting to load questions from fragen/questions-working.json');
+                    const response = await fetch('fragen/questions-working.json');
+                    console.log('Response received:', response);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const textContent = await response.text();
+                    console.log('Raw text length:', textContent.length);
+                    
+                    if (textContent.length === 0) {
+                        throw new Error('File is empty');
+                    }
+                    
+                    console.log('First 100 chars:', textContent.substring(0, 100));
+                    
+                    let data;
+                    try {
+                        data = JSON.parse(textContent);
+                        console.log('JSON parsed successfully');
+                    } catch (jsonError) {
+                        console.error('JSON parsing failed:', jsonError);
+                        throw jsonError;
+                    }
+                    
+                    console.log('Data structure:', typeof data, data ? Object.keys(data) : 'null');
+                    
+                    let questionArray;
+                    if (Array.isArray(data)) {
+                        questionArray = data;
+                        console.log(`Found ${questionArray.length} questions in direct array format`);
+                    } else if (data.questions && Array.isArray(data.questions)) {
+                        questionArray = data.questions;
+                        console.log(`Found ${questionArray.length} questions in object format`);
+                    } else {
+                        throw new Error(`No valid questions found. Data type: ${typeof data}`);
+                    }
+                    
+                    console.log('Sample question structure:', questionArray[0]);
+                    
+                    // Convert all questions
+                    const jsonQuestions = [];
+                    let validQuestions = 0;
+                    
+                    for (let index = 0; index < questionArray.length; index++) {
+                        const q = questionArray[index];
+                        
+                        if (!q.question || typeof q.question !== 'string') {
+                            console.warn(`Question ${index + 1} missing or invalid 'question' field:`, q);
+                            continue;
+                        }
+                        
+                        if (!q.options || !Array.isArray(q.options) || q.options.length === 0) {
+                            console.warn(`Question ${index + 1} missing or invalid 'options' field:`, q);
+                            continue;
+                        }
+                        
+                        if (!q.answer || typeof q.answer !== 'string') {
+                            console.warn(`Question ${index + 1} missing or invalid 'answer' field:`, q);
+                            continue;
+                        }
+                        
+                        const correctIndex = q.options.findIndex(option => option === q.answer);
+                        if (correctIndex === -1) {
+                            console.warn(`Question ${index + 1} answer "${q.answer}" not found in options:`, q.options);
+                            continue;
+                        }
+                        
+                        jsonQuestions.push({
+                            id: q.number || q.id || index + 1,
+                            question: q.question,
+                            options: q.options,
+                            correct: correctIndex
+                        });
+                        validQuestions++;
+                    }
+                    
+                    if (jsonQuestions.length === 0) {
+                        throw new Error('No valid questions found in JSON file');
+                    }
+                    
+                    // Success!
+                    this.allQuestions = jsonQuestions;
+                    console.log(`Successfully loaded ${this.allQuestions.length} valid questions from JSON file`);
+                    console.log(`${validQuestions} valid out of ${questionArray.length} total questions`);
+                    
+                    document.getElementById('status').innerHTML = `
+                        <p style="color: green;"><strong>✅ SUCCESS!</strong></p>
+                        <p>Loaded ${this.allQuestions.length} questions from JSON</p>
+                    `;
+                    
+                    document.getElementById('details').innerHTML = `
+                        <h2>Details:</h2>
+                        <p>Total questions: ${this.allQuestions.length}</p>
+                        <p>First question: ${this.allQuestions[0].question}</p>
+                        <p>Sample options: ${JSON.stringify(this.allQuestions[0].options)}</p>
+                    `;
+                    
+                } catch (error) {
+                    console.error('Failed to load questions from JSON file:', error);
+                    console.error('Error details:', error.stack);
+                    
+                    document.getElementById('status').innerHTML = `
+                        <p style="color: red;"><strong>❌ FAILED!</strong></p>
+                        <p>Error: ${error.message}</p>
+                        <p>Using ${fallbackCount} fallback questions instead</p>
+                    `;
+                    
+                    document.getElementById('details').innerHTML = `
+                        <h2>Error Details:</h2>
+                        <p>Error name: ${error.name}</p>
+                        <p>Error message: ${error.message}</p>
+                        <pre>${error.stack}</pre>
+                    `;
+                }
+                
+                console.log(`Final question count: ${this.allQuestions.length}`);
+            }
+        }
+        
+        // Start the test
+        window.addEventListener('DOMContentLoaded', () => {
+            new TestQuiz();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Question Loading</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .log {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Question Loading Test</h1>
+        <button onclick="testLoading()">Test Question Loading</button>
+        <div id="log" class="log"></div>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : 'info';
+            logEl.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(message);
+        }
+
+        async function testLoading() {
+            const logEl = document.getElementById('log');
+            const resultsEl = document.getElementById('results');
+            logEl.innerHTML = '';
+            resultsEl.innerHTML = '';
+
+            log('Starting question loading test...', 'info');
+
+            try {
+                log('Attempting to fetch: fragen/questions-working.json', 'info');
+                const response = await fetch('fragen/questions-working.json');
+                
+                log(`Response status: ${response.status} ${response.statusText}`, response.ok ? 'success' : 'error');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                log('Fetching response text...', 'info');
+                const textContent = await response.text();
+                log(`Raw text length: ${textContent.length}`, 'success');
+                
+                if (textContent.length === 0) {
+                    throw new Error('File is empty');
+                }
+
+                log(`First 100 chars: ${textContent.substring(0, 100)}`, 'info');
+                log(`Last 100 chars: ${textContent.substring(textContent.length - 100)}`, 'info');
+
+                log('Attempting to parse JSON...', 'info');
+                let data;
+                try {
+                    data = JSON.parse(textContent);
+                    log('JSON parsed successfully!', 'success');
+                } catch (jsonError) {
+                    log(`JSON parsing failed: ${jsonError.message}`, 'error');
+                    throw jsonError;
+                }
+
+                log(`Data type: ${typeof data}`, 'info');
+                log(`Data keys: ${Object.keys(data).join(', ')}`, 'info');
+
+                let questionArray;
+                if (Array.isArray(data)) {
+                    questionArray = data;
+                    log(`Found ${questionArray.length} questions in direct array format`, 'success');
+                } else if (data.questions && Array.isArray(data.questions)) {
+                    questionArray = data.questions;
+                    log(`Found ${questionArray.length} questions in object format`, 'success');
+                } else {
+                    throw new Error(`No valid questions found. Data type: ${typeof data}`);
+                }
+
+                log(`Sample question: ${JSON.stringify(questionArray[0], null, 2)}`, 'info');
+
+                // Validate and convert questions
+                const jsonQuestions = [];
+                let validQuestions = 0;
+                
+                for (let index = 0; index < Math.min(questionArray.length, 5); index++) {
+                    const q = questionArray[index];
+                    
+                    if (!q.question || typeof q.question !== 'string') {
+                        log(`Question ${index + 1} missing or invalid 'question' field`, 'error');
+                        continue;
+                    }
+                    
+                    if (!q.options || !Array.isArray(q.options) || q.options.length === 0) {
+                        log(`Question ${index + 1} missing or invalid 'options' field`, 'error');
+                        continue;
+                    }
+                    
+                    if (!q.answer || typeof q.answer !== 'string') {
+                        log(`Question ${index + 1} missing or invalid 'answer' field`, 'error');
+                        continue;
+                    }
+                    
+                    const correctIndex = q.options.findIndex(option => option === q.answer);
+                    if (correctIndex === -1) {
+                        log(`Question ${index + 1} answer "${q.answer}" not found in options`, 'error');
+                        continue;
+                    }
+                    
+                    jsonQuestions.push({
+                        id: q.number || q.id || index + 1,
+                        question: q.question,
+                        options: q.options,
+                        correct: correctIndex
+                    });
+                    validQuestions++;
+                }
+
+                log(`Validation complete: ${validQuestions} valid questions out of first 5 tested`, 'success');
+                log(`Total questions available: ${questionArray.length}`, 'success');
+
+                // Show results
+                resultsEl.innerHTML = `
+                    <h2>Results:</h2>
+                    <p><strong>✅ Success!</strong> Loaded ${questionArray.length} questions</p>
+                    <p>First converted question:</p>
+                    <pre>${JSON.stringify(jsonQuestions[0], null, 2)}</pre>
+                `;
+
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, 'error');
+                resultsEl.innerHTML = `
+                    <h2>Results:</h2>
+                    <p><strong>❌ Failed!</strong> ${error.message}</p>
+                `;
+            }
+        }
+
+        // Auto-run test on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(testLoading, 1000);
+        });
+    </script>
+</body>
+</html>

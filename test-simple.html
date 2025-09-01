@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Fetch Test</title>
+</head>
+<body>
+    <h1>Testing Fetch</h1>
+    <div id="results"></div>
+    <script>
+        async function testFetch() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testing fetch...</p>';
+            
+            try {
+                console.log('About to fetch fragen/questions-working.json');
+                const response = await fetch('fragen/questions-working.json');
+                console.log('Response:', response);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const text = await response.text();
+                console.log('Text length:', text.length);
+                
+                const data = JSON.parse(text);
+                console.log('Data:', data);
+                
+                const questionCount = Array.isArray(data) ? data.length : (data.questions ? data.questions.length : 0);
+                
+                results.innerHTML = `
+                    <p><strong>SUCCESS!</strong></p>
+                    <p>Response status: ${response.status}</p>
+                    <p>Text length: ${text.length}</p>
+                    <p>Question count: ${questionCount}</p>
+                    <p>First question: ${JSON.stringify((Array.isArray(data) ? data[0] : data.questions[0]), null, 2)}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                results.innerHTML = `<p><strong>ERROR:</strong> ${error.message}</p>`;
+            }
+        }
+        
+        testFetch();
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@
 
 ### MUST IMPLEMENT FIRST:
 1. **Connect ALL quiz types to dashboard stats:**
-   - ❌ Practice quiz (300 questions) → dashboard tracking MISSING
+   - ✅ Practice quiz (300 questions) → **NOW WORKING** (Fixed 2025-09-01)
    - ❌ Bundesland quizzes (all 16) → dashboard tracking MISSING  
    - ✅ Exam simulation → dashboard tracking WORKING
    
@@ -44,6 +44,39 @@ python -m http.server 8080
 
 **Date Fixed**: 2025-08-26
 **Status**: ✅ RESOLVED
+
+### Issue #3: 300 Questions Not Loading - Mixed Field Names
+**Problem**: Quiz showing only 10 fallback questions instead of full 300 questions
+**Root Causes**: 
+1. Cache-busting parameter `?t=${Date.now()}` caused CORS issues when loading JSON
+2. Inconsistent field names in corrected JSON file:
+   - Questions 1-169: English fields (`question`, `options`, `correct_answer`)
+   - Questions 170-300: German fields (`frage`, `optionen`, `antwort`)
+3. Quiz files loading from wrong JSON source
+
+**Solution**: 
+1. **Removed cache-busting parameter** to fix CORS loading
+2. **Updated both `script.js` and `quiz.html`** to handle mixed field names:
+   ```javascript
+   const questionText = q.question || q.frage;
+   const options = q.options || q.optionen;
+   const correctAnswer = q.correct_answer || q.answer || q.antwort;
+   const id = q.aufgabe || q.number || q.id;
+   ```
+3. **Switched to corrected JSON file**: `fragen/corrected 300 question.json`
+4. **Added debug page** (`debug-300-questions.html`) for troubleshooting
+5. **Field normalization** in both script.js and quiz.html to ensure consistency
+
+**Files Updated**:
+- `script.js` - loadQuestions() method with mixed field support
+- `quiz.html` - question loading and normalization logic
+- Added: `fragen/corrected 300 question.json` (114KB, all 300 questions)
+- Added: `debug-300-questions.html` for testing
+
+**Testing**: All 300 questions now load correctly maintaining proper sequence 1-300
+**Date Fixed**: 2025-09-01  
+**Status**: ✅ RESOLVED
+**Commit**: bb5b6cb
 
 ### Issue #2: Exam Mode Interference
 **Problem**: Exam simulation changes affected practice quiz functionality
