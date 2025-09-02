@@ -261,6 +261,68 @@
             margin-bottom: 2rem;
         }
 
+        .image-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        .image-option {
+            padding: 1rem;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .image-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+        }
+
+        .image-option.selected {
+            border: 3px solid #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .image-option.correct {
+            border: 3px solid #10b981;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .image-option.wrong {
+            border: 3px solid #ef4444;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+
+        .image-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 140px;
+        }
+
+        .option.correct {
+            border: 3px solid #10b981;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+        }
+
+        .option.wrong {
+            border: 3px solid #ef4444;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #7f1d1d;
+        }
+
         .option {
             background: #f8fafc;
             border: 2px solid #e2e8f0;
@@ -520,8 +582,10 @@
         const questions = [
             {
                 question: "Welches Wappen gehört zum Bundesland Baden-Württemberg?",
-                options: ["Bild 1", "Bild 2", "Bild 3", "Bild 4"],
-                correct: 3
+                options: ["Baden-Württemberg", "Thüringen", "Sachsen-Anhalt", "Hamburg"],
+                images: ["picture/Baden-Württemberg.png", "picture/Thuringia.png", "picture/Saxony-Anhalt (Sachsen-Anhalt).png", "picture/hamburg.png"],
+                correct: 0,
+                isImageQuestion: true
             },
             {
                 question: "Welches ist ein Landkreis in Baden-Württemberg?",
@@ -587,18 +651,54 @@
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             
-            question.options.forEach((option, index) => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'option';
-                optionDiv.textContent = option;
-                optionDiv.onclick = () => selectOption(index);
-                
-                if (selectedAnswers[currentQuestion] === index) {
-                    optionDiv.classList.add('selected');
-                }
-                
-                optionsContainer.appendChild(optionDiv);
-            });
+            if (question.isImageQuestion) {
+                // Handle image-based questions
+                optionsContainer.className = 'options-container image-options';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option image-option';
+                    
+                    const img = document.createElement('img');
+                    img.src = question.images[index];
+                    img.alt = option;
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '8px';
+                    
+                    optionDiv.appendChild(img);
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        const isCorrect = index === question.correct;
+                        optionDiv.classList.add(isCorrect ? 'correct' : 'wrong');
+                    } else if (selectedAnswers[currentQuestion] !== null && index === question.correct && selectedAnswers[currentQuestion] !== question.correct) {
+                        optionDiv.classList.add('correct');
+                    }
+                    
+                    // Disable options if already answered
+                    if (selectedAnswers[currentQuestion] !== null) {
+                        optionDiv.style.pointerEvents = 'none';
+                        optionDiv.style.cursor = 'not-allowed';
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            } else {
+                // Handle text-based questions
+                optionsContainer.className = 'options-container';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        optionDiv.classList.add('selected');
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            }
             
             // Update navigation
             document.getElementById('back-btn').disabled = currentQuestion === 0;
@@ -609,14 +709,39 @@
 
         // Select answer option
         function selectOption(index) {
-            selectedAnswers[currentQuestion] = index;
+            // Prevent changing answer if already selected
+            if (selectedAnswers[currentQuestion] !== null) {
+                return;
+            }
             
-            // Update UI
-            document.querySelectorAll('.option').forEach((option, i) => {
-                option.classList.toggle('selected', i === index);
+            selectedAnswers[currentQuestion] = index;
+            const question = questions[currentQuestion];
+            const isCorrect = index === question.correct;
+            
+            // Remove previous feedback classes from all options
+            document.querySelectorAll('.option').forEach((option) => {
+                option.classList.remove('selected', 'correct', 'wrong');
             });
             
+            // Show immediate visual feedback
+            document.querySelectorAll('.option').forEach((option, i) => {
+                if (i === index) {
+                    // Show if the selected answer is correct or wrong
+                    option.classList.add(isCorrect ? 'correct' : 'wrong');
+                } else if (i === question.correct && !isCorrect) {
+                    // Show the correct answer if user selected wrong
+                    option.classList.add('correct');
+                }
+                
+                // Disable all options after selection
+                option.style.pointerEvents = 'none';
+                option.style.cursor = 'not-allowed';
+            });
+            
+            // Enable next button
             document.getElementById('next-btn').disabled = false;
+            
+            // Update progress
             updateProgress();
         }
 
