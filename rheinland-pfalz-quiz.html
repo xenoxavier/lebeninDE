@@ -526,8 +526,10 @@
         const questions = [
             {
                 question: "Welches Wappen gehört zum Bundesland Rheinland-Pfalz?",
-                options: ["Bild 1", "Bild 2", "Bild 3", "Bild 4"],
-                correct: 2
+                options: ["Rheinland-Pfalz", "Hamburg", "Thüringen", "Schleswig-Holstein"],
+                images: ["picture/Rhineland-Palatinate (Rheinland-Pfalz).png", "picture/hamburg.png", "picture/Thuringia.png", "picture/Schleswig-Holstein.png"],
+                correct: 0,
+                isImageQuestion: true
             },
             {
                 question: "Welches ist ein Landkreis in Rheinland-Pfalz?",
@@ -593,18 +595,45 @@
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             
-            question.options.forEach((option, index) => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'option';
-                optionDiv.textContent = option;
-                optionDiv.onclick = () => selectOption(index);
-                
-                if (selectedAnswers[currentQuestion] === index) {
-                    optionDiv.classList.add('selected');
-                }
-                
-                optionsContainer.appendChild(optionDiv);
-            });
+            if (question.isImageQuestion) {
+                // Handle image-based questions
+                optionsContainer.className = 'options-container image-options';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option image-option';
+                    
+                    const img = document.createElement('img');
+                    img.src = question.images[index];
+                    img.alt = option;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+                    
+                    optionDiv.appendChild(img);
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        optionDiv.classList.add('selected');
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            } else {
+                // Handle text-based questions  
+                optionsContainer.className = 'options-container';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        optionDiv.classList.add('selected');
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            }
             
             // Update navigation
             document.getElementById('back-btn').disabled = currentQuestion === 0;
@@ -615,11 +644,24 @@
 
         // Select answer option
         function selectOption(index) {
-            selectedAnswers[currentQuestion] = index;
+            // Prevent changing answers after selection (Berlin-style)
+            if (selectedAnswers[currentQuestion] !== null) {
+                return;
+            }
             
-            // Update UI
-            document.querySelectorAll('.option').forEach((option, i) => {
-                option.classList.toggle('selected', i === index);
+            selectedAnswers[currentQuestion] = index;
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            // Show immediate feedback
+            options.forEach((opt, optionIndex) => {
+                if (optionIndex === question.correct) {
+                    opt.classList.add('correct');
+                } else if (optionIndex === index && optionIndex !== question.correct) {
+                    opt.classList.add('wrong');
+                }
+                // Disable all options
+                opt.style.pointerEvents = 'none';
             });
             
             document.getElementById('next-btn').disabled = false;
