@@ -27,10 +27,10 @@
         .sidebar {
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            padding: 1.5rem;
+            padding: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
             position: relative;
             overflow: hidden;
         }
@@ -53,13 +53,13 @@
         }
 
         .bundesland-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             display: block;
         }
 
         .bundesland-name {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -70,8 +70,8 @@
 
         .quiz-subtitle {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
         }
 
         .progress-section {
@@ -85,7 +85,7 @@
         }
 
         .progress-title {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
             color: rgba(255, 255, 255, 0.9);
@@ -120,14 +120,14 @@
         }
 
         .progress-percentage {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: white;
             display: block;
         }
 
         .progress-label {
-            font-size: 0.5rem;
+            font-size: 0.6rem;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 0.15rem;
             display: block;
@@ -149,25 +149,25 @@
         }
 
         .stat-number {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.15rem;
             color: white;
         }
 
         .stat-label {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: rgba(255, 255, 255, 0.7);
         }
 
         .btn {
-            padding: 0.7rem 1.2rem;
+            padding: 0.875rem 1.5rem;
             border: none;
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-decoration: none;
             text-align: center;
             display: block;
@@ -226,7 +226,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 2.5rem 3rem 2rem;
+            padding: 3rem 4rem 2rem;
             max-width: 900px;
             margin: 0 auto;
             width: 100%;
@@ -250,13 +250,13 @@
         }
 
         .question-text {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             line-height: 1.6;
             color: #1e293b;
             font-weight: 500;
             text-align: center;
-            margin-bottom: 2.5rem;
-            padding: 0 1.5rem;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
         }
 
         /* Answer Options */
@@ -267,11 +267,71 @@
             margin-bottom: 2rem;
         }
 
+        .image-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 600px;
+        }
+
+        .image-option {
+            padding: 1rem;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .image-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+        }
+
+        .image-option.selected {
+            border: 3px solid #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .image-option.correct {
+            border: 3px solid #10b981;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+
+        .image-option.wrong {
+            border: 3px solid #ef4444;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+
+        .option.correct {
+            border: 3px solid #10b981;
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+        }
+
+        .option.wrong {
+            border: 3px solid #ef4444;
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #7f1d1d;
+        }
+
+        .image-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 140px;
+        }
+
         .option {
             background: #f8fafc;
             border: 2px solid #e2e8f0;
             border-radius: 16px;
-            padding: 1.25rem 1.5rem;
+            padding: 1.5rem 2rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 1rem;
@@ -319,7 +379,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             gap: 2rem;
         }
 
@@ -327,7 +387,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 0.8rem 1.8rem;
+            padding: 0.875rem 2rem;
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
@@ -411,25 +471,11 @@
 
             .sidebar {
                 order: 2;
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            .bundesland-icon {
-                font-size: 2rem;
-            }
-
-            .bundesland-name {
-                font-size: 1.1rem;
+                padding: 1.5rem;
             }
 
             .question-container {
                 padding: 2rem 1.5rem;
-            }
-
-            .question-text {
-                font-size: 1.2rem;
-                padding: 0 1rem;
             }
 
             .navigation {
@@ -459,7 +505,7 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="quiz-info">
-                <span class="bundesland-icon">🏖️</span>
+                <span class="bundesland-icon">⛵</span>
                 <h1 class="bundesland-name">Schleswig-Holstein</h1>
                 <p class="quiz-subtitle">10 spezielle Fragen zu Schleswig-Holstein</p>
             </div>
@@ -540,18 +586,20 @@
         const questions = [
             {
                 question: "Welches Wappen gehört zum Bundesland Schleswig-Holstein?",
-                options: ["Bild 1", "Bild 2", "Bild 3", "Bild 4"],
-                correct: 0
+                options: ["Saarland", "Berlin", "Schleswig-Holstein", "Thüringen"],
+                images: ["picture/Saarland.png", "picture/berlin.png", "picture/Bundesland Schleswig-Holstein flag.png", "picture/Thuringia.png"],
+                correct: 2,
+                isImageQuestion: true
             },
             {
-                question: "Welches ist ein Landkreis in Schleswig-Holstein?",
-                options: ["Ammerland", "Mecklenburgische Seenplatte", "Nordfriesland", "Rhein-Sieg-Kreis"],
-                correct: 2
+                question: "Welches ist ein Kreis in Schleswig-Holstein?",
+                options: ["Ammerland", "Dithmarschen", "Rhön-Grabfeld", "Vogtlandkreis"],
+                correct: 1
             },
             {
                 question: "Für wie viele Jahre wird der Landtag in Schleswig-Holstein gewählt?",
                 options: ["3", "4", "5", "6"],
-                correct: 1
+                correct: 2
             },
             {
                 question: "Ab welchem Alter darf man in Schleswig-Holstein bei Kommunalwahlen wählen?",
@@ -560,33 +608,33 @@
             },
             {
                 question: "Welche Farben hat die Landesflagge von Schleswig-Holstein?",
-                options: ["weiß-blau", "blau-weiß-rot", "weiß-rot", "grün-weiß-rot"],
-                correct: 1
-            },
-            {
-                question: "Wo können Sie sich in Schleswig-Holstein über politische Themen informieren?",
-                options: ["bei der Verbraucherzentrale", "beim Ordnungsamt der Gemeinde", "beim / bei der Landesbeauftragten für politische Bildung", "bei den Kirchen"],
-                correct: 2
-            },
-            {
-                question: "Die Landeshauptstadt von Schleswig-Holstein heißt …",
-                options: ["Husum", "Flensburg", "Lübeck", "Kiel"],
-                correct: 3
-            },
-            {
-                question: "Welches Bundesland ist Schleswig-Holstein?",
-                options: ["1", "2", "3", "4"],
+                options: ["blau-weiß-rot", "schwarz-rot-gold", "rot-weiß-blau", "grün-weiß-rot"],
                 correct: 0
             },
             {
-                question: "Wie nennt man die Regierungschefin/den Regierungschef in Schleswig-Holstein?",
-                options: ["Erste Ministerin/Erster Minister", "Premierministerin/Premierminister", "Bürgermeisterin/Bürgermeister", "Ministerpräsidentin/Ministerpräsident"],
-                correct: 3
+                question: "Wo können Sie sich in Schleswig-Holstein über politische Themen informieren?",
+                options: ["beim Ordnungsamt der Gemeinde", "bei der Landeszentrale für politische Bildung", "bei der Verbraucherzentrale", "bei den Kirchen"],
+                correct: 1
             },
             {
-                question: "Welche Ministerin/welchen Minister hat Schleswig-Holstein nicht?",
-                options: ["Justizministerin/Justizminister", "Außenministerin/Außenminister", "Finanzministerin/Finanzminister", "Innenministerin/Innenminister"],
+                question: "Die Landeshauptstadt von Schleswig-Holstein heißt ...",
+                options: ["Lübeck", "Flensburg", "Kiel", "Neumünster"],
+                correct: 2
+            },
+            {
+                question: "Welches Meer grenzt an Schleswig-Holstein?",
+                options: ["Mittelmeer", "Nordsee", "Schwarzes Meer", "Adriatisches Meer"],
                 correct: 1
+            },
+            {
+                question: "Wie nennt man die Regierungschefin/den Regierungschef in Schleswig-Holstein?",
+                options: ["Erste Ministerin/Erster Minister", "Präsidentin/Präsident des Landes", "Ministerpräsidentin/Ministerpräsident", "Landrätin/Landrat"],
+                correct: 2
+            },
+            {
+                question: "Welche berühmte Meeresstraße liegt zwischen Schleswig-Holstein und Dänemark?",
+                options: ["Ärmelkanal", "Straße von Gibraltar", "Kleine Belt", "Öresund"],
+                correct: 2
             }
         ];
 
@@ -594,7 +642,6 @@
         let currentQuestion = 0;
         let selectedAnswers = new Array(questions.length).fill(null);
         let correctAnswers = 0;
-        let startTime = Date.now();
 
         // Update question display
         function showQuestion() {
@@ -608,18 +655,63 @@
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
             
-            question.options.forEach((option, index) => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'option';
-                optionDiv.textContent = option;
-                optionDiv.onclick = () => selectOption(index);
-                
-                if (selectedAnswers[currentQuestion] === index) {
-                    optionDiv.classList.add('selected');
-                }
-                
-                optionsContainer.appendChild(optionDiv);
-            });
+            if (question.isImageQuestion) {
+                // Handle image-based questions
+                optionsContainer.className = 'options-container image-options';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option image-option';
+                    
+                    const img = document.createElement('img');
+                    img.src = question.images[index];
+                    img.alt = option;
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '8px';
+                    
+                    optionDiv.appendChild(img);
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        const isCorrect = index === question.correct;
+                        optionDiv.classList.add(isCorrect ? 'correct' : 'wrong');
+                    } else if (selectedAnswers[currentQuestion] !== null && index === question.correct && selectedAnswers[currentQuestion] !== question.correct) {
+                        optionDiv.classList.add('correct');
+                    }
+                    
+                    // Disable options if already answered
+                    if (selectedAnswers[currentQuestion] !== null) {
+                        optionDiv.style.pointerEvents = 'none';
+                        optionDiv.style.cursor = 'not-allowed';
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            } else {
+                // Handle text-based questions
+                optionsContainer.className = 'options-container';
+                question.options.forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'option';
+                    optionDiv.textContent = option;
+                    optionDiv.onclick = () => selectOption(index);
+                    
+                    if (selectedAnswers[currentQuestion] === index) {
+                        const isCorrect = index === question.correct;
+                        optionDiv.classList.add(isCorrect ? 'correct' : 'wrong');
+                    } else if (selectedAnswers[currentQuestion] !== null && index === question.correct && selectedAnswers[currentQuestion] !== question.correct) {
+                        optionDiv.classList.add('correct');
+                    }
+                    
+                    // Disable options if already answered
+                    if (selectedAnswers[currentQuestion] !== null) {
+                        optionDiv.style.pointerEvents = 'none';
+                        optionDiv.style.cursor = 'not-allowed';
+                    }
+                    
+                    optionsContainer.appendChild(optionDiv);
+                });
+            }
             
             // Update navigation
             document.getElementById('back-btn').disabled = currentQuestion === 0;
@@ -630,15 +722,41 @@
 
         // Select answer option
         function selectOption(index) {
-            selectedAnswers[currentQuestion] = index;
+            // Prevent changing answer if already selected
+            if (selectedAnswers[currentQuestion] !== null) {
+                return;
+            }
             
-            // Update UI
+            selectedAnswers[currentQuestion] = index;
+            const question = questions[currentQuestion];
+            const isCorrect = index === question.correct;
+            
+            // Remove previous feedback classes from all options
+            document.querySelectorAll('.option').forEach((option) => {
+                option.classList.remove('selected', 'correct', 'wrong');
+            });
+            
+            // Show immediate visual feedback
             document.querySelectorAll('.option').forEach((option, i) => {
-                option.classList.toggle('selected', i === index);
+                if (i === index) {
+                    // Show if the selected answer is correct or wrong
+                    option.classList.add(isCorrect ? 'correct' : 'wrong');
+                } else if (i === question.correct && !isCorrect) {
+                    // Show the correct answer if user selected wrong
+                    option.classList.add('correct');
+                }
+                // Disable all options after selection
+                option.style.pointerEvents = 'none';
+                option.style.cursor = 'not-allowed';
             });
             
             document.getElementById('next-btn').disabled = false;
             updateProgress();
+            
+            // Add a small delay before allowing next question
+            setTimeout(() => {
+                // Optional: can add any additional feedback here
+            }, 500);
         }
 
         // Navigation functions
@@ -710,10 +828,10 @@
             }
             
             document.getElementById('results-message').textContent = message;
-            document.getElementById('results-icon').textContent = icon;
             
             // Save results to dashboard
             saveBundeslandResults('Schleswig-Holstein', correctAnswers, percentage);
+            document.getElementById('results-icon').textContent = icon;
         }
 
         function categorizeQuestion(questionText) {
@@ -804,7 +922,6 @@
             currentQuestion = 0;
             selectedAnswers = new Array(questions.length).fill(null);
             correctAnswers = 0;
-            startTime = Date.now();
             
             document.getElementById('results-screen').style.display = 'none';
             document.querySelector('.exam-container').style.display = 'grid';
