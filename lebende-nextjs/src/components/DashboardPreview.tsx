@@ -160,7 +160,7 @@ export function DashboardPreview() {
             
             <div className="text-center">
               <div className="text-6xl mb-2">🎯</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">You're doing great!</h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">You&apos;re doing great!</h3>
               <p className="text-gray-600">Keep up the excellent progress</p>
             </div>
           </div>
@@ -185,7 +185,9 @@ export function DashboardPreview() {
                 <Sparkles className="w-5 h-5 text-purple-500" />
                 <h4 className="font-bold text-gray-800">AI Recommendation</h4>
               </div>
-              <p className="text-gray-700">Focus on "Geschichte und Verantwortung" to improve your overall score!</p>
+              <p className="text-gray-700">
+                Focus on &quot;Geschichte und Verantwortung&quot; to improve your overall score!
+              </p>
             </div>
           </div>
         )}
