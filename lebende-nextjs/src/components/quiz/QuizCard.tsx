@@ -1,62 +1,173 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, XCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Question } from '@/types/quiz';
 
+type CategoryKey = Question['category'];
+
+export type QuizCompletionSummary = {
+  totalQuestions: number;
+  correctAnswers: number;
+  startedAt: string;
+  completedAt: string;
+  durationMs: number;
+  categoryPerformance: Partial<Record<CategoryKey, { correct: number; total: number }>>;
+};
+
 interface QuizCardProps {
   questions: Question[];
   title: string;
   subtitle?: string;
+  initialQuestionIndex?: number;
+  onRestart?: () => void;
+  onComplete?: (summary: QuizCompletionSummary) => void;
 }
 
-export function QuizCard({ questions, title, subtitle }: QuizCardProps) {
+export function QuizCard({
+  questions,
+  title,
+  subtitle,
+  initialQuestionIndex,
+  onRestart,
+  onComplete,
+}: QuizCardProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<(number | undefined)[]>(() =>
+    Array(questions.length).fill(undefined),
+  );
   const [showResult, setShowResult] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const startTimeRef = useRef<number>(Date.now());
+  const startedAtRef = useRef<string>(new Date().toISOString());
+  const completionRaisedRef = useRef(false);
+  const initialIndexRef = useRef(0);
 
   const current = questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const progress = questions.length
+    ? ((currentQuestion + 1) / questions.length) * 100
+    : 0;
+
+  useEffect(() => {
+    const boundedInitial = initialQuestionIndex !== undefined
+      ? Math.min(Math.max(initialQuestionIndex, 0), Math.max(questions.length - 1, 0))
+      : 0;
+
+    setAnswers(Array(questions.length).fill(undefined));
+    setCurrentQuestion(questions.length ? boundedInitial : 0);
+    setSelectedAnswer(null);
+    setShowResult(false);
+    setQuizCompleted(false);
+    initialIndexRef.current = boundedInitial;
+    startTimeRef.current = Date.now();
+    startedAtRef.current = new Date().toISOString();
+    completionRaisedRef.current = false;
+  }, [questions, initialQuestionIndex]);
+
+  useEffect(() => {
+    const savedAnswer = answers[currentQuestion];
+
+    if (savedAnswer !== undefined) {
+      setSelectedAnswer(savedAnswer);
+      setShowResult(true);
+    } else {
+      setSelectedAnswer(null);
+      setShowResult(false);
+    }
+  }, [answers, currentQuestion]);
 
   const handleAnswerSelect = (answerIndex: number) => {
+    setAnswers((prev) => {
+      const updated = [...prev];
+      updated[currentQuestion] = answerIndex;
+      return updated;
+    });
     setSelectedAnswer(answerIndex);
     setShowResult(true);
   };
 
   const handleNext = () => {
-    if (selectedAnswer !== null) {
-      const newAnswers = [...answers];
-      newAnswers[currentQuestion] = selectedAnswer;
-      setAnswers(newAnswers);
+    if (selectedAnswer === null) {
+      return;
+    }
 
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedAnswer(null);
-        setShowResult(false);
-      } else {
-        setQuizCompleted(true);
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
+    } else {
+      if (!completionRaisedRef.current) {
+        const finalAnswers = answers.map((value, index) =>
+          index === currentQuestion ? selectedAnswer ?? value : value,
+        );
+        const totalCorrect = finalAnswers.reduce<number>((count, answerIndex, idx) => {
+          if (answerIndex === undefined || !questions[idx]) {
+            return count;
+          }
+          return answerIndex === questions[idx].correct ? count + 1 : count;
+        }, 0);
+        const categoryPerformance = questions.reduce<
+          Partial<Record<CategoryKey, { correct: number; total: number }>>
+        >((acc, question, idx) => {
+          const answerIndex = finalAnswers[idx];
+          const existing = acc[question.category] ?? { correct: 0, total: 0 };
+          existing.total += 1;
+          if (answerIndex === question.correct) {
+            existing.correct += 1;
+          }
+          acc[question.category] = existing;
+          return acc;
+        }, {});
+
+        const completedAt = new Date();
+        setAnswers(finalAnswers);
+        onComplete?.({
+          totalQuestions: questions.length,
+          correctAnswers: totalCorrect,
+          startedAt: startedAtRef.current,
+          completedAt: completedAt.toISOString(),
+          durationMs: Math.max(0, completedAt.getTime() - startTimeRef.current),
+          categoryPerformance,
+        });
+        completionRaisedRef.current = true;
       }
+      setQuizCompleted(true);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-      setSelectedAnswer(answers[currentQuestion - 1] || null);
-      setShowResult(false);
+      setCurrentQuestion((prev) => prev - 1);
     }
   };
 
-  const correctAnswers = answers.filter((answer, index) => 
-    answer === questions[index]?.correct
-  ).length;
+  const correctAnswers = answers.reduce<number>((count, answer, index) => {
+    if (answer === undefined || !questions[index]) {
+      return count;
+    }
 
-  const scorePercentage = Math.round((correctAnswers / questions.length) * 100);
+    return answer === questions[index].correct ? count + 1 : count;
+  }, 0);
+
+  const scorePercentage = questions.length
+    ? Math.round((correctAnswers / questions.length) * 100)
+    : 0;
+
+  if (!questions.length) {
+    return (
+      <Card className="max-w-2xl mx-auto">
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl">No questions available</CardTitle>
+        </CardHeader>
+        <CardContent className="text-center text-gray-600">
+          Add questions to start a practice session.
+        </CardContent>
+      </Card>
+    );
+  }
 
   if (quizCompleted) {
     return (
@@ -78,17 +189,24 @@ export function QuizCard({ questions, title, subtitle }: QuizCardProps) {
           </div>
           <Progress value={scorePercentage} className="h-3" />
           <div className="flex gap-4 justify-center">
-            <Button onClick={() => {
-              setCurrentQuestion(0);
-              setSelectedAnswer(null);
-              setAnswers([]);
-              setShowResult(false);
-              setQuizCompleted(false);
-            }}>
+            <Button
+              onClick={() => {
+                const restartIndex = initialIndexRef.current;
+                setCurrentQuestion(questions.length ? restartIndex : 0);
+                setSelectedAnswer(null);
+                setAnswers(Array(questions.length).fill(undefined));
+                setShowResult(false);
+                setQuizCompleted(false);
+                startTimeRef.current = Date.now();
+                startedAtRef.current = new Date().toISOString();
+                completionRaisedRef.current = false;
+                onRestart?.();
+              }}
+            >
               Try Again
             </Button>
-            <Button variant="outline">
-              Back to Dashboard
+            <Button variant="outline" asChild>
+              <Link href="/dashboard">Back to Dashboard</Link>
             </Button>
           </div>
         </CardContent>
@@ -112,6 +230,11 @@ export function QuizCard({ questions, title, subtitle }: QuizCardProps) {
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
+          {typeof current?.id !== "undefined" && (
+            <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-primary">
+              Official Question #{current.id}
+            </div>
+          )}
           <h3 className="text-lg font-semibold mb-4">
             {current?.question}
           </h3>
@@ -136,8 +259,7 @@ export function QuizCard({ questions, title, subtitle }: QuizCardProps) {
               return (
                 <button
                   key={index}
-                  onClick={() => !showResult && handleAnswerSelect(index)}
-                  disabled={showResult}
+                  onClick={() => handleAnswerSelect(index)}
                   className={buttonClass}
                 >
                   <div className="flex items-center justify-between">
