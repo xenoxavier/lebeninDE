@@ -28,7 +28,9 @@ export type BundeslandRawQuestion = {
   correct: number;
   explanation?: string;
   images?: string[];
-isImageQuestion?: boolean;
+  isImageQuestion?: boolean;
+  imageType?: 'options' | 'question';
+  hasImage?: boolean;
 };
 
 type BundeslandLoader = () => Promise<BundeslandRawQuestion[]>;

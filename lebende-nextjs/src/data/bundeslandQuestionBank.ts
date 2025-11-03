@@ -3,21 +3,23 @@ import type { BundeslandRawQuestion } from "./bundeslaender";
 export const BUNDESLAND_QUESTION_BANK: Record<string, BundeslandRawQuestion[]> = {
   "baden-wuerttemberg": [
     {
-      "question": "Welches Wappen gehÃ¶rt zum Bundesland Baden-WÃ¼rttemberg?",
+      "question": "Welches Wappen gehört zum Bundesland Baden-Württemberg?",
       "options": [
-        "Baden-WÃ¼rttemberg",
-        "ThÃ¼ringen",
+        "Baden-Württemberg",
+        "Thüringen",
         "Sachsen-Anhalt",
         "Hamburg"
       ],
       "images": [
-        "picture/Baden-WÃ¼rttemberg.png",
-        "picture/Thuringia.png",
-        "picture/Saxony-Anhalt (Sachsen-Anhalt).png",
-        "picture/hamburg.png"
+        "/assets/flags/baden-wuerttemberg.png",
+        "/assets/flags/thueringen.png",
+        "/assets/flags/sachsen-anhalt.png",
+        "/assets/flags/hamburg.png"
       ],
       "correct": 0,
-      "isImageQuestion": true
+      "isImageQuestion": true,
+      "imageType": "options",
+      "hasImage": true
     },
     {
       "question": "Welches ist ein Landkreis in Baden-WÃ¼rttemberg?",

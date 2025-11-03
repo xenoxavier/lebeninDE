@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -238,22 +239,32 @@ export function QuizCard({
           <h3 className="text-lg font-semibold mb-4">
             {current?.question}
           </h3>
-          <div className="space-y-3">
+          <div
+            className={
+              current?.imageType === "options"
+                ? "grid grid-cols-2 gap-3 sm:grid-cols-4"
+                : "space-y-3"
+            }
+          >
             {current?.options.map((option, index) => {
-              let buttonClass = "w-full text-left p-4 border rounded-lg transition-colors ";
-              
+              const hasOptionImage =
+                current?.imageType === "options" && current?.images?.[index];
+
+              let buttonClass = hasOptionImage
+                ? "relative flex flex-col items-center gap-3 rounded-lg border p-4 text-center transition-colors"
+                : "w-full text-left p-4 border rounded-lg transition-colors";
+
               if (!showResult) {
-                buttonClass += selectedAnswer === index 
-                  ? "border-primary bg-primary/10" 
-                  : "border-gray-200 hover:border-gray-300 hover:bg-gray-50";
+                buttonClass +=
+                  selectedAnswer === index
+                    ? " border-primary bg-primary/10"
+                    : " border-gray-200 hover:border-gray-300 hover:bg-gray-50";
+              } else if (index === current.correct) {
+                buttonClass += " border-green-500 bg-green-50 text-green-700";
+              } else if (index === selectedAnswer && index !== current.correct) {
+                buttonClass += " border-red-500 bg-red-50 text-red-700";
               } else {
-                if (index === current.correct) {
-                  buttonClass += "border-green-500 bg-green-50 text-green-700";
-                } else if (index === selectedAnswer && index !== current.correct) {
-                  buttonClass += "border-red-500 bg-red-50 text-red-700";
-                } else {
-                  buttonClass += "border-gray-200 bg-gray-50";
-                }
+                buttonClass += " border-gray-200 bg-gray-50";
               }
 
               return (
@@ -262,18 +273,45 @@ export function QuizCard({
                   onClick={() => handleAnswerSelect(index)}
                   className={buttonClass}
                 >
-                  <div className="flex items-center justify-between">
-                    <span>{option}</span>
-                    {showResult && (
-                      <span>
-                        {index === current.correct ? (
-                          <CheckCircle2 className="w-5 h-5 text-green-600" />
-                        ) : index === selectedAnswer ? (
-                          <XCircle className="w-5 h-5 text-red-600" />
-                        ) : null}
+                  {hasOptionImage ? (
+                    <>
+                      <div className="relative h-24 w-full overflow-hidden rounded-md border border-gray-200 bg-white">
+                        <Image
+                          src={current!.images![index]}
+                          alt={option}
+                          fill
+                          sizes="(max-width: 640px) 50vw, 25vw"
+                          className="object-contain"
+                          priority={currentQuestion === initialIndexRef.current}
+                        />
+                      </div>
+                      <span className="text-sm font-medium text-gray-800">
+                        {option}
                       </span>
-                    )}
-                  </div>
+                      {showResult && (
+                        <span className="absolute right-3 top-3">
+                          {index === current.correct ? (
+                            <CheckCircle2 className="w-5 h-5 text-green-600" />
+                          ) : index === selectedAnswer ? (
+                            <XCircle className="w-5 h-5 text-red-600" />
+                          ) : null}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex items-center justify-between">
+                      <span>{option}</span>
+                      {showResult && (
+                        <span>
+                          {index === current.correct ? (
+                            <CheckCircle2 className="w-5 h-5 text-green-600" />
+                          ) : index === selectedAnswer ? (
+                            <XCircle className="w-5 h-5 text-red-600" />
+                          ) : null}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </button>
               );
             })}
