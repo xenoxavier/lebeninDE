@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -160,6 +160,27 @@ function normalizeBundeslandQuestions(rawQuestions: BundeslandRawQuestion[]): Qu
 const generalPracticeQuestions = normalizeGeneralQuestions();
 
 export default function PracticeStartPage() {
+  return (
+    <Suspense fallback={<PracticeStartPageSkeleton />}>
+      <PracticeStartPageContent />
+    </Suspense>
+  );
+}
+
+function PracticeStartPageSkeleton() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+      <main className="container mx-auto px-4 py-12">
+        <div className="flex items-center justify-center gap-3 rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+          <Loader2 className="h-5 w-5 animate-spin text-primary" aria-hidden="true" />
+          <p className="text-sm text-gray-200">Loading practice session...</p>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function PracticeStartPageContent() {
   const searchParams = useSearchParams();
   const stateParam = searchParams.get("state");
   const questionParam = searchParams.get("question");
@@ -219,28 +240,15 @@ export default function PracticeStartPage() {
       return {};
     }
 
+    if (selectedState) {
+      // State quizzes are short; ignore jump parameters entirely.
+      return {};
+    }
+
     if (questionNumber === null || Number.isNaN(questionNumber)) {
       return {
         variant: "error",
         message: "Enter a valid question number using digits only.",
-      };
-    }
-
-    if (selectedState) {
-      if (!bundeslandQuestions) {
-        return { pending: true };
-      }
-      const total = bundeslandQuestions.length;
-      if (questionNumber < 1 || questionNumber > total) {
-        return {
-          variant: "error",
-          message: `${selectedState.name} has only ${total} questions. Enter a number between 1 and ${total}.`,
-        };
-      }
-      return {
-        initialIndex: questionNumber - 1,
-        variant: "success",
-        message: `Jumped to ${selectedState.name} question #${questionNumber}.`,
       };
     }
 
@@ -267,14 +275,7 @@ export default function PracticeStartPage() {
       variant: "success",
       message: `Jumped to official question #${questionNumber}.`,
     };
-  }, [
-    questionParam,
-    questionNumber,
-    selectedState,
-    bundeslandQuestions,
-    selectedCategory,
-    categoryQuestions,
-  ]);
+  }, [questionParam, questionNumber, selectedState, selectedCategory, categoryQuestions]);
 
   useEffect(() => {
     if (!selectedState) {
@@ -390,7 +391,9 @@ export default function PracticeStartPage() {
                 </Link>
               </Button>
               <div className="flex items-center space-x-2">
-                <div className="text-2xl">dY???cdYO?</div>
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-600 text-sm font-semibold text-slate-900 shadow-sm">
+                  DE
+                </span>
                 <div>
                   <h1 className="text-xl font-bold text-gray-900">Practice Quiz</h1>
                   <p className="text-sm text-gray-600">Leben in Deutschland</p>
@@ -482,46 +485,48 @@ export default function PracticeStartPage() {
           />
         )}
 
-        <div className="max-w-2xl mx-auto rounded-lg border border-gray-200 bg-white/90 p-4 shadow-sm">
-          <div className="mb-3">
-            <p className="text-sm font-semibold text-gray-800">
-              Jump to another official question
-            </p>
-            <p className="text-xs text-gray-500">
-              Enter a number between 1 and 300. This works at any time.
-            </p>
+        {!selectedState && (
+          <div className="max-w-2xl mx-auto rounded-lg border border-gray-200 bg-white/90 p-4 shadow-sm">
+            <div className="mb-3">
+              <p className="text-sm font-semibold text-gray-800">
+                Jump to another official question
+              </p>
+              <p className="text-xs text-gray-500">
+                Enter a number between 1 and 300. This works at any time.
+              </p>
+            </div>
+            <form
+              className="flex flex-col gap-3 sm:flex-row sm:items-center"
+              onSubmit={(event) => {
+                event.preventDefault();
+                const formData = new FormData(event.currentTarget);
+                const value = (formData.get("jump") as string | null)?.trim() ?? "";
+                if (!value) {
+                  return;
+                }
+
+                const parsed = Number.parseInt(value, 10);
+                if (!Number.isInteger(parsed) || parsed < 1 || parsed > 300) {
+                  alert("Please enter a valid question number between 1 and 300.");
+                  return;
+                }
+
+                window.location.href = `?question=${parsed}`;
+                (event.currentTarget as HTMLFormElement).reset();
+              }}
+            >
+              <Input
+                name="jump"
+                type="number"
+                min={1}
+                max={300}
+                placeholder="e.g. 125"
+                className="flex-1"
+              />
+              <Button type="submit">Jump Now</Button>
+            </form>
           </div>
-          <form
-            className="flex flex-col gap-3 sm:flex-row sm:items-center"
-            onSubmit={(event) => {
-              event.preventDefault();
-              const formData = new FormData(event.currentTarget);
-              const value = (formData.get("jump") as string | null)?.trim() ?? "";
-              if (!value) {
-                return;
-              }
-
-              const parsed = Number.parseInt(value, 10);
-              if (!Number.isInteger(parsed) || parsed < 1 || parsed > 300) {
-                alert("Please enter a valid question number between 1 and 300.");
-                return;
-              }
-
-              window.location.href = `?question=${parsed}`;
-              (event.currentTarget as HTMLFormElement).reset();
-            }}
-          >
-            <Input
-              name="jump"
-              type="number"
-              min={1}
-              max={300}
-              placeholder="e.g. 125"
-              className="flex-1"
-            />
-            <Button type="submit">Jump Now</Button>
-          </form>
-        </div>
+        )}
       </main>
     </div>
   );

@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Trophy, Target, Clock, TrendingUp, Calendar, Award } from "lucide-react";
 import { BUNDESLAENDER } from "@/data/bundeslaender";
-import { CATEGORY_BY_KEY, CATEGORY_KEYS } from "@/data/categories";
-import { useDashboardStore, type CategoryKey, type QuizSessionRecord } from "@/lib/stores/dashboardStore";
+import { CATEGORY_BY_KEY, CATEGORY_KEYS, type CategoryKey } from "@/data/categories";
+import { useDashboardStore, type QuizSessionRecord } from "@/lib/stores/dashboardStore";
 
 const dayKey = (input: string | Date): string => {
   const date = input instanceof Date ? input : new Date(input);

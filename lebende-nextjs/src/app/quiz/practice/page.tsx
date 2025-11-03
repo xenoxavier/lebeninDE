@@ -205,7 +205,9 @@ export default function PracticePage() {
                 </Link>
               </Button>
               <div className="flex items-center space-x-2">
-                <div className="text-2xl">🇩🇪</div>
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-600 text-sm font-semibold text-slate-900 shadow-sm">
+                  DE
+                </span>
                 <div>
                   <h1 className="text-xl font-bold text-gray-900">Practice Quiz</h1>
                   <p className="text-sm text-gray-600">Leben in Deutschland</p>
